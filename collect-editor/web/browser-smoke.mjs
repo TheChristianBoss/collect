@@ -1,5 +1,8 @@
 /* Headless Chromium smoke test of the static browser build. */
 import {chromium} from "playwright";
+import {execFileSync} from "node:child_process";
+import {tmpdir} from "node:os";
+import {join} from "node:path";
 
 const browser = await chromium.launch({headless: true, args: ["--no-sandbox"]});
 const page = await browser.newPage({acceptDownloads: true});
@@ -13,41 +16,15 @@ try {
   await page.goto("http://127.0.0.1:4173/", {waitUntil: "networkidle", timeout: 30000});
   await page.waitForSelector("#fileInput", {state: "attached", timeout: 15000});
   await page.waitForFunction(() => Boolean(window.CollectBrowserAPI), null, {timeout: 15000});
-  const result = await page.evaluate(async () => {
-    const canvas = document.createElement("canvas");
-    canvas.width = 160;
-    canvas.height = 90;
-    const context = canvas.getContext("2d");
-    const stream = canvas.captureStream(10);
-    const recorder = new MediaRecorder(stream, {mimeType: "video/webm"});
-    const chunks = [];
-    recorder.ondataavailable = ({data}) => { if (data.size) chunks.push(data); };
-    const completion = new Promise((resolve) => { recorder.onstop = resolve; });
-    let tick = 0;
-    const draw = () => {
-      context.fillStyle = tick++ % 2 ? "#a88cff" : "#172d48";
-      context.fillRect(0, 0, 160, 90);
-    };
-    draw();
-    const frameTimer = setInterval(draw, 50);
-    recorder.start(100);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
-    recorder.stop();
-    await completion;
-    clearInterval(frameTimer);
-    stream.getTracks().forEach((track) => track.stop());
-    const blob = new Blob(chunks, {type: "video/webm"});
-    const file = new File([blob], "collect-smoke.webm", {type: "video/webm"});
-    const transfer = new DataTransfer();
-    transfer.items.add(file);
-    const input = document.getElementById("fileInput");
-    input.files = transfer.files;
-    input.dispatchEvent(new Event("change", {bubbles: true}));
-    return {size: blob.size};
-  });
-  console.log("Generated browser video bytes:", result.size);
-  if (!result.size) throw Error("Generated source video is empty");
-
+  const samplePath = join(tmpdir(), "collect-smoke.webm");
+  execFileSync("ffmpeg", [
+    "-hide_banner", "-loglevel", "error", "-y",
+    "-f", "lavfi", "-i", "testsrc2=size=160x90:rate=10:duration=1.5",
+    "-an", "-c:v", "libvpx", "-deadline", "realtime", "-b:v", "160k",
+    samplePath
+  ]);
+  await page.locator("#fileInput").setInputFiles(samplePath);
+  console.log("Uploaded FFmpeg-generated video into browser library");
   await page.waitForFunction(
     () => document.getElementById("mediaCount").textContent === "1",
     null, {timeout: 30000}
