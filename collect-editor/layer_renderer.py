@@ -1,7 +1,7 @@
 """Compose a rendered V1 sequence with timed V2 video overlays and A1/A2 audio.
 
 The V1 movie is already normalized to H.264/AAC by app.py. Each overlay
-is placed as picture-in-picture at the bottom-right. A1/A2 layers are mixed
+is placed in a normalized, user-defined region. A1/A2 layers are mixed
 with V1's soundtrack. This is intentionally a simple v0.3 compositor.
 """
 from __future__ import annotations
@@ -50,16 +50,19 @@ def build_layer_command(
             end = at + length
             scaled = f"ov{number}"
             next_out = f"vout{number}"
+            rect_x = int(width * layer.get("x", 0.62))
+            rect_y = int(height * layer.get("y", 0.62))
+            rect_w = max(2, int(width * layer.get("w", 0.34)) // 2 * 2)
+            rect_h = max(2, int(height * layer.get("h", 0.34)) // 2 * 2)
             filters.append(
                 f"[{index}:v:0]setpts=PTS-STARTPTS+{at:.3f}/TB,"
-                f"scale={max(2, width * 36 // 100 // 2 * 2)}:"
-                f"{max(2, height * 36 // 100 // 2 * 2)}:"
-                "force_original_aspect_ratio=decrease,"
+                f"scale={rect_w}:{rect_h}:force_original_aspect_ratio=decrease,"
+                f"pad={rect_w}:{rect_h}:(ow-iw)/2:(oh-ih)/2:color=black,"
                 f"setsar=1,format=yuv420p[{scaled}]"
             )
             filters.append(
                 f"[{video_out}][{scaled}]"
-                "overlay=x=W-w-24:y=H-h-24:shortest=0:"
+                f"overlay=x={rect_x}:y={rect_y}:shortest=0:"
                 f"eof_action=pass:repeatlast=0:"
                 f"enable='between(t,{at:.3f},{end:.3f})'[{next_out}]"
             )
