@@ -1,0 +1,99 @@
+name: Collect Browser Edition — Build and Publish
+
+on:
+  pull_request:
+    paths:
+      - "collect-editor/web/**"
+      - "collect-editor/static/**"
+      - ".github/workflows/collect-browser-pages.yml"
+  push:
+    branches: [main]
+    paths:
+      - "collect-editor/web/**"
+      - "collect-editor/static/**"
+      - ".github/workflows/collect-browser-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: collect-editor-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install browser dependencies
+        working-directory: collect-editor/web
+        run: npm install --no-audit --no-fund
+      - name: Verify editor JavaScript syntax
+        run: |
+          node --check collect-editor/static/app.js
+          node --check collect-editor/static/layers.js
+          node --check collect-editor/static/timeline-core.js
+          node --check collect-editor/web/browser-api.js
+          node --test collect-editor/tests/timeline-core.test.js
+      - name: Build static GitHub Pages site
+        working-directory: collect-editor/web
+        run: npm run build
+      - name: Confirm generated website files
+        run: |
+          test -s collect-editor/web/dist/index.html
+          find collect-editor/web/dist -type f -maxdepth 3 | head -20
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: collect-editor/web/dist
+
+  browser-smoke:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install browser dependencies
+        working-directory: collect-editor/web
+        run: npm install --no-audit --no-fund
+      - name: Install headless Chromium
+        working-directory: collect-editor/web
+        run: npx playwright install --with-deps chromium
+      - name: Install FFmpeg for a valid test video
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+      - name: Build site for browser testing
+        working-directory: collect-editor/web
+        run: npm run build
+      - name: Launch site and test local video export
+        working-directory: collect-editor/web
+        timeout-minutes: 10
+        run: |
+          npm run preview -- --port 4173 > preview.log 2>&1 &
+          for i in $(seq 1 40); do
+            if curl -fsS http://127.0.0.1:4173/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node browser-smoke.mjs
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+      - name: Publish Collect Editor
+        id: deployment
+        uses: actions/deploy-pages@v4

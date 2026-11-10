@@ -1,0 +1,19 @@
+{
+  "name": "collect-editor-web",
+  "private": true,
+  "version": "0.5.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@ffmpeg/core": "0.12.10",
+    "@ffmpeg/ffmpeg": "0.12.15"
+  },
+  "devDependencies": {
+    "vite": "^5.4.10",
+    "playwright": "1.56.1"
+  }
+}
