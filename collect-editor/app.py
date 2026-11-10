@@ -171,7 +171,7 @@ def home():
 
 @app.get("/static/{filename}")
 def static_file(filename: str):
-    if filename not in {"style.css", "app.js"}:
+    if filename not in {"style.css", "app.js", "timeline-core.js"}:
         raise HTTPException(404, "Not found")
     return FileResponse(ROOT / "static" / filename)
 
