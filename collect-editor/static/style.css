@@ -65,3 +65,24 @@
 .track-row .timeline-track{gap:0}
 .track-row .timeline-clip{min-width:0;max-width:none;padding:8px 4px;border-radius:2px}
 .layer-clip{min-width:0}
+
+
+/* v0.4: on-canvas overlay manipulation, geometry, and audio waveforms */
+.viewer .overlay-preview{
+  bottom:auto;right:auto;top:62%;left:62%;width:34%;height:34%;
+  aspect-ratio:auto;object-fit:contain;touch-action:none;cursor:move;z-index:4;
+}
+.viewer .overlay-preview:not([hidden]){outline:1px solid #eee0ff}
+.overlay-handle{
+  position:absolute;z-index:6;left:96%;top:96%;transform:translate(-50%,-50%);
+  width:26px;height:26px;border-radius:7px;border:1px solid #ead9ff;
+  background:#5c41a5;color:#fff;cursor:nwse-resize;touch-action:none;
+  display:grid;place-items:center;font-size:17px;
+}
+.geometry-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.geometry-grid label{font-size:11px;color:#afb1c5}
+.geometry-grid .field-input{margin-top:5px}
+#transitionInspector .minor-text,#layerGeometryWrapper .minor-text{margin-top:8px;line-height:1.5}
+.waveform-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.55;pointer-events:none}
+.layer-clip strong,.layer-clip small{position:relative;z-index:1;text-shadow:0 1px 5px #000d}
+#layerGeometryWrapper[hidden],#transitionInspector[hidden]{display:none}
