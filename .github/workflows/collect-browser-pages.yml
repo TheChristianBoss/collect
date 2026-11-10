@@ -68,6 +68,8 @@ jobs:
       - name: Install headless Chromium
         working-directory: collect-editor/web
         run: npx playwright install --with-deps chromium
+      - name: Install FFmpeg for a valid test video
+        run: sudo apt-get update -qq && sudo apt-get install -y ffmpeg
       - name: Build site for browser testing
         working-directory: collect-editor/web
         run: npm run build
