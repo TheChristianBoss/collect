@@ -215,7 +215,7 @@ function renderTimeline() {
       const result = T.reorder(timeline, dragFrom, slot);
       clearDragClasses();
       dragFrom = -1;
-      if (!result || result.index === index && result.index === dragFrom) return;
+      if (!result) return;
       // A drop into the source's existing slot is a no-op.
       if (result.items.every((x, i) => x.clip_id === timeline[i].clip_id
         && x.start === timeline[i].start && x.end === timeline[i].end)) return;
@@ -547,8 +547,10 @@ function bindEvents() {
       redo();
       return;
     }
-    if (editing || document.activeElement?.tagName === "BUTTON") return;
-    if (event.code === "Space") { event.preventDefault(); togglePlay(); }
+    if (editing) return;
+    if (event.code === "Space" && document.activeElement?.tagName !== "BUTTON") {
+      event.preventDefault(); togglePlay();
+    }
     if (!modifier && event.code === "KeyS") { event.preventDefault(); splitAtPlayhead(); }
     if (!modifier && (event.code === "Delete" || event.code === "Backspace")) {
       event.preventDefault(); removeSelected();
