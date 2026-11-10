@@ -3,6 +3,8 @@ from __future__ import annotations
 
 import json
 import math
+import sys
+from array import array
 import shutil
 import subprocess
 import tempfile
@@ -22,7 +24,8 @@ DATA = ROOT / ".local-data"
 UPLOADS = DATA / "uploads"
 EXPORTS = DATA / "exports"
 MANIFEST = DATA / "clips.json"
-for folder in (UPLOADS, EXPORTS):
+WAVEFORMS = DATA / "waveforms"
+for folder in (UPLOADS, EXPORTS, WAVEFORMS):
     folder.mkdir(parents=True, exist_ok=True)
 
 ALLOWED_EXTENSIONS = {
@@ -33,7 +36,7 @@ MAX_UPLOAD_BYTES = 2 * 1024 * 1024 * 1024
 MAX_PROJECT_SECONDS = 60 * 60
 LOCK = threading.RLock()
 EXECUTOR = ThreadPoolExecutor(max_workers=1)
-app = FastAPI(title="Collect Editor", version="0.3.0")
+app = FastAPI(title="Collect Editor", version="0.4.0")
 
 
 def _load_clips() -> dict[str, dict]:
@@ -87,7 +90,8 @@ def _probe(path: Path) -> tuple[float, bool, bool]:
 
 
 def _encode_segment(source: Path, target: Path, start: float, end: float,
-                    has_audio: bool, width: int, height: int) -> None:
+                    has_audio: bool, width: int, height: int,
+                    fade_in: float = 0, fade_out: float = 0) -> None:
     duration = end - start
     video_filter = (
         f"scale={width}:{height}:force_original_aspect_ratio=decrease,"
@@ -100,9 +104,25 @@ def _encode_segment(source: Path, target: Path, start: float, end: float,
     if not has_audio:
         command += ["-f", "lavfi", "-t", f"{duration:.3f}", "-i",
                     "anullsrc=channel_layout=stereo:sample_rate=48000"]
+    fade_video = []
+    fade_audio = []
+    if fade_in > 0:
+        fade_video.append(f"fade=t=in:st=0:d={fade_in:.3f}")
+        fade_audio.append(f"afade=t=in:st=0:d={fade_in:.3f}")
+    if fade_out > 0:
+        position = max(0, duration - fade_out)
+        fade_video.append(f"fade=t=out:st={position:.3f}:d={fade_out:.3f}")
+        fade_audio.append(f"afade=t=out:st={position:.3f}:d={fade_out:.3f}")
+    if fade_video:
+        video_filter += "," + ",".join(fade_video)
     command += [
         "-map", "0:v:0", "-map", "0:a:0" if has_audio else "1:a:0",
-        "-vf", video_filter, "-c:v", "libx264", "-preset", "veryfast",
+        "-vf", video_filter,
+    ]
+    if fade_audio:
+        command += ["-af", ",".join(fade_audio)]
+    command += [
+        "-c:v", "libx264", "-preset", "veryfast",
         "-crf", "23", "-pix_fmt", "yuv420p",
         "-c:a", "aac", "-b:a", "160k", "-ar", "48000", "-ac", "2",
         "-shortest", str(target),
@@ -134,10 +154,20 @@ def _render(job_id: str, segments: list[dict], layers: list[dict],
             parts: list[Path] = []
             for index, segment in enumerate(segments):
                 target = workspace / f"part_{index:03d}.mp4"
+                clip_seconds = segment["end"] - segment["start"]
+                fade_in = 0.0
+                fade_out = 0.0
+                if index and segment.get("transition") == "fade":
+                    fade_in = min(segment["fade_seconds"], clip_seconds * 0.45)
+                if (index + 1 < len(segments)
+                        and segments[index + 1].get("transition") == "fade"):
+                    fade_out = min(segments[index + 1]["fade_seconds"],
+                                   clip_seconds * 0.45)
                 _encode_segment(
                     UPLOADS / segment["stored"], target,
                     segment["start"], segment["end"],
                     segment["has_audio"], width, height,
+                    fade_in=fade_in, fade_out=fade_out,
                 )
                 parts.append(target)
                 with LOCK:
@@ -170,12 +200,18 @@ class Segment(BaseModel):
     clip_id: str
     start: float = Field(ge=0)
     end: float = Field(gt=0)
+    transition: Literal["cut", "fade"] = "cut"
+    fade_seconds: float = Field(default=0.45, ge=0.1, le=1.5)
 
 
 class LayerSegment(Segment):
     track: Literal["V2", "A1", "A2"]
     at: float = Field(ge=0)
     volume: float = Field(default=1.0, ge=0, le=2)
+    x: float = Field(default=0.62, ge=0, le=1)
+    y: float = Field(default=0.62, ge=0, le=1)
+    w: float = Field(default=0.34, ge=0.05, le=1)
+    h: float = Field(default=0.34, ge=0.05, le=1)
 
 
 class ExportRequest(BaseModel):
@@ -258,6 +294,55 @@ def media(clip_id: str):
     return FileResponse(path, filename=clip["name"], content_disposition_type="inline")
 
 
+@app.get("/api/waveform/{clip_id}")
+def waveform(clip_id: str):
+    """Return up to 600 approximate waveform amplitudes for a local audio source."""
+    with LOCK:
+        clip = CLIPS.get(clip_id)
+    if not clip:
+        raise HTTPException(404, "Media not found")
+    if not clip["has_audio"]:
+        return {"duration": clip["duration"], "peaks": []}
+    cache = WAVEFORMS / (clip_id + ".json")
+    if cache.is_file():
+        try:
+            return json.loads(cache.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            pass
+    if not shutil.which("ffmpeg"):
+        raise HTTPException(503, "FFmpeg is required to generate waveforms")
+    seconds = min(3600.0, float(clip["duration"]))
+    command = [
+        "ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin",
+        "-i", str(UPLOADS / clip["stored"]), "-map", "0:a:0", "-vn",
+        "-t", f"{seconds:.3f}", "-ac", "1", "-ar", "2000",
+        "-f", "s16le", "pipe:1",
+    ]
+    try:
+        output = subprocess.run(command, capture_output=True, check=False)
+    except OSError as exc:
+        raise HTTPException(503, "Unable to start FFmpeg") from exc
+    if output.returncode:
+        raise HTTPException(400, "Unable to analyze audio")
+    samples = array("h")
+    samples.frombytes(output.stdout[:len(output.stdout) // 2 * 2])
+    if sys.byteorder != "little":
+        samples.byteswap()
+    count = len(samples)
+    buckets = min(600, count)
+    peaks = []
+    for index in range(buckets):
+        first = index * count // buckets
+        last = max(first + 1, (index + 1) * count // buckets)
+        peaks.append(round(max(abs(value) for value in samples[first:last]) / 32768, 3))
+    result = {"duration": seconds, "peaks": peaks}
+    try:
+        cache.write_text(json.dumps(result), encoding="utf-8")
+    except OSError:
+        pass
+    return result
+
+
 @app.delete("/api/clips/{clip_id}")
 def delete_clip(clip_id: str):
     with LOCK:
@@ -269,6 +354,7 @@ def delete_clip(clip_id: str):
     if not clip:
         raise HTTPException(404, "Clip not found")
     (UPLOADS / clip["stored"]).unlink(missing_ok=True)
+    (WAVEFORMS / (clip_id + ".json")).unlink(missing_ok=True)
     return {"deleted": True}
 
 
@@ -290,7 +376,9 @@ def start_export(request: ExportRequest):
                     or part.end > clip["duration"] + 0.05):
                 raise HTTPException(400, f"Invalid trim range for {clip['name']}.")
             total += part.end - part.start
-            items.append({**clip, "start": part.start, "end": part.end})
+            items.append({**clip, "start": part.start, "end": part.end,
+                          "transition": part.transition,
+                          "fade_seconds": part.fade_seconds})
         if total > MAX_PROJECT_SECONDS:
             raise HTTPException(400, "The total timeline must be one hour or less.")
         layers = []
@@ -306,10 +394,14 @@ def start_export(request: ExportRequest):
                 raise HTTPException(400, "Invalid layer start, trim, or placement.")
             if item.track == "V2" and media.get("kind", "video") != "video":
                 raise HTTPException(400, "V2 overlays require video media.")
+            if item.track == "V2" and (item.x + item.w > 1.00001
+                                       or item.y + item.h > 1.00001):
+                raise HTTPException(400, "Overlay rectangle must fit in the frame.")
             if item.track in ("A1", "A2") and not media["has_audio"]:
                 raise HTTPException(400, "Audio tracks require media with an audio stream.")
             layers.append({**media, "track": item.track, "start": item.start,
-                           "end": item.end, "at": item.at, "volume": item.volume})
+                           "end": item.end, "at": item.at, "volume": item.volume,
+                           "x": item.x, "y": item.y, "w": item.w, "h": item.h})
         job_id = uuid.uuid4().hex
         JOBS[job_id] = {
             "id": job_id, "status": "queued", "progress": 0,
