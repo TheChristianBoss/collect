@@ -13,6 +13,7 @@
     "@ffmpeg/ffmpeg": "0.12.15"
   },
   "devDependencies": {
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "playwright": "1.56.1"
   }
 }
