@@ -62,11 +62,12 @@
   function waveform(media) {
     if (!media?.has_audio) return Promise.resolve(null);
     if (!waveformCache.has(media.id)) {
-      const task = fetch("/api/waveform/" + encodeURIComponent(media.id))
-        .then((response) => {
-          if (!response.ok) throw Error("Waveform unavailable");
-          return response.json();
-        })
+      const task = (globalThis.CollectBrowserAPI
+        ? globalThis.CollectBrowserAPI.getWaveform(media.id)
+        : fetch("/api/waveform/" + encodeURIComponent(media.id)).then((response) => {
+            if (!response.ok) throw Error("Waveform unavailable");
+            return response.json();
+          }))
         .catch(() => null);
       waveformCache.set(media.id, task);
     }
@@ -185,7 +186,9 @@
         if (!previewDragging) drawRect(rect(topVideo));
         if (videoLoadedFor !== media.id) {
           videoLoadedFor = media.id;
-          overlay.src = "/api/media/" + encodeURIComponent(media.id);
+          overlay.src = globalThis.CollectBrowserAPI
+            ? globalThis.CollectBrowserAPI.getMediaURL(media.id)
+            : "/api/media/" + encodeURIComponent(media.id);
           overlay.onloadedmetadata = () => syncPreview();
           overlay.load();
         } else if (overlay.readyState >= 1) {
@@ -212,7 +215,9 @@
       if (!media) return;
       let player = playingAudio.get(item.id);
       if (!player) {
-        player = new Audio("/api/media/" + encodeURIComponent(media.id));
+        player = new Audio(globalThis.CollectBrowserAPI
+          ? globalThis.CollectBrowserAPI.getMediaURL(media.id)
+          : "/api/media/" + encodeURIComponent(media.id));
         player.preload = "auto";
         playingAudio.set(item.id, player);
       }
