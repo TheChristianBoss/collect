@@ -69,7 +69,12 @@ function restoreProject() {
       return media && Number.isFinite(item.start) && Number.isFinite(item.end)
         && item.start >= 0 && item.end - item.start >= T.MIN_CLIP
         && item.end <= media.duration + 0.05;
-    }).map((item) => ({clip_id: item.clip_id, start: item.start, end: item.end}));
+    }).map((item) => ({
+      clip_id: item.clip_id, start: item.start, end: item.end,
+      transition: item.transition === "fade" ? "fade" : "cut",
+      fade_seconds: Number.isFinite(item.fade_seconds)
+        ? Math.max(0.1, Math.min(1.5, item.fade_seconds)) : 0.45
+    }));
   }
   try {
     const value = Number(localStorage.getItem(ZOOM_KEY));
@@ -157,7 +162,10 @@ function renderLibrary() {
       }
       if (!canAdd()) return;
       remember();
-      timeline.push({clip_id: media.id, start: 0, end: media.duration});
+      timeline.push({
+        clip_id: media.id, start: 0, end: media.duration,
+        transition: "cut", fade_seconds: 0.45
+      });
       select(timeline.length - 1);
       toast("Clip added to timeline");
     };
@@ -196,6 +204,7 @@ function renderTimeline() {
     const label = document.createElement("span");
     label.className = "title";
     label.textContent = media ? media.name : "Missing media";
+    if (index > 0 && item.transition === "fade") label.textContent = "◐ " + label.textContent;
     const time = document.createElement("span");
     time.className = "duration";
     time.textContent = fmt(duration(item));
@@ -291,6 +300,10 @@ function renderInspector() {
   $("selectedDuration").textContent = fmt(duration(item));
   $("moveLeft").disabled = selected <= 0;
   $("moveRight").disabled = selected >= timeline.length - 1;
+  $("transitionInspector").hidden = selected === 0;
+  $("transitionType").value = item.transition === "fade" ? "fade" : "cut";
+  $("transitionDuration").value = (item.fade_seconds || 0.45).toFixed(2);
+  $("transitionDuration").disabled = selected === 0 || item.transition !== "fade";
 }
 function renderTransport() {
   const item = current();
@@ -306,6 +319,17 @@ function renderTransport() {
   $("timeDisplay").textContent = fmt(time - item.start) + " / " + fmt(duration(item));
   $("seekBar").value = String(Math.round(1000 * (time - item.start) / Math.max(0.1, duration(item))));
   $("playButton").textContent = video.paused ? "▶" : "Ⅱ";
+  let brightness = 1;
+  if (selected > 0 && item.transition === "fade") {
+    const length = Math.min(item.fade_seconds || 0.45, duration(item) * 0.45);
+    brightness = Math.min(brightness, Math.max(0, (time - item.start) / Math.max(0.01, length)));
+  }
+  if (selected + 1 < timeline.length && timeline[selected + 1].transition === "fade") {
+    const length = Math.min(timeline[selected + 1].fade_seconds || 0.45, duration(item) * 0.45);
+    brightness = Math.min(brightness, Math.max(0, (item.end - time) / Math.max(0.01, length)));
+  }
+  video.style.opacity = String(brightness);
+  video.volume = brightness;
   updateProjectCursor();
   globalThis.CollectLayers?.syncPreview?.();
 }
@@ -320,6 +344,8 @@ function select(index, autoplay = false, sourceTime = null) {
     video.removeAttribute("src");
     video.load();
     video.classList.remove("active");
+    video.style.opacity = "1";
+    video.volume = 1;
     $("viewerEmpty").hidden = false;
     $("previewTitle").textContent = "No clip selected";
   } else {
@@ -444,7 +470,11 @@ async function startExport() {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
-        segments: timeline.map((item) => ({clip_id: item.clip_id, start: item.start, end: item.end})),
+        segments: timeline.map((item) => ({
+          clip_id: item.clip_id, start: item.start, end: item.end,
+          transition: item.transition === "fade" ? "fade" : "cut",
+          fade_seconds: item.fade_seconds || 0.45
+        })),
         layers: globalThis.CollectLayers?.exportLayers?.() || [],
         resolution: $("resolution").value
       })
@@ -504,6 +534,26 @@ function bindEvents() {
   };
   $("trimStart").onchange = trim;
   $("trimEnd").onchange = trim;
+  const updateTransition = () => {
+    const item = current();
+    if (!item || selected === 0) return;
+    const type = $("transitionType").value;
+    const seconds = Number($("transitionDuration").value);
+    if (!Number.isFinite(seconds) || seconds < 0.1 || seconds > 1.5) {
+      toast("Fade duration must be between 0.1 and 1.5 seconds.");
+      renderInspector();
+      return;
+    }
+    if (item.transition === type && item.fade_seconds === seconds) return;
+    remember();
+    item.transition = type;
+    item.fade_seconds = seconds;
+    renderInspector();
+    renderTimeline();
+    renderTransport();
+  };
+  $("transitionType").onchange = updateTransition;
+  $("transitionDuration").onchange = updateTransition;
   $("resetTrim").onclick = () => {
     const item = current();
     if (!item) return;
