@@ -1,0 +1,933 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) OpenShot Studios, LLC
+# This file is distributed under the same license as the OpenShot Video
+# Editor package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenShot Video Editor 3.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-31 15:58-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:23
+msgid "Troubleshooting"
+msgstr "Risoluzione dei problemi"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:25
+msgid ""
+"If you are experiencing an issue with OpenShot, such as a freeze, crash, or "
+"error message, there are many different techniques which can be useful for "
+"troubleshooting the issue."
+msgstr ""
+"Se riscontri un problema con OpenShot, come un blocco, un arresto anomalo o "
+"un messaggio di errore, esistono diverse tecniche utili per risolvere il "
+"problema."
+
+#: ../doc/troubleshoot.rst:31
+msgid "Large or Slow Project Files with Audio Waveforms"
+msgstr "File di progetto grandi o lenti con forme d'onda audio"
+
+#: ../doc/troubleshoot.rst:33
+msgid ""
+"Older projects with many audio waveforms can have unusually large ``.osp`` "
+"files and take longer to open or save. Older builds stored the waveform "
+"measurements inside the project file, sometimes repeating them for clips and"
+" undo history."
+msgstr ""
+"I progetti più vecchi con molte forme d'onda audio possono avere file "
+"``.osp`` insolitamente grandi e impiegare più tempo ad aprirsi o salvarsi. "
+"Le versioni precedenti memorizzavano le misurazioni delle forme d'onda "
+"all'interno del file di progetto, a volte ripetendole per clip e cronologia "
+"annulla."
+
+#: ../doc/troubleshoot.rst:37
+msgid ""
+"The latest build stores these measurements in **separate compressed waveform"
+" files** instead. The project keeps small references to those files, "
+"reducing the data copied during editing and written into the ``.osp`` file. "
+"These files describe audio levels for display, not copies of the audio "
+"itself; your media and exported sound are unchanged."
+msgstr ""
+"L'ultima versione memorizza invece queste misurazioni in **file di forma "
+"d'onda compressi separati**. Il progetto mantiene piccoli riferimenti a "
+"questi file, riducendo i dati copiati durante la modifica e scritti nel file"
+" ``.osp``. Questi file descrivono i livelli audio per la visualizzazione, "
+"non copie dell'audio stesso; i tuoi media e il suono esportato rimangono "
+"invariati."
+
+#: ../doc/troubleshoot.rst:43
+msgid "To update an older project:"
+msgstr "Per aggiornare un progetto più vecchio:"
+
+#: ../doc/troubleshoot.rst:45
+msgid ""
+"Open it in the latest build. OpenShot automatically moves embedded waveform "
+"data into its waveform cache, preserving the existing waveform appearance."
+msgstr ""
+"Aprilo nell'ultima versione. OpenShot sposta automaticamente i dati della "
+"forma d'onda incorporati nella cache delle forme d'onda, preservando "
+"l'aspetto esistente della forma d'onda."
+
+#: ../doc/troubleshoot.rst:47
+msgid ""
+"Choose :guilabel:`File → Save Project As` to keep the original project as a "
+"backup, or save normally to update the existing file."
+msgstr ""
+"Scegli :guilabel:`File → Salva progetto come` per mantenere il progetto "
+"originale come backup, oppure salva normalmente per aggiornare il file "
+"esistente."
+
+#: ../doc/troubleshoot.rst:49
+msgid ""
+"Keep the saved project's ``_assets`` folder alongside its ``.osp`` file when"
+" copying or backing up the project."
+msgstr ""
+"Mantieni la cartella ``_assets`` del progetto salvato accanto al file "
+"``.osp`` quando copi o fai il backup del progetto."
+
+#: ../doc/troubleshoot.rst:52
+msgid ""
+"For example, ``MyProject.osp`` stores its compressed ``.wfc`` waveform files"
+" in ``MyProject_assets/waveforms/``. Each file contains compact numeric "
+"measurements compressed for storage. Identical waveform data can share the "
+"same cache file. OpenShot also uses a local cache while you work, including "
+"before the first save."
+msgstr ""
+"Ad esempio, ``MyProject.osp`` memorizza i suoi file di forma d'onda "
+"compressi ``.wfc`` in ``MyProject_assets/waveforms/``. Ogni file contiene "
+"misurazioni numeriche compatte compresse per l'archiviazione. Dati di forma "
+"d'onda identici possono condividere lo stesso file di cache. OpenShot "
+"utilizza anche una cache locale mentre lavori, anche prima del primo "
+"salvataggio."
+
+#: ../doc/troubleshoot.rst:57
+msgid ""
+"The first opening still needs to read the old embedded data, so it can take "
+"time. The smaller project file is written when you save. Generating a "
+"waveform for a new, long audio file still requires analyzing that audio. If "
+"waveform cache files are missing, OpenShot can rebuild visible waveforms "
+"from the original media. See :ref:`timeline_waveform_display_ref` for "
+"waveform display and regeneration options."
+msgstr ""
+"La prima apertura deve ancora leggere i vecchi dati incorporati, quindi può "
+"richiedere tempo. Il file di progetto più piccolo viene scritto quando "
+"salvi. Generare una forma d'onda per un nuovo file audio lungo richiede "
+"ancora di analizzare quell'audio. Se i file di cache della forma d'onda "
+"mancano, OpenShot può ricostruire le forme d'onda visibili dal media "
+"originale. Vedi :ref:`timeline_waveform_display_ref` per opzioni di "
+"visualizzazione e rigenerazione della forma d'onda."
+
+#: ../doc/troubleshoot.rst:66
+msgid "Using Logs to Troubleshoot a Problem"
+msgstr "Utilizzo dei log per risolvere un problema"
+
+#: ../doc/troubleshoot.rst:68
+msgid ""
+"A log is a text file that records what OpenShot is doing, along with "
+"warnings and errors. These files can help the support team understand a "
+"problem, even when you do not see an error message on screen."
+msgstr ""
+"Un log è un file di testo che registra ciò che OpenShot sta facendo, insieme"
+" ad avvisi ed errori. Questi file possono aiutare il team di supporto a "
+"comprendere un problema, anche quando non vedi un messaggio di errore sullo "
+"schermo."
+
+#: ../doc/troubleshoot.rst:72
+msgid ""
+"OpenShot keeps two log files in the ``.openshot_qt`` folder inside your home"
+" folder. On Linux and macOS, this location is written as "
+"``~/.openshot_qt/``. The folder may be hidden in your file manager."
+msgstr ""
+"OpenShot conserva due file di log nella cartella ``.openshot_qt`` "
+"all'interno della tua cartella home. Su Linux e macOS, questa posizione è "
+"indicata come ``~/.openshot_qt/``. La cartella potrebbe essere nascosta nel "
+"tuo gestore di file."
+
+#: ../doc/troubleshoot.rst:76
+msgid "The two log files"
+msgstr "I due file di log"
+
+#: ../doc/troubleshoot.rst:80
+msgid "File"
+msgstr "File"
+
+#: ../doc/troubleshoot.rst:81
+msgid "What it records"
+msgstr "Cosa registra"
+
+#: ../doc/troubleshoot.rst:82 ../doc/troubleshoot.rst:109
+msgid "``openshot-qt.log``"
+msgstr "``openshot-qt.log``"
+
+#: ../doc/troubleshoot.rst:83
+msgid ""
+"Activity in the editor: starting OpenShot, loading projects, changing "
+"settings, and using the interface. This is usually the best place to start "
+"when investigating a problem."
+msgstr ""
+"Attività nell'editor: avvio di OpenShot, caricamento dei progetti, modifica "
+"delle impostazioni e utilizzo dell'interfaccia. Questo è solitamente il "
+"punto migliore da cui iniziare quando si indaga su un problema."
+
+#: ../doc/troubleshoot.rst:86 ../doc/troubleshoot.rst:112
+msgid "``libopenshot.log``"
+msgstr "``libopenshot.log``"
+
+#: ../doc/troubleshoot.rst:87
+msgid ""
+"Activity in OpenShot's video and audio engine, the part that reads media and"
+" builds the pictures and sound used in previews and exported videos. "
+"Detailed engine logging can help investigate playback and export problems."
+msgstr ""
+"Attività nel motore video e audio di OpenShot, la parte che legge i media e "
+"costruisce le immagini e i suoni usati nelle anteprime e nei video "
+"esportati. Un logging dettagliato del motore può aiutare a investigare "
+"problemi di riproduzione ed esportazione."
+
+#: ../doc/troubleshoot.rst:91
+msgid ""
+"These files record different parts of the same application. When reporting a"
+" problem, include both files if available. You do not need to understand "
+"every line yourself."
+msgstr ""
+"Questi file registrano parti diverse della stessa applicazione. Quando "
+"segnali un problema, includi entrambi i file se disponibili. Non è "
+"necessario comprendere ogni riga personalmente."
+
+#: ../doc/troubleshoot.rst:96
+msgid "Choose which part of OpenShot to log"
+msgstr "Scegli quale parte di OpenShot registrare"
+
+#: ../doc/troubleshoot.rst:98
+msgid "Open **Edit → Preferences → Advanced** to find these two settings:"
+msgstr ""
+"Apri **Modifica → Preferenze → Avanzate** per trovare queste due "
+"impostazioni:"
+
+#: ../doc/troubleshoot.rst:100
+msgid "Preferences and matching terminal options"
+msgstr "Preferenze e opzioni corrispondenti del terminale"
+
+#: ../doc/troubleshoot.rst:104
+msgid "Preference"
+msgstr "Preferenza"
+
+#: ../doc/troubleshoot.rst:105
+msgid "Matching argument"
+msgstr "Argomento corrispondente"
+
+#: ../doc/troubleshoot.rst:106
+msgid "Log file"
+msgstr "File di log"
+
+#: ../doc/troubleshoot.rst:107
+msgid "User Interface Debug Logging"
+msgstr "Registrazione debug dell'interfaccia utente"
+
+#: ../doc/troubleshoot.rst:108
+msgid "``--debug-ui``"
+msgstr "``--debug-ui``"
+
+#: ../doc/troubleshoot.rst:110
+msgid "Video & Audio Engine Debug Logging"
+msgstr "Registrazione debug del motore video e audio"
+
+#: ../doc/troubleshoot.rst:111 ../doc/troubleshoot.rst:179
+msgid "``--debug-engine``"
+msgstr "``--debug-engine``"
+
+#: ../doc/troubleshoot.rst:114
+msgid ""
+"Both preferences are off by default, which keeps the normal summary "
+"messages. Turning one on adds detail to its log file immediately. It does "
+"not change the other log or add messages to the terminal. Preferences stay "
+"enabled between launches until you turn them off."
+msgstr ""
+"Entrambe le preferenze sono disattivate per impostazione predefinita, "
+"mantenendo i normali messaggi di riepilogo. Attivandone una si aggiungono "
+"immediatamente dettagli al relativo file di log. Non modifica l'altro log né"
+" aggiunge messaggi al terminale. Le preferenze rimangono attive tra un avvio"
+" e l'altro finché non le disattivi."
+
+#: ../doc/troubleshoot.rst:119
+msgid ""
+"**User Interface Debug Logging** is a good starting point for problems with "
+"startup, project loading, settings, or the interface. **Video & Audio Engine"
+" Debug Logging** adds details about video and audio processing, which can "
+"help investigate playback and export problems. Engine logs can grow very "
+"quickly and may slow OpenShot down. Turn this setting on shortly before "
+"repeating the problem, then turn it off afterward."
+msgstr ""
+"**La registrazione debug dell'interfaccia utente** è un buon punto di "
+"partenza per problemi con l'avvio, il caricamento dei progetti, le "
+"impostazioni o l'interfaccia. **La registrazione debug del motore video e "
+"audio** aggiunge dettagli sul processamento video e audio, che possono "
+"aiutare a investigare problemi di riproduzione ed esportazione. I log del "
+"motore possono crescere molto rapidamente e rallentare OpenShot. Attiva "
+"questa impostazione poco prima di ripetere il problema, quindi disattivala "
+"dopo."
+
+#: ../doc/troubleshoot.rst:126
+msgid ""
+"The engine preference was previously called **Debug Mode (Verbose)**. Its "
+"saved on/off setting carries over to the new name."
+msgstr ""
+"La preferenza del motore era precedentemente chiamata **Modalità Debug "
+"(Verboso)**. La sua impostazione salvata on/off viene mantenuta con il nuovo"
+" nome."
+
+#: ../doc/troubleshoot.rst:130
+msgid "Use a terminal for one launch"
+msgstr "Usa un terminale per un avvio"
+
+#: ../doc/troubleshoot.rst:132
+msgid ""
+"A terminal is a window where you type commands. The matching arguments "
+"enable the same extra detail as the preferences, and also display it in the "
+"terminal:"
+msgstr ""
+"Un terminale è una finestra dove si digitano comandi. Gli argomenti "
+"corrispondenti abilitano gli stessi dettagli extra delle preferenze e li "
+"mostrano anche nel terminale:"
+
+#: ../doc/troubleshoot.rst:139
+msgid ""
+"This records interface details for one launch. The familiar ``--debug`` and "
+"shorter ``-d`` options mean exactly the same thing as ``--debug-ui``. For "
+"video and audio engine details, use:"
+msgstr ""
+"Questo registra i dettagli dell'interfaccia per un avvio. Le opzioni "
+"familiari ``--debug`` e la più breve ``-d`` significano esattamente la "
+"stessa cosa di ``--debug-ui``. Per i dettagli del motore video e audio, usa:"
+
+#: ../doc/troubleshoot.rst:147
+msgid "To collect both types of detail together:"
+msgstr "Per raccogliere entrambi i tipi di dettaglio insieme:"
+
+#: ../doc/troubleshoot.rst:153
+msgid ""
+"Repeat the steps that cause the problem, then close OpenShot and collect the"
+" logs. These arguments do not change your saved preferences. Starting "
+"OpenShot normally returns to your usual logging settings."
+msgstr ""
+"Ripeti i passaggi che causano il problema, poi chiudi OpenShot e raccogli i "
+"log. Questi argomenti non modificano le preferenze salvate. Avviando "
+"OpenShot normalmente si torna alle impostazioni di logging abituali."
+
+#: ../doc/troubleshoot.rst:157
+msgid ""
+"``openshot-qt.log`` starts a new file when it reaches about 25 MB and keeps "
+"three older copies. ``libopenshot.log`` keeps growing as messages are added."
+" After saving any logs you need, you can remove old log files while OpenShot"
+" is closed."
+msgstr ""
+"``openshot-qt.log`` crea un nuovo file quando raggiunge circa 25 MB e "
+"mantiene tre copie più vecchie. ``libopenshot.log`` continua a crescere man "
+"mano che vengono aggiunti messaggi. Dopo aver salvato i log necessari, puoi "
+"rimuovere i vecchi file di log mentre OpenShot è chiuso."
+
+#: ../doc/troubleshoot.rst:163
+msgid "Other logging options"
+msgstr "Altre opzioni di registrazione"
+
+#: ../doc/troubleshoot.rst:165
+msgid ""
+"Most users only need the two controls above. The following options let you "
+"choose how much detail goes into the files or appears in the terminal. Here,"
+" *console* means the terminal output. For the complete list of application "
+"launch options, see :ref:`launch_options_ref`. To edit projects or automate "
+"exports from the terminal, see :ref:`cli_ref`."
+msgstr ""
+"La maggior parte degli utenti ha bisogno solo dei due controlli sopra. Le "
+"opzioni seguenti ti permettono di scegliere quanta dettagliata informazione "
+"viene inserita nei file o appare nel terminale. Qui, *console* indica "
+"l'output del terminale. Per la lista completa delle opzioni di avvio "
+"dell'applicazione, vedi :ref:`launch_options_ref`. Per modificare progetti o"
+" automatizzare esportazioni dal terminale, vedi :ref:`cli_ref`."
+
+#: ../doc/troubleshoot.rst:171
+msgid "Logging options"
+msgstr "Opzioni di logging"
+
+#: ../doc/troubleshoot.rst:175
+msgid "Option"
+msgstr "Opzione"
+
+#: ../doc/troubleshoot.rst:176
+msgid "What it does"
+msgstr "Cosa fa"
+
+#: ../doc/troubleshoot.rst:177
+msgid "``--debug-ui``, ``--debug``, or ``-d``"
+msgstr "``--debug-ui``, ``--debug`` o ``-d``"
+
+#: ../doc/troubleshoot.rst:178
+msgid "Enables User Interface Debug Logging in its file and the terminal."
+msgstr ""
+"Abilita la registrazione debug dell'interfaccia utente nel suo file e nel "
+"terminale."
+
+#: ../doc/troubleshoot.rst:180
+msgid ""
+"Enables Video & Audio Engine Debug Logging in its file and the terminal."
+msgstr ""
+"Abilita la registrazione debug del motore video e audio nel suo file e nel "
+"terminale."
+
+#: ../doc/troubleshoot.rst:181
+msgid "``--debug-file``"
+msgstr "``--debug-file``"
+
+#: ../doc/troubleshoot.rst:182
+msgid ""
+"Adds editor details to ``openshot-qt.log`` without adding terminal detail."
+msgstr ""
+"Aggiunge dettagli dell'editor a ``openshot-qt.log`` senza aggiungere "
+"dettagli nel terminale."
+
+#: ../doc/troubleshoot.rst:183
+msgid "``--debug-console``"
+msgstr "``--debug-console``"
+
+#: ../doc/troubleshoot.rst:184
+msgid "Adds editor details in the terminal without adding file detail."
+msgstr ""
+"Aggiunge dettagli dell'editor nel terminale senza aggiungere dettagli nei "
+"file."
+
+#: ../doc/troubleshoot.rst:185
+msgid "``--log-level LEVEL``"
+msgstr "``--log-level LEVEL``"
+
+#: ../doc/troubleshoot.rst:186
+msgid "Sets the detail for both logs and their terminal output."
+msgstr ""
+"Imposta il livello di dettaglio per entrambi i log e il loro output nel "
+"terminale."
+
+#: ../doc/troubleshoot.rst:187
+msgid "``--log-file-level LEVEL``"
+msgstr "``--log-file-level LEVEL``"
+
+#: ../doc/troubleshoot.rst:188
+msgid "Sets the detail for both log files, leaving terminal settings alone."
+msgstr ""
+"Imposta il livello di dettaglio per entrambi i file di log, lasciando "
+"inalterate le impostazioni del terminale."
+
+#: ../doc/troubleshoot.rst:189
+msgid "``--log-console-level LEVEL``"
+msgstr "``--log-console-level LEVEL``"
+
+#: ../doc/troubleshoot.rst:190
+msgid ""
+"Sets the detail in the terminal for both the editor and engine, leaving file"
+" settings alone."
+msgstr ""
+"Imposta il livello di dettaglio nel terminale sia per l'editor che per il "
+"motore, senza modificare le impostazioni dei file."
+
+#: ../doc/troubleshoot.rst:193
+msgid ""
+"Replace ``LEVEL`` with ``debug`` for detailed messages or ``info`` for the "
+"normal summary. ``warning`` shows warnings and errors; ``error`` shows "
+"errors and critical failures; ``critical`` shows only critical failures. "
+"``off`` stops ordinary log messages, but existing crash diagnostics may "
+"still be written. Uppercase names such as ``DEBUG`` work too."
+msgstr ""
+"Sostituisci ``LEVEL`` con ``debug`` per messaggi dettagliati o ``info`` per "
+"il riepilogo normale. ``warning`` mostra avvisi ed errori; ``error`` mostra "
+"errori e guasti critici; ``critical`` mostra solo guasti critici. ``off`` "
+"interrompe i messaggi di log ordinari, ma le diagnostiche di crash esistenti"
+" possono ancora essere scritte. Funzionano anche nomi in maiuscolo come "
+"``DEBUG``."
+
+#: ../doc/troubleshoot.rst:199
+msgid ""
+"For example, to collect detailed messages in **both files** while keeping "
+"the terminal at its usual level:"
+msgstr ""
+"Ad esempio, per raccogliere messaggi dettagliati in **entrambi i file** "
+"mantenendo il terminale al suo livello abituale:"
+
+#: ../doc/troubleshoot.rst:206
+msgid ""
+"This also enables the large engine log, so use it briefly. The older "
+"``--debug-file`` and ``--debug-console`` options still work even though they"
+" are not listed in ``--help``."
+msgstr ""
+"Questo abilita anche il log esteso del motore, quindi usalo per poco tempo. "
+"Le vecchie opzioni ``--debug-file`` e ``--debug-console`` funzionano ancora "
+"anche se non sono elencate in ``--help``."
+
+#: ../doc/troubleshoot.rst:211
+msgid "Environment variables"
+msgstr "Variabili d'ambiente"
+
+#: ../doc/troubleshoot.rst:213
+msgid ""
+"An environment variable is a named setting passed to a program when it "
+"starts. These are useful when starting OpenShot from a script or when a "
+"support person asks you to try a particular setting. You do not need to set "
+"them for normal use."
+msgstr ""
+"Una variabile d'ambiente è un'impostazione nominata passata a un programma "
+"all'avvio. Sono utili quando si avvia OpenShot da uno script o quando un "
+"tecnico di supporto ti chiede di provare una particolare impostazione. Non è"
+" necessario impostarle per l'uso normale."
+
+#: ../doc/troubleshoot.rst:217
+msgid "Optional environment settings"
+msgstr "Impostazioni opzionali dell'ambiente"
+
+#: ../doc/troubleshoot.rst:221
+msgid "Variable"
+msgstr "Variabile"
+
+#: ../doc/troubleshoot.rst:222
+msgid "What it controls"
+msgstr "Cosa controlla"
+
+#: ../doc/troubleshoot.rst:223
+msgid "``OPENSHOT_LOG_LEVEL``"
+msgstr "``OPENSHOT_LOG_LEVEL``"
+
+#: ../doc/troubleshoot.rst:224
+msgid "Detail in both files and the terminal."
+msgstr "Dettaglio in entrambi i file e nel terminale."
+
+#: ../doc/troubleshoot.rst:225
+msgid "``OPENSHOT_LOG_FILE_LEVEL``"
+msgstr "``OPENSHOT_LOG_FILE_LEVEL``"
+
+#: ../doc/troubleshoot.rst:226
+msgid "Detail in both files only."
+msgstr "Dettaglio solo in entrambi i file."
+
+#: ../doc/troubleshoot.rst:227
+msgid "``OPENSHOT_LOG_CONSOLE_LEVEL``"
+msgstr "``OPENSHOT_LOG_CONSOLE_LEVEL``"
+
+#: ../doc/troubleshoot.rst:228
+msgid "Detail in the terminal only, for both parts of OpenShot."
+msgstr "Dettaglio solo nel terminale, per entrambe le parti di OpenShot."
+
+#: ../doc/troubleshoot.rst:229
+msgid "``LIBOPENSHOT_LOG_LEVEL``"
+msgstr "``LIBOPENSHOT_LOG_LEVEL``"
+
+#: ../doc/troubleshoot.rst:230
+msgid "Detail for the video and audio engine, in its file and the terminal."
+msgstr "Dettaglio per il motore video e audio, nel suo file e nel terminale."
+
+#: ../doc/troubleshoot.rst:231
+msgid "``LIBOPENSHOT_LOG_FILE_LEVEL``"
+msgstr "``LIBOPENSHOT_LOG_FILE_LEVEL``"
+
+#: ../doc/troubleshoot.rst:232
+msgid "Detail in ``libopenshot.log`` only."
+msgstr "Dettaglio solo in ``libopenshot.log``."
+
+#: ../doc/troubleshoot.rst:233
+msgid "``LIBOPENSHOT_LOG_CONSOLE_LEVEL``"
+msgstr "``LIBOPENSHOT_LOG_CONSOLE_LEVEL``"
+
+#: ../doc/troubleshoot.rst:234
+msgid "Engine detail in the terminal only."
+msgstr "Dettaglio del motore solo nel terminale."
+
+#: ../doc/troubleshoot.rst:236
+msgid ""
+"For example, this Linux/macOS terminal command requests detailed engine "
+"logging in its file for one launch:"
+msgstr ""
+"Ad esempio, questo comando da terminale Linux/macOS richiede il log "
+"dettagliato del motore nel suo file per un avvio:"
+
+#: ../doc/troubleshoot.rst:243
+msgid ""
+"If settings overlap, command-line options take priority, followed by "
+"environment variables, then Preferences, then the normal defaults. Each "
+"control only affects the output it describes: ``--debug`` does not override "
+"the engine preference. Temporary overrides do not change your saved "
+"preferences. Hover over either checkbox to see whether another setting is "
+"controlling that log file."
+msgstr ""
+"Se le impostazioni si sovrappongono, le opzioni da linea di comando hanno la"
+" priorità, seguite dalle variabili d'ambiente, poi dalle Preferenze, infine "
+"dai valori predefiniti normali. Ogni controllo influenza solo l'output che "
+"descrive: ``--debug`` non sovrascrive la preferenza del motore. Le "
+"sovrascritture temporanee non modificano le preferenze salvate. Passa il "
+"mouse su una qualsiasi casella di controllo per vedere se un'altra "
+"impostazione sta controllando quel file di log."
+
+#: ../doc/troubleshoot.rst:249
+msgid ""
+"Within the environment settings, ``LIBOPENSHOT_`` values take priority over "
+"``OPENSHOT_`` values for the engine. Within either group, a file-only or "
+"console-only level takes priority over the general level. Command-line "
+"options follow the same file/console rule. Conflicting command-line levels "
+"for the same output are rejected; invalid environment levels are reported "
+"and ignored."
+msgstr ""
+"Nelle impostazioni d'ambiente, i valori ``LIBOPENSHOT_`` hanno priorità sui "
+"valori ``OPENSHOT_`` per il motore. All'interno di ciascun gruppo, un "
+"livello solo file o solo console ha priorità sul livello generale. Le "
+"opzioni da linea di comando seguono la stessa regola file/console. Livelli "
+"da linea di comando in conflitto per lo stesso output vengono rifiutati; "
+"livelli d'ambiente non validi vengono segnalati e ignorati."
+
+#: ../doc/troubleshoot.rst:255
+msgid ""
+"For older scripts, ``LIBOPENSHOT_DEBUG`` still enables detailed engine "
+"messages in the terminal whenever it is present, even if its value is ``0``."
+" The newer level settings take priority over it. ``LIBOPENSHOT_LOG_FILE`` is"
+" intended for programs using the engine separately; OpenShot itself uses the"
+" log folder above. Changing logging settings does not change your error-"
+"reporting preference."
+msgstr ""
+"Per script più vecchi, ``LIBOPENSHOT_DEBUG`` abilita ancora messaggi "
+"dettagliati del motore nel terminale ogni volta che è presente, anche se il "
+"suo valore è ``0``. Le nuove impostazioni di livello hanno priorità su di "
+"esso. ``LIBOPENSHOT_LOG_FILE`` è destinato a programmi che usano il motore "
+"separatamente; OpenShot stesso usa la cartella di log sopra indicata. "
+"Cambiare le impostazioni di logging non modifica la tua preferenza di "
+"segnalazione errori."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:262
+msgid "Windows 11 Unresponsive"
+msgstr "Windows 11 non risponde"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:264
+msgid ""
+"If you experience a freeze on Windows 11, this is a known issue with PyQt5 "
+"and Windows 11, related to the accessibility features in Qt. This is "
+"triggered by pressing :kbd:`Ctrl+C` in OpenShot (*only on Windows 11*). "
+"OpenShot will become unresponsive and a memory leak is also present (i.e. "
+"the longer OpenShot is unresponsive, the larger your memory leak will become"
+" until OpenShot finally crashes or the user kills the process)."
+msgstr ""
+"Se riscontri un blocco su Windows 11, si tratta di un problema noto con "
+"PyQt5 e Windows 11, legato alle funzionalità di accessibilità in Qt. Questo "
+"si verifica premendo :kbd:`Ctrl+C` in OpenShot (*solo su Windows 11*). "
+"OpenShot diventerà non rispondente e sarà presente anche una perdita di "
+"memoria (cioè, più a lungo OpenShot non risponde, maggiore sarà la perdita "
+"di memoria fino a quando OpenShot non si bloccherà definitivamente o "
+"l'utente terminerà il processo)."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:269
+msgid ""
+"A simple work-around is to avoid :kbd:`Ctrl+C` on Windows 11, and instead "
+"use the right-click Copy/Paste menus. Another work-around is to remap your "
+"\"Copy\" from :kbd:`Ctrl+C` to something else, for example :kbd:`Alt+C`. You"
+" can change your keyboard mappings in the OpenShot Preferences. See "
+":ref:`preferences_keyboard_ref`."
+msgstr ""
+"Una soluzione semplice è evitare :kbd:`Ctrl+C` su Windows 11 e utilizzare "
+"invece i menu Copia/Incolla con il tasto destro. Un'altra soluzione è "
+"rimappare il comando \"Copia\" da :kbd:`Ctrl+C` a un altro tasto, ad esempio"
+" :kbd:`Alt+C`. Puoi modificare le mappature della tastiera nelle Preferenze "
+"di OpenShot. Vedi :ref:`preferences_keyboard_ref`."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:274
+msgid "Windows Debugging with GDB"
+msgstr "Debug di Windows con GDB"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:276
+msgid ""
+"If you are experiencing a crash or freeze with OpenShot in Windows 10/11, "
+"the following step by step instructions will help you determine the cause of"
+" the crash. These instructions will display a stack trace of OpenShot's "
+"source code, at the location of the crash. This information can be extremely"
+" useful for our development team, and very useful to attach to bug reports "
+"(for a quicker resolution)."
+msgstr ""
+"Se riscontri un arresto anomalo o un blocco con OpenShot su Windows 10/11, "
+"le seguenti istruzioni passo passo ti aiuteranno a determinare la causa del "
+"problema. Queste istruzioni mostreranno una traccia dello stack del codice "
+"sorgente di OpenShot, nel punto in cui si è verificato il crash. Queste "
+"informazioni possono essere estremamente utili per il nostro team di "
+"sviluppo e molto utili da allegare ai report di bug (per una risoluzione più"
+" rapida)."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:282
+msgid "Install the Latest Daily Build"
+msgstr "Installa l'ultima versione Daily Build"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:284
+msgid ""
+"Before attaching a debugger, please download the **latest version** of "
+"OpenShot: https://www.openshot.org/download#daily. Install this version of "
+"OpenShot to the default location: ``C:\\Program Files\\OpenShot Video "
+"Editor\\``. For details instructions on debugging OpenShot on Windows, "
+"please see `this wiki <https://github.com/OpenShot/openshot-qt/wiki/Windows-"
+"Debugging-with-GDB>`_."
+msgstr ""
+"Prima di collegare un debugger, scarica la **versione più recente** di "
+"OpenShot: https://www.openshot.org/download#daily. Installa questa versione "
+"di OpenShot nella posizione predefinita: ``C:\\Program Files\\OpenShot Video"
+" Editor\\``. Per istruzioni dettagliate sul debug di OpenShot su Windows, "
+"consulta `questa wiki <https://github.com/OpenShot/openshot-qt/wiki/Windows-"
+"Debugging-with-GDB>`_."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:289
+msgid "Install MSYS2"
+msgstr "Installa MSYS2"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:291
+msgid ""
+"The Windows version of OpenShot is compiled using an environment called "
+"MSYS2. In order to attach the GDB debugger to our executable, ``openshot-"
+"qt.exe``, you must first install MSYS2. This step is only required once."
+msgstr ""
+"La versione Windows di OpenShot è compilata usando un ambiente chiamato "
+"MSYS2. Per collegare il debugger GDB al nostro eseguibile, ``openshot-"
+"qt.exe``, devi prima installare MSYS2. Questo passaggio è richiesto una sola"
+" volta."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:294
+msgid "Download & Install MSYS2: `<http://www.msys2.org/>`_"
+msgstr "Scarica e installa MSYS2: `<http://www.msys2.org/>`_"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:295 ../doc/troubleshoot.rst:311
+msgid ""
+"Run ``MSYS2 MinGW x64`` command prompt (for example: "
+"``C:\\msys64\\msys2_shell.cmd -mingw64``)"
+msgstr ""
+"Esegui il prompt dei comandi ``MSYS2 MinGW x64`` (per esempio: "
+"``C:\\msys64\\msys2_shell.cmd -mingw64``)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:296
+msgid "Update all packages (*Copy/Paste the following command*):"
+msgstr "Aggiorna tutti i pacchetti (*Copia/Incolla il seguente comando*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:302
+msgid "Install GDB debugger (*Copy/Paste the following command*):"
+msgstr "Installa il debugger GDB (*Copia/Incolla il seguente comando*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:309
+msgid "Launch OpenShot with GDB Debugger"
+msgstr "Avvia OpenShot con il debugger GDB"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:313
+msgid "Update the PATH (*Copy/Paste the following commands*):"
+msgstr "Aggiorna il PATH (*Copia/Incolla i seguenti comandi*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:320
+msgid ""
+"Load OpenShot into the GDB debugger (*Copy/Paste the following commands*):"
+msgstr ""
+"Carica OpenShot nel debugger GDB (*Copia/Incolla i seguenti comandi*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:327
+msgid "Launch OpenShot from GDB prompt (*Copy/Paste the following command*):"
+msgstr "Avvia OpenShot dal prompt GDB (*Copia/Incolla il seguente comando*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:334
+msgid "Print Debugging Info"
+msgstr "Stampa informazioni di debug"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:336
+msgid ""
+"Once OpenShot has launched successfully with GDB attached, all you need to "
+"do is trigger a crash or freeze in OpenShot. When a crash occurs, switch "
+"back to the MSYS2 MinGW64 terminal and run one of the following commands (by"
+" typing it and pressing ENTER). Usually, the first command to enter is "
+"``bt``, which stands for ``backtrace``. More commands are listed below."
+msgstr ""
+"Una volta che OpenShot è stato avviato con successo con GDB collegato, devi "
+"solo provocare un crash o un blocco in OpenShot. Quando si verifica un "
+"crash, torna al terminale MSYS2 MinGW64 ed esegui uno dei seguenti comandi "
+"(digitandolo e premendo INVIO). Di solito, il primo comando da inserire è "
+"``bt``, che sta per ``backtrace``. Altri comandi sono elencati di seguito."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:350
+msgid "High DPI / 4K Monitors"
+msgstr "Monitor ad alta DPI / 4K"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:352
+msgid ""
+"OpenShot Video Editor provides robust support for High DPI (Dots Per Inch) "
+"monitors, ensuring that the interface looks sharp and is easily readable on "
+"displays with various DPI settings. This support is particularly helpful on "
+"4K monitors and other high-resolution displays."
+msgstr ""
+"OpenShot Video Editor offre un supporto solido per i monitor ad alta DPI "
+"(punti per pollice), garantendo che l'interfaccia appaia nitida e facilmente"
+" leggibile su schermi con diverse impostazioni DPI. Questo supporto è "
+"particolarmente utile su monitor 4K e altri display ad alta risoluzione."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:358
+msgid "Per Monitor DPI Awareness"
+msgstr "Consapevolezza DPI per monitor"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:360
+msgid ""
+"OpenShot is DPI aware on a per-monitor basis, meaning it can adjust its "
+"scaling dynamically depending on the DPI settings of each connected monitor."
+" This helps provide a consistent experience across different displays."
+msgstr ""
+"OpenShot riconosce il DPI per ogni singolo monitor, il che significa che può"
+" regolare dinamicamente la scala in base alle impostazioni DPI di ciascun "
+"monitor collegato. Questo aiuta a fornire un'esperienza coerente su diversi "
+"schermi."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:365
+msgid "DPI Scaling on Windows"
+msgstr "Scala DPI su Windows"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:367
+msgid ""
+"On Windows, OpenShot rounds the scaling factor to the nearest whole value to"
+" maintain visual integrity. This helps avoid visual artifacts in the UI and "
+"keeps interface elements crisp and well-aligned. Due to this rounding, some "
+"scaling options can lead to larger fonts and UI elements than expected."
+msgstr ""
+"Su Windows, OpenShot arrotonda il fattore di scala al valore intero più "
+"vicino per mantenere l'integrità visiva. Questo aiuta a evitare artefatti "
+"visivi nell'interfaccia e mantiene gli elementi dell'interfaccia nitidi e "
+"ben allineati. A causa di questo arrotondamento, alcune opzioni di scala "
+"possono portare a caratteri e elementi dell'interfaccia più grandi del "
+"previsto."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:372
+msgid "**125% scaling** rounds to **100%**"
+msgstr "**La scala al 125%** viene arrotondata a **100%**"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:373
+msgid "**150% scaling** rounds to **200%**"
+msgstr "**La scala al 150%** viene arrotondata a **200%**"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:376
+msgid "Workarounds for Fine-Grained Adjustment"
+msgstr "Soluzioni alternative per regolazioni più precise"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:378
+msgid ""
+"While rounding helps maintain a clean interface, there are workarounds for "
+"users who require more precise control over scaling. These methods are **not"
+" recommended** due to potential visual artifacts:"
+msgstr ""
+"Sebbene l'arrotondamento aiuti a mantenere un'interfaccia pulita, esistono "
+"soluzioni alternative per gli utenti che necessitano di un controllo più "
+"preciso sulla scala. Questi metodi **non sono raccomandati** a causa di "
+"potenziali artefatti visivi:"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:382
+msgid "**QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough**"
+msgstr "**QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough**"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:384
+msgid ""
+"Setting this environment variable can disable rounding and allow more "
+"precise scaling."
+msgstr ""
+"Impostare questa variabile d'ambiente può disabilitare l'arrotondamento e "
+"consentire una scala più precisa."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:385
+msgid ""
+"**Note:** This may cause visual artifacts, particularly in the timeline, and"
+" is not recommended."
+msgstr ""
+"**Nota:** Questo può causare artefatti visivi, in particolare nella "
+"timeline, e non è raccomandato."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:387
+msgid "**QT_SCALE_FACTOR=1.25** (or similar value)"
+msgstr "**QT_SCALE_FACTOR=1.25** (o valore simile)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:389
+msgid ""
+"Manually setting the scale factor can provide finer adjustments to the font "
+"and UI scaling."
+msgstr ""
+"Impostare manualmente il fattore di scala può fornire regolazioni più "
+"precise per la scala dei caratteri e dell'interfaccia."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:390
+msgid ""
+"This can also be set via Preferences (User Interface Scale), but expect "
+"border/line issues on Windows with fractional scales."
+msgstr ""
+"Questo può anche essere impostato tramite Preferenze (Scala interfaccia "
+"utente), ma aspettati problemi di bordi/linee su Windows con scale "
+"frazionarie."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:391
+msgid ""
+"**Note:** This method can also lead to visual artifacts and make OpenShot "
+"harder to use."
+msgstr ""
+"**Nota:** Questo metodo può anche causare artefatti visivi e rendere "
+"OpenShot più difficile da usare."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:393
+msgid ""
+"For more info on adjusting these environment variables, please visit "
+"https://github.com/OpenShot/openshot-qt/wiki/OpenShot-UI-too-large."
+msgstr ""
+"Per maggiori informazioni sulla regolazione di queste variabili d'ambiente, "
+"visita https://github.com/OpenShot/openshot-qt/wiki/OpenShot-UI-too-large."
+
+#~ msgid "Other command-line options"
+#~ msgstr "Altre opzioni da riga di comando"
+
+#~ msgid ""
+#~ "Most users only need the two controls above. The following options let you "
+#~ "choose how much detail goes into the files or appears in the terminal. Here,"
+#~ " *console* means the terminal output."
+#~ msgstr ""
+#~ "La maggior parte degli utenti ha bisogno solo dei due controlli sopra. Le "
+#~ "opzioni seguenti ti permettono di scegliere quanta dettagliata informazione "
+#~ "va nei file o appare nel terminale. Qui, *console* significa l'output del "
+#~ "terminale."

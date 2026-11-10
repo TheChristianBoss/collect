@@ -1,0 +1,1599 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) OpenShot Studios, LLC
+# This file is distributed under the same license as the OpenShot Video
+# Editor package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenShot Video Editor 3.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-31 15:58-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: is\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:23
+msgid "Preferences"
+msgstr "Stillingar"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:25
+msgid ""
+"The Preferences window contains many important settings and configuration "
+"options for OpenShot. They can be found in the top menu under "
+":guilabel:`Edit→Preferences`. Many settings will require OpenShot to be "
+"restarted after your changes are applied."
+msgstr ""
+"Glugginn Stillingar inniheldur margar mikilvægar stillingar og valkosti "
+"fyrir OpenShot. Þú finnur þær í efstu valmynd undir "
+":guilabel:`Breyta→Stillingar`. Margar stillingar krefjast þess að OpenShot "
+"sé endurræst eftir að breytingar hafa verið gerðar."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:29
+msgid ""
+"NOTE: Some features such as `Animated Titles` and `external SVG editing` "
+"require setting the paths for **Blender** and **Inkscape** under the General"
+" tab. And if you notice audio playback issues, such as audio drift, you may "
+"need to adjust the audio settings under the Preview tab."
+msgstr ""
+"ATH: Sumir eiginleikar eins og `Hreyfð Titlar` og `ytri SVG ritstjórn` "
+"krefjast þess að slóðir fyrir **Blender** og **Inkscape** séu stilltar undir"
+" Almenna flipanum. Ef þú tekur eftir hljóðvandamálum, eins og hljóðflakki, "
+"gætir þú þurft að stilla hljóðstillingar undir Forskoðun flipanum."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:36
+msgid "General"
+msgstr "Almennt"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:40
+msgid ""
+"The General tab of the Preferences window allows you to modify the settings "
+"that apply to OpenShot as a whole."
+msgstr ""
+"Almenni flipinn í Stillingum gerir þér kleift að breyta stillingum sem gilda"
+" fyrir OpenShot í heild."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:46 ../doc/preferences.rst:109
+#: ../doc/preferences.rst:170 ../doc/preferences.rst:191
+#: ../doc/preferences.rst:248 ../doc/preferences.rst:295
+#: ../doc/preferences.rst:325 ../doc/preferences.rst:381
+#: ../doc/preferences.rst:420
+msgid "Setting"
+msgstr "Stilling"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:47 ../doc/preferences.rst:50
+#: ../doc/preferences.rst:109 ../doc/preferences.rst:111
+#: ../doc/preferences.rst:170 ../doc/preferences.rst:172
+#: ../doc/preferences.rst:192 ../doc/preferences.rst:248
+#: ../doc/preferences.rst:421
+msgid "Default"
+msgstr "Sjálfgefið"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:48 ../doc/preferences.rst:109
+#: ../doc/preferences.rst:170 ../doc/preferences.rst:193
+#: ../doc/preferences.rst:295 ../doc/preferences.rst:326
+#: ../doc/preferences.rst:381 ../doc/preferences.rst:401
+#: ../doc/preferences.rst:422
+msgid "Description"
+msgstr "Lýsing"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:49
+msgid "Language"
+msgstr "Tungumál"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:51
+msgid "Choose your preferred language for OpenShot menus and windows"
+msgstr "Veldu þitt uppáhalds tungumál fyrir valmyndir og glugga í OpenShot"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:52
+msgid "Default Theme"
+msgstr "Sjálfgefið Þema"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:53
+msgid "Cosmic Dusk"
+msgstr "Alheimsk Dögun"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:54
+#, fuzzy
+msgid "Choose your theme for OpenShot"
+msgstr "Veldu þema fyrir OpenShot, annað hvort Ljóst, Dökkt eða Ekkert"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:55
+msgid "User Interface Scale"
+msgstr "Stærð notendaviðmóts"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:56
+msgid "100%"
+msgstr "100%"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:57
+msgid ""
+"Choose a preset UI scaling factor for larger or smaller interface elements"
+msgstr ""
+"Veldu fyrirfram skilgreindan stærðarstuðul fyrir notendaviðmótið til að gera"
+" viðmótsþætti stærri eða minni"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:58
+#, fuzzy
+msgid "Default Profile"
+msgstr "Sjálfgefinn vídeóprófíl"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:59
+#, fuzzy
+msgid "HD 720p 30 fps"
+msgstr "HD 720P 30 fps"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:60
+#, fuzzy
+msgid "Select the default profile for new projects and exports"
+msgstr "Veldu prófíl fyrir sjálfgefnar stillingar forskoðunar og útflutnings"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:61
+msgid "Blender Command (path)"
+msgstr "Blender Skipun (slóð)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:62
+msgid "blender"
+msgstr "blender"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:63
+msgid "The path to the binary for Blender (version 5.0+)"
+msgstr "Slóðin að keyrsluskránni fyrir Blender (útgáfa 5.0+)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:64
+msgid "Advanced Title Editor (path)"
+msgstr "Ítarlegur Titilritstjóri (slóð)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:65
+msgid "inkscape"
+msgstr "inkscape"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:66
+msgid "The path to the binary for Inkscape"
+msgstr "Slóðin að keyrsluskránni fyrir Inkscape"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:69
+msgid "Themes"
+msgstr "Þemu"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:70
+msgid ""
+"OpenShot comes with 3 standard themes, which change the look and feel of the"
+" program."
+msgstr ""
+"OpenShot kemur með 3 staðlað þemu sem breyta útliti og tilfinningu "
+"forritsins."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:72
+#, fuzzy
+msgid ""
+"**Cosmic Dusk:** [Default Theme] A bluish theme with a more modern UI "
+"design, enhancing the visual aesthetics of the editor. This theme features "
+"shades of blue and purple, giving the interface a contemporary and dynamic "
+"feel. It combines modern aesthetics with functionality, offering a fresh and"
+" visually appealing workspace for video editing."
+msgstr ""
+"**Cosmic Dusk:** Bláleitt þema með nútímalegri hönnun viðmóts, sem eykur "
+"sjónræna fagurfræði ritstjórans. Þetta þema inniheldur bláar og fjólubláar "
+"tóna, sem gefur viðmótinu nútímalegt og kraftmikið yfirbragð. Það sameinar "
+"nútímalega fagurfræði með virkni og býður upp á ferskt og sjónrænt aðlaðandi"
+" vinnusvæði fyrir myndbandsklippingu."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:73
+msgid ""
+"**Humanity Dark:** A dark theme with dark gray tones, providing a modern and"
+" sleek look. This theme is designed for users who prefer working in low-"
+"light conditions or who enjoy a more subdued and professional appearance. "
+"The dark gray background reduces glare and eye strain, making it suitable "
+"for extended editing sessions."
+msgstr ""
+"**Humanity Dark:** Dökk þema með dökkgráum tónum, sem gefur nútímalegt og "
+"slétt útlit. Þetta þema er hannað fyrir notendur sem kjósa að vinna í lágum "
+"birtuskilyrðum eða sem njóta rólegra og fagmannlegra útlits. Dökkgrátt "
+"bakgrunnur minnkar glampa og augnþreytu, sem gerir það hentugt fyrir langar "
+"klippingar."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:74
+msgid ""
+"**Retro:** A light theme that offers a classic and clean appearance. This "
+"theme uses light gray and white tones, making it ideal for users who prefer "
+"a bright and high-contrast interface. It provides a traditional look that is"
+" easy on the eyes, especially in well-lit environments."
+msgstr ""
+"**Retro:** Ljóst þema sem býður upp á klassískt og hreint útlit. Þetta þema "
+"notar ljósgráar og hvítar tóna, sem gerir það kjörið fyrir notendur sem "
+"kjósa bjart og há- kontrast viðmót. Það veitir hefðbundið útlit sem er "
+"auðvelt fyrir augu, sérstaklega í vel lýstum umhverfum."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:79
+msgid "Restoring Defaults"
+msgstr "Endurheimta Sjálfgefnar Stillingar"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:80
+msgid ""
+"In OpenShot, each preferences category (or tab) in the Preferences window "
+"has a **Restore Defaults** button that allows you to easily reset the values"
+" for that specific category. This feature is particularly useful if you want"
+" to reset only certain parts of your preferences, like keyboard shortcuts, "
+"without affecting the rest of your custom settings."
+msgstr ""
+"Í OpenShot hefur hver flokkur stillinga (eða flipi) í Stillingaglugganum "
+"hnappinn **Endurheimta Sjálfgefnar Stillingar** sem gerir þér kleift að "
+"endurstilla gildin fyrir þann flokk auðveldlega. Þessi eiginleiki er "
+"sérstaklega gagnlegur ef þú vilt endurstilla aðeins ákveðna hluta af "
+"stillingum þínum, eins og flýtilykla, án þess að hafa áhrif á aðrar "
+"sérsniðnar stillingar."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:84
+msgid ""
+"**Where to Find the Restore Defaults Button:** Each category or tab in the "
+"Preferences window has a **Restore Defaults** button located in the bottom "
+"left corner of the screen. The name of the button updates based on the "
+"category you’re viewing. For example, if you're in the \"Keyboard\" tab, the"
+" button will say **Restore Defaults: Keyboard**."
+msgstr ""
+"**Hvar á að finna hnappinn Endurheimta Sjálfgefnar Stillingar:** Hver "
+"flokkur eða flipi í Stillingaglugganum hefur hnappinn **Endurheimta "
+"Sjálfgefnar Stillingar** staðsettan neðst til vinstri á skjánum. Nafn "
+"hnappsins breytist eftir flokknum sem þú ert að skoða. Til dæmis, ef þú ert "
+"í \"Lyklaborð\" flipanum, mun hnappurinn segja **Endurheimta Sjálfgefnar "
+"Stillingar: Lyklaborð**."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:89
+msgid ""
+"**How It Works:** Only the settings in the currently selected category will "
+"be restored to their default values. This selective restoration makes it "
+"easy to reset certain preferences without affecting others."
+msgstr ""
+"**Hvernig þetta virkar:** Aðeins stillingarnar í þeim flokki sem valinn er "
+"verða endurheimtar í sjálfgefin gildi. Þessi valbundna endurheimt gerir það "
+"auðvelt að endurstilla ákveðnar stillingar án þess að hafa áhrif á aðrar."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:93
+msgid ""
+"**Tip for Beginners:** - If you're not sure about a change you've made in a "
+"particular category, don’t hesitate to use the **Restore Defaults** button. "
+"It’s a simple way to undo changes and get back to the default settings for "
+"that specific category without affecting your overall setup."
+msgstr ""
+"**Ráð fyrir byrjendur:** - Ef þú ert ekki viss um breytingu sem þú hefur "
+"gert í ákveðnum flokki, ekki hika við að nota hnappinn **Endurheimta "
+"Sjálfgefnar Stillingar**. Þetta er einföld leið til að afturkalla breytingar"
+" og komast aftur í sjálfgefna stillingu fyrir þann flokk án þess að hafa "
+"áhrif á heildaruppsetningu þína."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:99
+msgid "Timeline"
+msgstr "Tímalína"
+
+#: ../doc/preferences.rst:103
+msgid ""
+"The Timeline tab controls default timeline behavior and clip/transition "
+"insertion defaults."
+msgstr ""
+"Flipinnskiptin stjórna sjálfgefnu hegðun tímalínunnar og sjálfgefnum "
+"innsetningum klippa/skipta."
+
+#: ../doc/preferences.rst:111 ../doc/preferences.rst:128
+msgid "Track Size"
+msgstr "Stærð brautar"
+
+#: ../doc/preferences.rst:111
+msgid "Theme-specific track sizing: Minimal, Compact, Default, or Relaxed"
+msgstr "Þema-sértæk stærð brautar: Lágmarks, Þétt, Sjálfgefið, eða Lauslegt"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:112
+msgid "Thumbnail Style"
+msgstr "Stíll smámyndar"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:112
+msgid "Entire Clip"
+msgstr "Allur klippan"
+
+#: ../doc/preferences.rst:112
+msgid "Thumbnail density for the timeline"
+msgstr "Þéttleiki smámyndar fyrir tímalínuna"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:113
+msgid "Image Length (seconds)"
+msgstr "Lengd Myndar (sekúndur)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:113 ../doc/preferences.rst:114
+msgid "10.00"
+msgstr "10.00"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:113
+msgid "Default duration for still images added to the timeline"
+msgstr "Sjálfgefin lengd fyrir kyrrmyndir sem bætt er við tímalínuna"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:114
+#, fuzzy
+msgid "Transition Length (seconds)"
+msgstr "Lengd Myndar (sekúndur)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:114
+msgid "Default duration for newly added transitions"
+msgstr "Sjálfgefin lengd fyrir nýlega bættar skiptingar"
+
+#: ../doc/preferences.rst:115
+msgid "Waveform Samples (per second)"
+msgstr "Bylgjulaga sýni (á sekúndu)"
+
+#: ../doc/preferences.rst:115
+msgid "200"
+msgstr "200"
+
+#: ../doc/preferences.rst:115
+msgid "Detail stored for new peak/RMS timeline waveforms (20–400)"
+msgstr ""
+"Upplýsingar geymdar fyrir nýjar hámark/RMS bylgjulaga tímalínu (20–400)"
+
+#: ../doc/preferences.rst:116
+msgid "Auto Keyframes on Startup"
+msgstr "Sjálfvirk lykilramma við ræsingu"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:116 ../doc/preferences.rst:117
+#: ../doc/preferences.rst:250 ../doc/preferences.rst:433
+#: ../doc/preferences.rst:439
+msgid "Enabled"
+msgstr "Virkt"
+
+#: ../doc/preferences.rst:116
+msgid "Start OpenShot with automatic keyframing enabled"
+msgstr "Byrja OpenShot með sjálfvirkri lykilrammasetningu virkri"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:117
+msgid "Auto-Transition (overlap clips)"
+msgstr "Sjálfvirk skipting (klippur skarast)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:117
+msgid "Automatically create transitions when clips overlap"
+msgstr "Búa sjálfkrafa til skiptingar þegar klippur skarast"
+
+#: ../doc/preferences.rst:120
+msgid ""
+"**Auto Keyframes on Startup** chooses whether your edits automatically "
+"create keyframes when OpenShot opens. Turn it off if you prefer to place "
+"keyframes yourself. The change takes effect next time you open OpenShot. You"
+" can still use the timeline's Auto Keyframes button to switch modes while "
+"editing without changing your startup preference."
+msgstr ""
+"**Sjálfvirk lykilramma við ræsingu** velur hvort breytingar þínar búa "
+"sjálfkrafa til lykilramma þegar OpenShot opnast. Slökktu á þessu ef þú vilt "
+"setja lykilramma sjálfur. Breytingin tekur gildi næst þegar þú opnar "
+"OpenShot. Þú getur samt notað sjálfvirka lykilramma hnappinn á tímalínunni "
+"til að skipta um stillingu meðan þú ert að breyta án þess að breyta "
+"ræsistillingunni þinni."
+
+#: ../doc/preferences.rst:130
+msgid ""
+"Choose **Preferences → Timeline → Track Size** to control how many tracks "
+"fit vertically in the timeline:"
+msgstr ""
+"Veldu **Stillingar → Tímalína → Stærð brautar** til að stjórna hversu margar"
+" brautir passa lóðrétt á tímalínuna:"
+
+#: ../doc/preferences.rst:133
+msgid ""
+"**Minimal:** Fit the most tracks on screen, useful for large projects with "
+"many video, audio, and overlay layers."
+msgstr ""
+"**Lágmarks:** Passaðu sem flestar brautir á skjáinn, gagnlegt fyrir stór "
+"verkefni með margar myndbands-, hljóð- og yfirlagshluta."
+
+#: ../doc/preferences.rst:135
+msgid ""
+"**Compact:** Show more tracks while leaving a little more room for clip "
+"content and track controls than Minimal."
+msgstr ""
+"**Þétt:** Sýna fleiri brautir en Lágmarks, með aðeins meira pláss fyrir "
+"klippuefni og brautastýringar."
+
+#: ../doc/preferences.rst:137
+msgid ""
+"**Default:** Use the theme's original track height, matching the layout "
+"before changing this preference."
+msgstr ""
+"**Sjálfgefið:** Notaðu upprunalega brautahæð þemans, sem passar við útlitið "
+"áður en þessi stilling var breytt."
+
+#: ../doc/preferences.rst:139
+msgid ""
+"**Relaxed:** Give clips, thumbnails, and controls more vertical room when "
+"working with fewer tracks."
+msgstr ""
+"**Lauslegt:** Gefðu klippum, smámyndum og stýringum meira lóðrétt pláss "
+"þegar unnið er með færri brautir."
+
+#: ../doc/preferences.rst:142
+msgid ""
+"Sizes are theme-specific; Cosmic Dusk offers the shortest Minimal tracks. "
+"Track gaps, clip and transition heights, and keyframe panel rows adapt with "
+"the selected size. Minimal and Compact place track controls beside the track"
+" name."
+msgstr ""
+"Stærðir eru þema-sértækar; Cosmic Dusk býður upp á stystu Lágmarks "
+"brautirnar. Bil á milli brauta, hæð klippa og umbreytinga, og raðir í "
+"lykilrammapaneli aðlagast valinni stærð. Lágmarks og Þétt setja "
+"brautastýringar við hlið brautanafns."
+
+#: ../doc/preferences.rst:146
+msgid ""
+"Changes take effect immediately without restarting OpenShot. This is an "
+"application preference: it changes the timeline display, not your project's "
+"clips or exported video. Select **Default** at any time to restore the "
+"current theme's original sizing."
+msgstr ""
+"Breytingar taka gildi strax án þess að þurfa að endurræsa OpenShot. Þetta er"
+" forritsstilling: hún breytir sýningu tímalínunnar, ekki klippum "
+"verkefnisins eða útfluttu myndbandi. Veldu **Sjálfgefið** hvenær sem er til "
+"að endurheimta upprunalega stærð núverandi þema."
+
+#: ../doc/preferences.rst:151
+msgid ""
+"Try Minimal or Compact to compare layers with less vertical scrolling. Use "
+"Relaxed when you want larger thumbnails. Track Size changes vertical space; "
+"timeline zoom changes how much time is visible horizontally. **Thumbnail "
+"Style** separately controls how thumbnails are distributed along each clip."
+msgstr ""
+"Reyndu Lágmarks eða Þétt til að bera saman lög með minni lóðréttum skrun. "
+"Notaðu Lauslegt þegar þú vilt stærri smámyndir. Stærð brautar breytir "
+"lóðréttu rými; tímalínusnúningur breytir hversu mikið tímabil sést lárétt. "
+"**Smámyndastíll** stjórnar sérstaklega hvernig smámyndir dreifast eftir "
+"hverri klippu."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:159
+msgid "Preview"
+msgstr "Forskoðun"
+
+#: ../doc/preferences.rst:163
+msgid ""
+"The Preview tab of the Preferences window controls real-time preview audio "
+"behavior, including device selection, sample rate, channels, buffering, and "
+"playback volume."
+msgstr ""
+"Forskoðunarflipinn í Stillingaglugganum stjórnar hljóðhegðun í rauntíma "
+"forskoðun, þar með talið val á tæki, sýnatökutíðni, rásum, skyndiminni og "
+"spilunarhljóðstyrk."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:172
+msgid "Playback Audio Device"
+msgstr "Hljóðtæki fyrir spilun"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:172
+msgid "Audio output device used during preview playback"
+msgstr "Hljóðúttakstæki notað við forskoðun"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:173
+msgid "Default Audio Sample Rate"
+msgstr "Sjálfgefinn sýnishornshraði hljóðs"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:173
+#, fuzzy
+msgid "48000"
+msgstr "44100"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:173
+#, fuzzy
+msgid "Default preview sample rate"
+msgstr "Sjálfgefinn sýnishornshraði hljóðs"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:174
+msgid "Default Audio Channels"
+msgstr "Sjálfgefnar hljóðrásir"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:174
+msgid "Stereo (2 Channel)"
+msgstr "Stereo (2 rásir)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:174
+msgid "Default preview channel layout"
+msgstr "Sjálfgefið rásarútlit forskoðunar"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:175
+msgid "Playback Audio Buffer Size"
+msgstr "Stærð hljóðbúnings fyrir spilun"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:175
+msgid "512"
+msgstr "512"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:175
+msgid "Audio samples buffered before playback begins (128 to 4096)"
+msgstr "Hljóðsýni geymd í skyndiminni áður en spilun hefst (128 til 4096)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:176
+msgid "Volume"
+msgstr "Hljóðstyrkur"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:176
+msgid "75"
+msgstr "75"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:176
+msgid "Preview playback volume percentage"
+msgstr "Hlutfall hljóðstyrks forskoðunar"
+
+#: ../doc/preferences.rst:182
+msgid "Optimize"
+msgstr "Bæta"
+
+#: ../doc/preferences.rst:184
+msgid ""
+"The Optimize tab controls automatic suggestions and the smaller preview "
+"copies used for smoother editing. Original files and export quality stay "
+"unchanged."
+msgstr ""
+"Flipinn Bæta stjórnar sjálfvirkum tillögum og minni forskoðunarkópi sem "
+"notaðir eru til að auðvelda klippingu. Upprunalegu skrárnar og "
+"útflutningsgæði haldast óbreytt."
+
+#: ../doc/preferences.rst:194
+msgid "Auto-Optimize"
+msgstr "Sjálfvirk bæting"
+
+#: ../doc/preferences.rst:195
+msgid "Ask"
+msgstr "Spyrja"
+
+#: ../doc/preferences.rst:196
+msgid ""
+"Choose Ask, Always, or Never as the default for projects without a saved "
+"Auto-Optimize choice."
+msgstr ""
+"Veldu Spyrja, Alltaf, eða Aldrei sem sjálfgefið fyrir verkefni án vistaðs "
+"val á Sjálfvirkri bætingu."
+
+#: ../doc/preferences.rst:197
+msgid "Auto-Optimize Threshold"
+msgstr "Mörk sjálfvirkrar bætingar"
+
+#: ../doc/preferences.rst:198
+msgid "200 ms"
+msgstr "200 ms"
+
+#: ../doc/preferences.rst:199
+msgid ""
+"Videos qualify when their first thumbnail frame takes longer than this to "
+"generate. Lower values include more videos; higher values include fewer."
+msgstr ""
+"Myndefni uppfylla skilyrði þegar fyrsta smámyndarrammi tekur lengri tíma en "
+"þetta að búa til. Lægri gildi fela í sér fleiri myndbönd; hærri gildi fela í"
+" sér færri."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:200
+msgid "Concurrent Optimize Jobs"
+msgstr "Samtímis háþróaðar vinnur"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:201
+msgid "2"
+msgstr "2"
+
+#: ../doc/preferences.rst:202
+msgid "Number of videos OpenShot can optimize at the same time."
+msgstr "Fjöldi myndefna sem OpenShot getur bætt samtímis."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:203
+msgid "Optimized Preview Resolution"
+msgstr "Háþróuð upplausn forskoðunar"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:204
+msgid "1280x720"
+msgstr "1280x720"
+
+#: ../doc/preferences.rst:205
+msgid "Maximum resolution used for optimized preview copies."
+msgstr "Hámarks upplausn sem notuð er fyrir bættar forskoðunarkopíur."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:206
+msgid "Thumbnail Preload Rate / second"
+msgstr "Forsækja hraði smámyndar / á sekúndu"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:207
+msgid "4"
+msgstr "4"
+
+#: ../doc/preferences.rst:208
+msgid ""
+"Number of thumbnail preview frames per second pre-generated while optimizing"
+" a video."
+msgstr ""
+"Fjöldi forskoðunarramma á sekúndu sem eru fyrirfram búnir til við bætingu "
+"myndbands."
+
+#: ../doc/preferences.rst:210
+msgid "The :guilabel:`Auto-Optimize` choices work as follows:"
+msgstr "Valmöguleikar :guilabel:`Sjálfvirk bæting` virka á eftirfarandi hátt:"
+
+#: ../doc/preferences.rst:212
+msgid ""
+":guilabel:`Ask`: show a banner when qualifying videos are found. Accepting "
+"enables automatic optimization for that project; dismissing remembers your "
+"decision."
+msgstr ""
+":guilabel:`Spyrja`: sýna borða þegar uppfylla myndbönd finnast. Að samþykkja"
+" virkjar sjálfvirka bætingu fyrir það verkefni; að hafna mun muna ákvörðun "
+"þína."
+
+#: ../doc/preferences.rst:214
+msgid ""
+":guilabel:`Always`: automatically optimize qualifying videos without a "
+"banner."
+msgstr ":guilabel:`Alltaf`: bæta sjálfkrafa uppfylla myndbönd án borða."
+
+#: ../doc/preferences.rst:215
+msgid ""
+":guilabel:`Never`: do not show the banner or start automatic optimization."
+msgstr ":guilabel:`Aldrei`: sýna ekki borða né hefja sjálfvirka bætingu."
+
+#: ../doc/preferences.rst:217
+msgid ""
+"These are defaults, not overrides of saved project choices. For example, "
+"selecting :guilabel:`Never` here does not turn off a project where you "
+"already enabled :menuselection:`File --> Auto-Optimize`. Use that menu item "
+"to change the current project's setting. Manual optimization remains "
+"available with every preference."
+msgstr ""
+"Þetta eru sjálfgefnar stillingar, ekki yfirsýningar á vistaðri "
+"verkefnastillingu. Til dæmis, að velja :guilabel:`Aldrei` hér slökkvar ekki "
+"á verkefni þar sem þú hefur þegar virkjað :menuselection:`File --> Auto-"
+"Optimize`. Notaðu þann valmöguleika til að breyta stillingu núverandi "
+"verkefnis. Handvirk bæting er alltaf tiltæk með öllum stillingum."
+
+#: ../doc/preferences.rst:222
+msgid ""
+"The threshold is measured in milliseconds (**ms**). With the default **200 "
+"ms**, a video with a recorded time of 350 ms qualifies, while one with a "
+"time of 50 ms does not. Changing the threshold re-evaluates existing timings"
+" without decoding videos again; it does not cancel jobs already queued or "
+"running."
+msgstr ""
+"Mörkin eru mæld í millisekúndum (**ms**). Með sjálfgefnu **200 ms** "
+"uppfyllir myndband með skráðri tímalengd 350 ms skilyrði, en myndband með 50"
+" ms ekki. Að breyta mörkunum endurmetur núverandi tímastillingar án þess að "
+"afkóða myndbönd aftur; það hættir ekki við verkefni sem eru í biðröð eða í "
+"gangi."
+
+#: ../doc/preferences.rst:227
+msgid ""
+"The timing comes from normal thumbnail generation. Older projects without "
+"saved timings are checked in the background, one small thumbnail at a time, "
+"when Auto-Optimize is set to Ask or Always (or enabled from the File menu). "
+"It excludes opening the file, writing the thumbnail image, and waiting in a "
+"queue. It is saved with the project's file information and reused on the "
+"same computer while the source file is unchanged. See :ref:`optimize_ref` "
+"for the banner, status indicators, and manual optimization options."
+msgstr ""
+"Tímasetningin kemur frá venjulegri smámyndagerð. Eldri verkefni án vistaðra "
+"tímasetninga eru skoðuð í bakgrunni, ein smámynd í einu, þegar Sjálfvirk "
+"bæting er stillt á Spyrja eða Alltaf (eða virkjuð úr Skráavalmynd). Þetta "
+"nær ekki til opnunar skráar, skriftar smámyndamyndar eða biðröðar. Hún er "
+"vistuð með skráarupplýsingum verkefnisins og endurnýtt á sama tölvu meðan "
+"upprunalega skráin er óbreytt. Sjá :ref:`optimize_ref` fyrir borða, "
+"stöðuvísar og handvirkar bætingarvalkosti."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:236
+msgid "Autosave"
+msgstr "Sjálfvirk vistun"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:240
+msgid ""
+"Autosave is a feature in OpenShot which automatically saves the current "
+"changes to your project after a specific number of minutes, helping to "
+"reduce the risk or impact of data loss in case of a crash, freeze or user "
+"error."
+msgstr ""
+"Sjálfvirk vistun er eiginleiki í OpenShot sem vistar sjálfkrafa núverandi "
+"breytingar á verkefninu þínu eftir ákveðinn fjölda mínútna, til að draga úr "
+"áhættu eða áhrifum gagnataps vegna hnökrar, kyrrstöðu eða notendavillu."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:250
+msgid "Enable Autosave"
+msgstr "Virkja sjálfvirka vistun"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:251
+msgid "Autosave Interval (minutes)"
+msgstr "Millibil sjálfvirkrar vistunar (mínútur)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:251
+msgid "3"
+msgstr "3"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:252
+msgid "History Limit (# of undo/redo)"
+msgstr "Takmörkun á sögu (fjöldi afturkalla/endurtekninga)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:252
+msgid "15"
+msgstr "15"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:253
+msgid "Recovery Limit (# of project copies)"
+msgstr "Takmörkun endurheimtar (fjöldi verkefnakopia)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:253
+msgid "30"
+msgstr "30"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:257
+msgid "Recovery"
+msgstr "Endurheimt"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:259
+msgid ""
+"**Before each save**, a compressed ``*.zip`` copy of the current project is "
+"saved in the recovery folder, to further reduce the risk of data loss. The "
+"recovery folder is located at ``~/.openshot_qt/recovery/`` or "
+"``C:\\Users\\USERNAME\\.openshot_qt\\recovery``."
+msgstr ""
+"**Fyrir hverja vistun** er þjappað ``*.zip`` eintak af núverandi verkefni "
+"vistað í endurheimtamöppu, til að draga enn frekar úr áhættu gagnataps. "
+"Endurheimtamappan er staðsett í ``~/.openshot_qt/recovery/`` eða "
+"``C:\\Users\\USERNAME\\.openshot_qt\\recovery``."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:263
+msgid ""
+"To recover a corrupt or broken ``*.osp`` project file, use the "
+":guilabel:`File->Recovery` menu on the main window after opening your "
+"project. If available, a list of matching project versions from the recovery"
+" folder are listed in chronological order (most recent one at the top). This"
+" will automatically rename your current project file to ``{project-"
+"name}-{time}-backup.osp``, and replace it with the recovery project file. "
+"You can repeat this process until you find the correct recovery project. "
+"NOTE: If for some unexpected reason the recovery process fails, you can "
+"always rename the \"-backup.osp\" file to the original project file name to "
+"restore it."
+msgstr ""
+"Til að endurheimta skemmt eða brotið ``*.osp`` verkefnaskrá, notaðu "
+":guilabel:`File->Recovery` valmyndina í aðalglugganum eftir að þú hefur "
+"opnað verkefnið þitt. Ef tiltækt er, birtist listi yfir samsvarandi "
+"verkefnaútgáfur úr endurheimtamöppunni í tímaröð (nýjasta efst). Þetta mun "
+"sjálfkrafa endurnefna núverandi verkefnaskrá þína í ``{project-"
+"name}-{time}-backup.osp`` og skipta henni út fyrir endurheimtarskrána. Þú "
+"getur endurtekið þennan feril þar til þú finnur rétta endurheimt "
+"verkefnisins. ATH: Ef af einhverjum óvæntum ástæðum mistakast endurheimt "
+"ferlið, getur þú alltaf endurnefnt \"-backup.osp\" skrána í upprunalegt "
+"verkefnanafn til að endurheimta það."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:271
+msgid ""
+"To **manually** recover a corrupt or broken ``*.osp`` project file, please "
+"find the most recent copy in the recovery folder, and copy/paste the file "
+"into your original project folder location (i.e. the folder that contains "
+"your broken project). If the recovery file has been zipped (``*.zip``), you "
+"must first extract the ``*.osp``, and then copy it into your project folder."
+" Recovery files are named ``{time}-{project-name}``. You can also use the "
+"**Date Modified** on the file to select the version you are interested in "
+"recovering."
+msgstr ""
+"Til að **handvirkt** endurheimta skemmt eða brotið ``*.osp`` verkefnaskrá, "
+"finndu nýjasta eintakið í endurheimtamöppunni og afritaðu/límdu skrána inn í"
+" upprunalega verkefnamöppuna þína (þ.e. möppuna sem inniheldur brotna "
+"verkefnið). Ef endurheimtarskráin er þjappað (``*.zip``), verður þú fyrst að"
+" vinna úr ``*.osp`` skránni og síðan afrita hana í verkefnamöppuna þína. "
+"Endurheimtarskrár bera nöfnin ``{time}-{project-name}``. Þú getur einnig "
+"notað **Breytt dagsetningu** á skránni til að velja útgáfuna sem þú vilt "
+"endurheimta."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:281
+msgid "Cache"
+msgstr "Skyndiminni"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:285
+msgid ""
+"Cache settings can be adjusted to make real-time playback faster or less CPU"
+" intensive. The cache is used to store image and audio data for each frame "
+"of video requested. The more frames that are cached, the smoother the real-"
+"time playback will be. However, the more that needs to be cached requires "
+"more CPU to generate the cache. There is a balance, and the default settings"
+" provide a generally sane set of cache values, which should allow most "
+"computers to playback video and audio smoothly. See :ref:`playback_ref`."
+msgstr ""
+"Stillingar skyndiminnis má stilla til að gera rauntíma spilun hraðari eða "
+"minna örgjörvakrefjandi. Skyndiminnið er notað til að geyma mynd- og "
+"hljóðgögn fyrir hvert ramma af beiðnu vídeói. Því fleiri rammar sem eru í "
+"skyndiminni, því sléttari verður rauntíma spilunin. Hins vegar krefst meira "
+"skyndiminni meiri örgjörva til að búa til skyndiminnið. Það þarf jafnvægi, "
+"og sjálfgefnar stillingar bjóða almennt upp á skynsamlegt sett af "
+"skyndiminni sem ætti að leyfa flestum tölvum að spila vídeó og hljóð "
+"hnökralaust. Sjá :ref:`playback_ref`."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:297
+msgid "Cache Mode"
+msgstr "Stilling skyndiminnis"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:297
+msgid ""
+"Choose between Memory or Disk caching (memory caching is preferred). Disk "
+"caching writes image data to the hard disk for later retrieving, and works "
+"best with an SSD."
+msgstr ""
+"Veldu á milli skyndiminni í minni eða á disk (minnisskyndiminni er "
+"æskilegra). Diskaskyndiminni skrifar myndgögn á harða diskinn til seinni "
+"notkunar og virkar best með SSD."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:298
+msgid "Cache Limit (MB)"
+msgstr "Takmörk skyndiminnis (MB)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:298
+msgid ""
+"How many MB are set aside for cache related data. Larger numbers are not "
+"always better, since it takes more CPU to generate more frames to fill the "
+"cache."
+msgstr ""
+"Hversu mörg MB eru sett til hliðar fyrir skyndiminni. Stærri tölur eru ekki "
+"alltaf betri, þar sem það tekur meiri örgjörva að búa til fleiri ramma til "
+"að fylla skyndiminnið."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:299
+msgid "Image Format (Disk Only)"
+msgstr "Myndasnið (aðeins diskur)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:299
+msgid "Image format to store disk cache image data"
+msgstr "Myndasnið til að geyma myndagögn í diskaskyndiminni"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:300
+msgid "Scale Factor (Disk Only)"
+msgstr "Stærðarstuðull (aðeins diskur)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:300
+msgid ""
+"Percentage (0.1 to 1.0) to reduce the size of disk based image files stored "
+"in the disk cache. Smaller numbers make writing and reading cached image "
+"files faster."
+msgstr ""
+"Prósenta (0.1 til 1.0) til að minnka stærð myndaskráa á disk sem eru geymdar"
+" í diskaskyndiminni. Minni tölur gera skrif og lestur skyndimyndaskráa "
+"hraðari."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:301
+msgid "Image Quality (Disk Only)"
+msgstr "Myndgæði (aðeins diskur)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:301
+msgid ""
+"Quality of the image files used in disk cache. The higher compression can "
+"cause more slowness, but results in smaller file sizes."
+msgstr ""
+"Gæði myndaskrár sem notaðar eru í diskaskyndiminni. Hærri þjöppun getur "
+"valdið meiri hægagang, en skilar minni skráarstærðum."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:302
+msgid "Cache Pre-roll: Min Frames:"
+msgstr "Forspilun skyndiminnis: Lágmarksrammar:"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:302
+msgid ""
+"Minimum # of frames that must be cached before playback begins. The larger "
+"the #, the larger the wait before playback begins."
+msgstr ""
+"Lágmarksfjöldi ramma sem verða að vera í skyndiminni áður en spilun hefst. "
+"Því stærri sem fjöldinn er, því lengri bið verður áður en spilun hefst."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:303
+msgid "Cache Pre-roll: Max Frames:"
+msgstr "Forspilun skyndiminnis: Hámarksrammar:"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:303
+msgid ""
+"Maximum # of frames that can be cached during playback (in front of the "
+"playhead). The larger the #, the more CPU is required to cache ahead - vs "
+"display the already cached frames."
+msgstr ""
+"Hámarksfjöldi ramma sem hægt er að geyma í skyndiminni meðan á spilun "
+"stendur (fyrir framan spilhausinn). Því hærri sem fjöldinn er, því meira CPU"
+" þarf til að geyma fram í tímann - í stað þess að sýna þegar geymda ramma."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:304
+msgid "Cache Ahead (Percent):"
+msgstr "Geymsla fram í tímann (prósenta):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:304
+msgid ""
+"Between 0.0 and 1.0. This represents how much % we cache ahead of the "
+"playhead. For example, 0.5 would cache 50% behind and 50% ahead of the "
+"playhead. 0.8 would cache 20% behind and 80% ahead of the playhead."
+msgstr ""
+"Milli 0,0 og 1,0. Þetta sýnir hversu mikið % við geymum fram fyrir "
+"spilhausinn. Til dæmis myndi 0,5 geyma 50% fyrir aftan og 50% fyrir framan "
+"spilhausinn. 0,8 myndi geyma 20% fyrir aftan og 80% fyrir framan "
+"spilhausinn."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:305
+msgid "Cache Max Frames:"
+msgstr "Hámarksfjöldi ramma í skyndiminni:"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:305
+#, fuzzy
+msgid ""
+"This is an override on the total allowed frames that can be cached by our "
+"caching thread. It defaults to 900 frames, but even if you give a huge "
+"amount of RAM to OpenShot's cache size, this will override the max # of "
+"frames cached. The reason is... sometimes when the preview window is very "
+"small, and the cache size is set very high, OpenShot might calculate that we"
+" can cache 30,000 frames, or something silly which will take a huge amount "
+"of CPU, lagging the system. This setting is designed to clamp the upper "
+"limit of the cache to something reasonable... even on systems that give "
+"OpenShot huge amounts of RAM to work with."
+msgstr ""
+"Þetta er yfirsýsla á heildarfjölda ramma sem skyndiminniþráðurinn okkar "
+"getur geymt. Sjálfgefið er 600 rammar, en jafnvel þótt þú gefir OpenShot "
+"mikla vinnsluminni fyrir skyndiminnið, mun þetta yfirsýsla hámarksfjölda "
+"ramma sem geymdir eru. Ástæðan er sú að stundum, þegar forskoðunarglugginn "
+"er mjög lítill og skyndiminni er stillt mjög hátt, gæti OpenShot reiknað með"
+" að hægt sé að geyma 30.000 ramma eða eitthvað slíkt sem tekur mikla "
+"vinnsluorku og hægir á kerfinu. Þessi stilling er hönnuð til að takmarka "
+"efri mörk skyndiminnis í eitthvað sanngjarnt, jafnvel á kerfum sem gefa "
+"OpenShot mikið vinnsluminni."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:308
+msgid ""
+"OpenShot's default cache settings now target a balanced preview experience: "
+"roughly **50% behind / 50% ahead** of the playhead, **768 MB** cache memory,"
+" and **900** max frames. In practice, this improves scrubbing and seek "
+"behavior while reducing stale preview frames on slower systems."
+msgstr ""
+"Sjálfgefnar skyndiminni stillingar OpenShot miða nú að jafnvægi í forskoðun:"
+" um það bil **50% fyrir aftan / 50% fyrir framan** spilunarhausinn, **768 "
+"MB** skyndiminni og **900** hámarks rammar. Í framkvæmd bætir þetta leit og "
+"spilun og minnkar úreltar forskoðunar rammar á hægari kerfum."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:314
+msgid "Performance"
+msgstr "Frammistaða"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:317
+msgid ""
+"Please keep in mind that GPU hardware acceleration is experimental at the "
+"moment. OpenShot supports both decoding and encoding acceleration. For more "
+"information take a look at our `Github HW-ACCEL Doc "
+"<https://github.com/OpenShot/libopenshot/blob/develop/doc/HW-ACCEL.md>`_. "
+"NOTE: On systems with older graphics cards, hardware acceleration may not "
+"always be faster than CPU encoding."
+msgstr ""
+"Vinsamlegast hafðu í huga að hraðavirkjun með GPU er tilraunakennd í "
+"augnablikinu. OpenShot styður bæði hraðavirkjun við afkóðun og kóðun. Fyrir "
+"frekari upplýsingar skoðaðu `Github HW-ACCEL skjölin "
+"<https://github.com/OpenShot/libopenshot/blob/develop/doc/HW-ACCEL.md>`_. "
+"ATH: Á kerfum með eldri skjákortum getur hraðavirkjun ekki alltaf verið "
+"hraðari en kóðun með CPU."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:327
+msgid "Hardware Decoder Mode"
+msgstr "Hugbúnaðarafkóðunarstilling"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:328
+msgid ""
+"Select the hardware decoding backend to use. Use :guilabel:`Test` to verify "
+"the selected decoder mode."
+msgstr ""
+"Veldu vélbúnaðarafkóðunar bakenda til notkunar. Notaðu :guilabel:`Prófa` til"
+" að staðfesta valda afkóðunarstillingu."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:329
+msgid "Hardware Decoder Graphics Card"
+msgstr "Vélbúnaðarafkóðunar skjákort"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:330
+msgid "Choose which GPU device is used for hardware decoding."
+msgstr "Veldu hvaða GPU tæki er notað fyrir vélbúnaðarafkóðun."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:331
+msgid "Hardware Encoder Graphics Card"
+msgstr "Vélbúnaðarþjöppunar skjákort"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:332
+msgid "Choose which GPU device is used for hardware encoding."
+msgstr "Veldu hvaða GPU tæki er notað fyrir vélbúnaðarþjöppun."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:333
+msgid "OMP Threads"
+msgstr "OMP þræðir"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:334
+msgid ""
+"Number of OpenMP worker threads used by performance-sensitive processing."
+msgstr "Fjöldi OpenMP vinnuþráða sem notaðir eru við afkastanæma vinnslu."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:335
+msgid "FFmpeg Threads"
+msgstr "FFmpeg þræðir"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:336
+msgid "Number of FFmpeg threads used for decoding/encoding."
+msgstr "Fjöldi FFmpeg þráða sem notaðir eru til afkóðunar/kóðunar."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:337
+msgid "Hardware Decoder Max Width (0 = Default)"
+msgstr "Hámarksbreidd vélbúnaðarafkóðunar (0 = Sjálfgefið)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:338
+msgid ""
+"Optional maximum width for hardware decoding. Use ``0`` for no explicit "
+"limit."
+msgstr ""
+"Valfrjáls hámarksbreidd fyrir vélbúnaðarafkóðun. Notaðu ``0`` fyrir engin "
+"takmörk."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:339
+msgid "Hardware Decoder Max Height (0 = Default)"
+msgstr "Hámarkshæð vélbúnaðarafkóðunar (0 = Sjálfgefið)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:340
+msgid ""
+"Optional maximum height for hardware decoding. Use ``0`` for no explicit "
+"limit."
+msgstr ""
+"Valfrjáls hámarkshæð fyrir vélbúnaðarafkóðun. Notaðu ``0`` fyrir engin "
+"takmörk."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:341
+msgid "Use Blender GPU rendering for Animated Titles"
+msgstr "Nota Blender GPU útfærslu fyrir hreyfð titla"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:342
+msgid "Enable GPU rendering for Blender-based animated titles."
+msgstr "Virkja GPU útfærslu fyrir Blender-undirstaða hreyfða titla."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:347
+msgid "Keyboard"
+msgstr "Lyklaborð"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:350
+msgid ""
+"This section allows you to view and customize hotkeys for various actions in"
+" the application. Here, you can assign and manage multiple shortcuts for the"
+" same action and restore default shortcuts if needed."
+msgstr ""
+"Þessi hluti gerir þér kleift að skoða og sérsníða flýtilykla fyrir ýmsar "
+"aðgerðir í forritinu. Hér getur þú úthlutað og stjórnað mörgum flýtilyklum "
+"fyrir sömu aðgerð og endurstillt sjálfgefna flýtilykla ef þörf krefur."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:353
+msgid ""
+"**Assign Multiple Shortcuts**: You can assign multiple keyboard shortcuts to"
+" the same action by separating them with a pipe (``|``) delimiter. This "
+"flexibility allows you to configure as many shortcuts as you need for each "
+"action."
+msgstr ""
+"**Úthluta mörgum flýtilyklum**: Þú getur úthlutað mörgum flýtilyklum fyrir "
+"sömu aðgerð með því að aðskilja þá með lóðréttu striki (``|``). Þessi "
+"sveigjanleiki gerir þér kleift að stilla eins marga flýtilykla og þú þarft "
+"fyrir hverja aðgerð."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:356
+msgid ""
+"**Immediate Application**: No restart is required after adjusting keyboard "
+"shortcuts. Changes are applied immediately, so you can start using your "
+"updated shortcuts right away."
+msgstr ""
+"**Strax virkni**: Engin endurræsing er nauðsynleg eftir að flýtilyklar hafa "
+"verið breyttir. Breytingar taka gildi strax, svo þú getur byrjað að nota "
+"uppfærða flýtilykla strax."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:359
+msgid ""
+"**Restore Default Shortcuts**: If needed, you can reset all keyboard "
+"shortcuts to their default settings by clicking on the :guilabel:`Restore "
+"Defaults: Keyboard` button located in the bottom-left corner of the "
+"Preferences screen."
+msgstr ""
+"**Endurheimta sjálfgefna flýtilykla**: Ef þörf krefur getur þú endurstillt "
+"alla flýtilykla í sjálfgefna stillingu með því að smella á hnappinn "
+":guilabel:`Restore Defaults: Keyboard` neðst til vinstri í valmynd "
+"Stillinga."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:362
+msgid ""
+"**Unique Shortcuts**: Each keyboard shortcut must be unique. If there are "
+"any duplicate shortcuts, they will be highlighted in **red** and will not "
+"function until the conflict is resolved."
+msgstr ""
+"**Einstakir flýtilyklar**: Hver flýtilykill verður að vera einstakur. Ef "
+"einhverjir flýtilyklar eru tvítekningur verða þeir merktir með **rauðu** og "
+"virka ekki þar til árekstrinum er leyst."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:366
+msgid ""
+"For more detailed information on how to use and customize keyboard "
+"shortcuts, see :ref:`keyboard_shortcut_ref`."
+msgstr ""
+"Fyrir nánari upplýsingar um hvernig á að nota og sérsníða flýtilykla, sjá "
+":ref:`keyboard_shortcut_ref`."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:369
+msgid "Location"
+msgstr "Staðsetning"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:373
+msgid ""
+"Default file path locations for saving/opening projects, importing files, "
+"and exporting videos can be configured here. This can save you time by "
+"defaulting the open/save file dialogs to the most appropriate starting "
+"folder (options described below)."
+msgstr ""
+"Sjálfgefnar möppur fyrir að vista/opna verkefni, flytja inn skrár og flytja "
+"út myndbönd má stilla hér. Þetta getur sparað þér tíma með því að sjálfgefið"
+" opna/vista skráarglugga í viðeigandi byrjunar-möppu (valkostir lýstir hér "
+"að neðan)."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:383
+msgid "File Import"
+msgstr "Innflutningur skráa"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:383
+msgid "Default folder to choose when importing a file"
+msgstr "Sjálfgefin mappa til að velja þegar skrá er flutt inn"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:384
+msgid "Save or Open Project"
+msgstr "Vista eða opna verkefni"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:384
+msgid "Default folder to choose when saving or opening a project file"
+msgstr "Sjálfgefin mappa til að velja þegar verkefnaskrá er vistuð eða opnuð"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:385
+msgid "Video Export"
+msgstr "Útflutningur myndbands"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:385
+msgid "Default folder to choose when exporting a video"
+msgstr "Sjálfgefin mappa til að velja þegar myndband er flutt út"
+
+#: ../doc/preferences.rst:386
+msgid "Unsaved Project Assets Folder"
+msgstr "Mappa fyrir ósparað verkefnisefni"
+
+#: ../doc/preferences.rst:386
+msgid "Folder for assets created before a project is saved (restart required)"
+msgstr ""
+"Mappa fyrir efni sem búið er til áður en verkefni er vistað (krefst "
+"endurræsingar)"
+
+#: ../doc/preferences.rst:389
+msgid ""
+"On Linux, the unsaved assets folder defaults to ``~/Videos/.openshot-tmp`` "
+"when ``~/Videos`` exists and the hidden child folder is writable. Otherwise,"
+" OpenShot uses ``~/.openshot_qt``, which is also the default on other "
+"platforms. You can choose a different folder in Preferences. Saving a "
+"project relocates its assets into the project's ``<project>_assets`` folder;"
+" subsequent titles and animations use that folder. These assets can include "
+"media needed by an unsaved project or crash recovery, so do not delete the "
+"folder as ordinary disposable cache data."
+msgstr ""
+"Á Linux er sjálfgefin mappa fyrir ósparað efni ``~/Videos/.openshot-tmp`` "
+"þegar ``~/Videos`` er til og falda undirmappan er skrifanleg. Annars notar "
+"OpenShot ``~/.openshot_qt``, sem er einnig sjálfgefið á öðrum kerfum. Þú "
+"getur valið aðra möppu í Stillingum. Þegar verkefni er vistað eru eignir "
+"þess fluttar í ``<project>_assets`` möppu verkefnisins; eftirfarandi titlar "
+"og hreyfimyndir nota þá möppu. Þessar eignir geta innihaldið miðil sem "
+"ósparað verkefni eða endurheimt eftir bilun þarf, svo ekki eyða möppunni sem"
+" venjulegum tímabundnum skyndiminni."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:401
+msgid "Values"
+msgstr "Gildi"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:403
+msgid "**Recent Folder**"
+msgstr "**Nýjasta mappa**"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:403
+msgid ""
+"The last folder used for this same operation. Project folders, Import "
+"folders, and Export folders are tracked separately."
+msgstr ""
+"Síðasta mappa sem var notuð fyrir þessa sömu aðgerð. Verkefnamöppur, "
+"innflutningsmöppur og útflutningsmöppur eru skráðar sér."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:404
+msgid "**Project Folder**"
+msgstr "**Verkefnismappa**"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:404
+msgid ""
+"The current project folder (or the user's home folder, if the project is not"
+" yet saved)"
+msgstr ""
+"Núverandi verkefnismappa (eða heimamappa notanda, ef verkefnið hefur ekki "
+"verið vistað)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:410
+msgid "Advanced"
+msgstr "Ítarlegt"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:414
+msgid "The Advanced tab includes ComfyUI integration and debugging options."
+msgstr ""
+"Ítarlegi flipinn inniheldur ComfyUI samþættingu og villuleitarmöguleika."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:423
+msgid "Comfy UI URL"
+msgstr "Comfy UI slóð"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:424
+msgid "``http://127.0.0.1:8188``"
+msgstr "``http://127.0.0.1:8188``"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:425
+msgid "URL of your local or remote ComfyUI server"
+msgstr "Slóð á staðbundinn eða fjarstýrðan ComfyUI þjón"
+
+#: ../doc/preferences.rst:426
+msgid "User Interface Debug Logging"
+msgstr "Villuleitarskráning notendaviðmóts"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:427 ../doc/preferences.rst:430
+#: ../doc/preferences.rst:436
+#, fuzzy
+msgid "Disabled"
+msgstr "Virkt"
+
+#: ../doc/preferences.rst:428
+msgid ""
+"Record interface and project details in ``openshot-qt.log``. The matching "
+"``--debug-ui`` (or ``--debug``) argument enables these details for one "
+"launch, including terminal output. See :ref:`logging_ref`."
+msgstr ""
+"Skráðu viðmóts- og verkefnisupplýsingar í ``openshot-qt.log``. Samræmdur "
+"valmöguleiki ``--debug-ui`` (eða ``--debug``) virkjar þessar upplýsingar "
+"fyrir eina keyrslu, þar með talið úttak í flugstöð. Sjá :ref:`logging_ref`."
+
+#: ../doc/preferences.rst:429
+msgid "Video & Audio Engine Debug Logging"
+msgstr "Villuleitarskráning mynd- og hljóðvélar"
+
+#: ../doc/preferences.rst:431
+msgid ""
+"Record video and audio processing details in ``libopenshot.log``. The "
+"matching ``--debug-engine`` argument enables these details for one launch, "
+"including terminal output. Logs can grow quickly; turn off when finished. "
+"See :ref:`logging_ref`."
+msgstr ""
+"Skráðu upplýsingar um mynd- og hljóðvinnslu í ``libopenshot.log``. Samræmdur"
+" valmöguleiki ``--debug-engine`` virkjar þessar upplýsingar fyrir eina "
+"keyrslu, þar með talið úttak í flugstöð. Skrár geta stækkað hratt; slökktu á"
+" þegar lokið er. Sjá :ref:`logging_ref`."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:432
+msgid "Send Anonymous Metrics and Errors"
+msgstr "Senda nafnlausar mælingar og villur"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:434
+msgid "Send anonymous telemetry and error reports"
+msgstr "Senda nafnlausar fjartölusendingar og villuskýrslur"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:435
+msgid "Show Playback Performance (FPS)"
+msgstr "Sýna spilunarafköst (FPS)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:437
+msgid "Display live FPS in preview playback"
+msgstr "Sýna lifandi FPS í forskoðun spilunar"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:438
+msgid "Show Export Dialog when Finished"
+msgstr "Sýna Útflutningsglugga þegar Lokið er"
+
+#: ../doc/preferences.rst:440
+msgid ""
+"Display the Export Video window when export completes, with a summary of the"
+" result. See :ref:`export_complete_ref`."
+msgstr ""
+"Sýna glugga fyrir Útflutning myndbands þegar útflutningur lýkur, með "
+"yfirliti niðurstöðu. Sjá :ref:`export_complete_ref`."
+
+#: ../doc/preferences.rst:441
+msgid "Celebrate Exports"
+msgstr "Fagna útflutningum"
+
+#: ../doc/preferences.rst:442
+msgid "First Export"
+msgstr "Fyrsta útflutningur"
+
+#: ../doc/preferences.rst:443
+msgid ""
+"Show a burst of confetti when an export succeeds: on the ``First Export`` "
+"only, on ``Every Export``, or ``Never``"
+msgstr ""
+"Sýna sprengju af konfetti þegar útflutningur tekst: aðeins við ``Fyrsta "
+"útflutning``, við ``Hvern útflutning`` eða ``Aldrei``"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:445
+msgid ""
+"The ComfyUI **Check** button updates an inline status icon: green checkmark "
+"for success, red icon for failure. If OpenShot cannot reach this server, AI "
+"context menu options are hidden. See :ref:`ai_ref` for setup details, "
+"requirements, and workflow options."
+msgstr ""
+"ComfyUI **Athuga** hnappurinn uppfærir stöðutákn í línu: grænt hakmerki "
+"fyrir árangur, rautt tákn fyrir bilun. Ef OpenShot nær ekki sambandi við "
+"þennan þjón, eru valkostir í AI samhengisvalmynd falnir. Sjá :ref:`ai_ref` "
+"fyrir uppsetningarupplýsingar, kröfur og vinnuflæðisvalkosti."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:452
+msgid "Reset (Default Values)"
+msgstr "Endurstilla (sjálfgefin gildi)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:454
+msgid ""
+"To reset **all** preferences to their default values, please delete the "
+"``openshot.settings`` file and re-launch OpenShot. The settings file can be "
+"located at this path: ``~/.openshot_qt/openshot.settings`` or "
+"``C:\\Users\\USERNAME\\.openshot_qt\\openshot.settings``. When OpenShot is "
+"re-launched, it will create the missing ``openshot.settings`` file with "
+"default values."
+msgstr ""
+"Til að endurstilla **allar** stillingar í sjálfgefin gildi, vinsamlegast "
+"eyðaðu ``openshot.settings`` skrá og ræstu OpenShot aftur. Stillingaskráin "
+"er að finna á eftirfarandi slóð: ``~/.openshot_qt/openshot.settings`` eða "
+"``C:\\Users\\NOTANDANAFN\\.openshot_qt\\openshot.settings``. Þegar OpenShot "
+"er ræst aftur mun það búa til vantaða ``openshot.settings`` skrá með "
+"sjálfgefnum gildum."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:459
+msgid ""
+"Optionally, you can delete the entire ``.openshot_qt/`` folder and re-launch"
+" OpenShot. However, please make a **backup** of any customized folders: "
+"**emojis, presets, profiles, recovery, title_templates, transitions, or "
+"yolo**. For example, your ``/recovery/`` sub-folder contains backup copies "
+"of all your existing projects (``*.osp`` files)."
+msgstr ""
+"Auk þess getur þú eytt allri ``.openshot_qt/`` möppunni og ræst OpenShot "
+"aftur. Vinsamlegast gerðu þó **afrit** af sérsniðnum möppum: **emojis, "
+"presets, profiles, recovery, title_templates, transitions, eða yolo**. Til "
+"dæmis inniheldur ``/recovery/`` undirmappa afrit af öllum núverandi "
+"verkefnum þínum (``*.osp`` skrár)."
+
+# Translated with gpt-4.1-mini
+#: ../doc/preferences.rst:464
+msgid ""
+"Deleting the ``.openshot_qt/`` folder is the quickest method to restore "
+"OpenShot preferences and settings to their Default values (i.e. also called "
+"a `clean install`). When OpenShot is re-launched, it will create any missing"
+" folders (i.e. ``.openshot_qt/``) and settings files. See our `step-by-step "
+"guide <https://github.com/OpenShot/openshot-qt/wiki/Clean-Installation-of-"
+"OpenShot>`_ for more information about **clean installs** of OpenShot."
+msgstr ""
+"Að eyða ``.openshot_qt/`` möppunni er hraðasta leiðin til að endurheimta "
+"OpenShot stillingar og valkosti í sjálfgefna stöðu (einnig kallað `hrein "
+"uppsetning`). Þegar OpenShot er ræst aftur mun það búa til allar vantar "
+"möppur (t.d. ``.openshot_qt/``) og stillingarskrár. Sjáðu okkar `skref-"
+"fyrir-skref leiðbeiningar <https://github.com/OpenShot/openshot-"
+"qt/wiki/Clean-Installation-of-OpenShot>`_ fyrir frekari upplýsingar um "
+"**hreinar uppsetningar** OpenShot."
+
+# Translated with gpt-4.1-mini
+#~ msgid ""
+#~ "The Preview tab of the Preferences window controls real-time preview audio "
+#~ "behavior, including device selection, sample rate, channels, buffering, "
+#~ "playback volume, and optimized preview behavior."
+#~ msgstr ""
+#~ "Flipinnskráin Forskoðun stjórnar hljóðhegðun í rauntíma forskoðun, þar með "
+#~ "talið val á tæki, sýnatökutíðni, rásum, skyndiminni, spilunarhljóðstyrk og "
+#~ "háþróaðri forskoðun."
+
+# Translated with gpt-4.1-mini
+#~ msgid "Number of video files OpenShot can optimize at the same time"
+#~ msgstr "Fjöldi myndbandsskrár sem OpenShot getur háþróað samtímis"
+
+# Translated with gpt-4.1-mini
+#~ msgid "Maximum resolution used when creating optimized preview files"
+#~ msgstr "Hámarks upplausn sem notuð er við gerð háþróaðra forskoðunar skráa"
+
+# Translated with gpt-4.1-mini
+#~ msgid ""
+#~ "How many thumbnail preview frames per second are pre-generated while "
+#~ "optimizing video"
+#~ msgstr ""
+#~ "Hversu margar forskoðunar rammar smámynda á sekúndu eru forskeyptar meðan "
+#~ "myndband er háþróað"
+
+# Translated with gpt-4.1-mini
+#~ msgid "Display the Export Video window when export completes"
+#~ msgstr "Sýna útflutningsglugga þegar útflutningur lýkur"
+
+# Translated with gpt-4.1-mini
+#~ msgid "Debug Mode (Port)"
+#~ msgstr "Villuleitarmáti (Höfn)"
+
+# Translated with gpt-4.1-mini
+#~ msgid "5556"
+#~ msgstr "5556"
+
+# Translated with gpt-4.1-mini
+#~ msgid "Port used by debug logging features"
+#~ msgstr "Höfn notuð af villuleitar skráningar eiginleikum"
+
+# Translated with gpt-4.1-mini
+#~ msgid "Debug Mode (Verbose)"
+#~ msgstr "Villuleitarmáti (Nákvæm)"
+
+# Translated with gpt-4.1-mini
+#~ msgid "Enable verbose debugging output"
+#~ msgstr "Virkja nákvæma villuleitar úttak"
+
+# Translated with gpt-4.1-mini
+#~ msgid ""
+#~ "The Timeline tab controls default timeline behavior, clip/transition "
+#~ "insertion defaults, and whether to use the new timeline backend or the "
+#~ "legacy web-based timeline."
+#~ msgstr ""
+#~ "Tímalínuflipinn stjórnar sjálfgefnu hegðun tímalínunnar, sjálfgefnum "
+#~ "innsetningum klippa/skipta og hvort nota eigi nýja tímalínuvinnslu eða eldri"
+#~ " vefmiðaða tímalínu."
+
+# Translated with gpt-4.1-mini
+#~ msgid "Thumbnail density for the new timeline backend"
+#~ msgstr "Þéttleiki smámynda fyrir nýja tímalínuvinnsluna"
+
+# Translated with gpt-4.1-mini
+#~ msgid "Enable Legacy Timeline (web-based)"
+#~ msgstr "Virkja eldri tímalínu (vefmiðað)"
+
+# Translated with gpt-4.1-mini
+#~ msgid "Use the legacy web timeline (WebEngine/WebKit auto-select)"
+#~ msgstr "Nota eldri vefmiðaða tímalínu (WebEngine/WebKit sjálfval)"

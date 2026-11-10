@@ -1,0 +1,193 @@
+/*
+ * Copyright (c) 2025-2026 Meltytech, LLC
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#include "qmlextension.h"
+
+#include "Logger.h"
+#include "qmltypes/qmlutilities.h"
+#include "settings.h"
+
+#include <QDir>
+#include <QFileInfo>
+#include <QQmlComponent>
+
+const QString QmlExtension::WHISPER_ID = QStringLiteral("whispermodel");
+
+/*!
+    \qmltype QmlExtensionFile
+    \inqmlmodule org.shotcut.qml
+    \brief Describes a single downloadable file within an extension package.
+    \sa QmlExtension
+*/
+
+/*!
+    \qmlproperty string QmlExtensionFile::name
+    \brief The display name of the file.
+*/
+
+/*!
+    \qmlproperty string QmlExtensionFile::description
+    \brief A brief description of the file's purpose.
+*/
+
+/*!
+    \qmlproperty string QmlExtensionFile::file
+    \brief The local filename to store the downloaded file as.
+*/
+
+/*!
+    \qmlproperty string QmlExtensionFile::url
+    \brief The remote URL from which the file can be downloaded.
+*/
+
+/*!
+    \qmlproperty string QmlExtensionFile::sha256
+    \brief The expected SHA-256 hex digest of the downloaded file.
+*/
+
+/*!
+    \qmlproperty string QmlExtensionFile::size
+    \brief The size of the download in bytes, as a decimal string.
+*/
+
+/*!
+    \qmlproperty bool QmlExtensionFile::standard
+    \brief Whether this file is a standard (default) file vs. an optional add-on.
+*/
+
+QmlExtensionFile::QmlExtensionFile(QObject *parent)
+    : QObject(parent)
+    , m_standard(false)
+{}
+
+QmlExtension *QmlExtension::load(const QString &id)
+{
+    // Only the copy shipped with Shotcut. A descriptor under app data is not loaded.
+    QString filePath = installDir(id).absoluteFilePath(extensionFileName(id));
+    if (!QFile::exists(filePath)) {
+        LOG_ERROR() << filePath << "does not exist";
+        return nullptr;
+    }
+    QQmlComponent component(QmlUtilities::sharedEngine(), filePath);
+    QmlExtension *extension = qobject_cast<QmlExtension *>(component.create());
+    if (!extension) {
+        LOG_ERROR() << component.errorString();
+    }
+    return extension;
+}
+
+QString QmlExtension::extensionFileName(const QString &id)
+{
+    return id + ".qml";
+}
+
+QDir QmlExtension::installDir(const QString &id)
+{
+    QDir dir = QmlUtilities::qmlDir();
+    dir.mkdir("extensions");
+    dir.cd("extensions");
+    return dir;
+}
+
+QDir QmlExtension::appDir(const QString &id)
+{
+    QDir dir = Settings.appDataLocation();
+    dir.mkdir("extensions");
+    dir.cd("extensions");
+    dir.mkdir(id);
+    dir.cd(id);
+    return dir;
+}
+
+/*!
+    \qmltype QmlExtension
+    \inqmlmodule org.shotcut.qml
+    \brief Represents a loadable Shotcut extension (e.g. the Whisper speech-to-text package).
+
+    The descriptor is loaded from the installation directory. Files described by
+    \l{QmlExtensionFile} entries are downloaded into the application data directory.
+    Access the current extension object through the \c extension context property
+    in extension-related QML views.
+
+    \code
+    Text { text: extension.name + " v" + extension.version }
+    \endcode
+*/
+
+/*!
+    \qmlproperty string QmlExtension::id
+    \brief The unique identifier for the extension (e.g. \c "whisper").
+*/
+
+/*!
+    \qmlproperty string QmlExtension::name
+    \brief The human-readable display name of the extension.
+*/
+
+/*!
+    \qmlproperty string QmlExtension::version
+    \brief The installed version string of the extension.
+*/
+
+/*!
+    \qmlproperty list<QmlExtensionFile> QmlExtension::files
+    \brief The list of files that make up this extension.
+    \sa QmlExtensionFile
+*/
+
+QmlExtension::QmlExtension(QObject *parent)
+    : QObject(parent)
+{}
+
+void QmlExtension::setId(const QString &id)
+{
+    m_id = id;
+    emit changed();
+}
+
+void QmlExtension::setName(const QString &name)
+{
+    m_name = name;
+    emit changed();
+}
+
+void QmlExtension::setVersion(const QString &version)
+{
+    m_version = version;
+    emit changed();
+}
+
+QString QmlExtension::localPath(int index)
+{
+    if (index < 0 || index >= fileCount()) {
+        LOG_ERROR() << "Invalid Index" << index;
+        return QString();
+    }
+    const QString name = m_files[index]->file();
+    if (name.isEmpty() || name == QLatin1String(".") || name == QLatin1String("..")
+        || QFileInfo(name).fileName() != name) {
+        LOG_ERROR() << "Invalid file name" << name;
+        return QString();
+    }
+    QDir localPath = appDir(m_id);
+    return localPath.absoluteFilePath(name);
+}
+
+bool QmlExtension::downloaded(int index)
+{
+    return QFile(localPath(index)).exists();
+}

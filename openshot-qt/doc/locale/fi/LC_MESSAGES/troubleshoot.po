@@ -1,0 +1,923 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) OpenShot Studios, LLC
+# This file is distributed under the same license as the OpenShot Video
+# Editor package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: OpenShot Video Editor 3.4\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-31 15:58-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.10.3\n"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:23
+msgid "Troubleshooting"
+msgstr "Vianmääritys"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:25
+msgid ""
+"If you are experiencing an issue with OpenShot, such as a freeze, crash, or "
+"error message, there are many different techniques which can be useful for "
+"troubleshooting the issue."
+msgstr ""
+"Jos kohtaat ongelman OpenShotissa, kuten jumiutumisen, kaatumisen tai "
+"virheilmoituksen, on olemassa monia erilaisia tekniikoita, jotka voivat "
+"auttaa vianmäärityksessä."
+
+#: ../doc/troubleshoot.rst:31
+msgid "Large or Slow Project Files with Audio Waveforms"
+msgstr "Suuret tai hitaat projektitiedostot ääniaaltojen kanssa"
+
+#: ../doc/troubleshoot.rst:33
+msgid ""
+"Older projects with many audio waveforms can have unusually large ``.osp`` "
+"files and take longer to open or save. Older builds stored the waveform "
+"measurements inside the project file, sometimes repeating them for clips and"
+" undo history."
+msgstr ""
+"Vanhemmissa projekteissa, joissa on paljon ääniaaltoja, ``.osp``-tiedostot "
+"voivat olla epätavallisen suuria ja niiden avaaminen tai tallentaminen voi "
+"kestää kauemmin. Vanhemmat versiot tallensivat aaltomuotomittaukset "
+"projektitiedostoon, joskus toistaen niitä leikkeille ja kumoamishistorialle."
+
+#: ../doc/troubleshoot.rst:37
+msgid ""
+"The latest build stores these measurements in **separate compressed waveform"
+" files** instead. The project keeps small references to those files, "
+"reducing the data copied during editing and written into the ``.osp`` file. "
+"These files describe audio levels for display, not copies of the audio "
+"itself; your media and exported sound are unchanged."
+msgstr ""
+"Uusin versio tallentaa nämä mittaukset sen sijaan **erillisiin pakattuihin "
+"aaltomuototiedostoihin**. Projekti säilyttää pieniä viitteitä näihin "
+"tiedostoihin, mikä vähentää muokkauksen aikana kopioitua ja "
+"``.osp``-tiedostoon kirjoitettua dataa. Nämä tiedostot kuvaavat äänen tasoja"
+" näytettäväksi, eivät kopioita itse äänestä; mediasi ja viety ääni pysyvät "
+"muuttumattomina."
+
+#: ../doc/troubleshoot.rst:43
+msgid "To update an older project:"
+msgstr "Päivittääksesi vanhemman projektin:"
+
+#: ../doc/troubleshoot.rst:45
+msgid ""
+"Open it in the latest build. OpenShot automatically moves embedded waveform "
+"data into its waveform cache, preserving the existing waveform appearance."
+msgstr ""
+"Avaa se uusimmassa versiossa. OpenShot siirtää automaattisesti upotetut "
+"aaltomuototiedot aaltomuotovälimuistiin säilyttäen olemassa olevan "
+"aaltomuodon ulkoasun."
+
+#: ../doc/troubleshoot.rst:47
+msgid ""
+"Choose :guilabel:`File → Save Project As` to keep the original project as a "
+"backup, or save normally to update the existing file."
+msgstr ""
+"Valitse :guilabel:`Tiedosto → Tallenna projekti nimellä` säilyttääksesi "
+"alkuperäisen projektin varmuuskopiona, tai tallenna normaalisti "
+"päivittääksesi olemassa olevan tiedoston."
+
+#: ../doc/troubleshoot.rst:49
+msgid ""
+"Keep the saved project's ``_assets`` folder alongside its ``.osp`` file when"
+" copying or backing up the project."
+msgstr ""
+"Pidä tallennetun projektin ``_assets``-kansio samassa paikassa kuin sen "
+"``.osp``-tiedosto kopioitaessa tai varmuuskopioitaessa projektia."
+
+#: ../doc/troubleshoot.rst:52
+msgid ""
+"For example, ``MyProject.osp`` stores its compressed ``.wfc`` waveform files"
+" in ``MyProject_assets/waveforms/``. Each file contains compact numeric "
+"measurements compressed for storage. Identical waveform data can share the "
+"same cache file. OpenShot also uses a local cache while you work, including "
+"before the first save."
+msgstr ""
+"Esimerkiksi ``MyProject.osp`` tallentaa pakatut "
+"``.wfc``-aaltomuototiedostonsa kansioon ``MyProject_assets/waveforms/``. "
+"Jokainen tiedosto sisältää tiiviitä numeerisia mittauksia, jotka on pakattu "
+"tallennusta varten. Identtiset aaltomuototiedot voivat jakaa saman "
+"välimuistitiedoston. OpenShot käyttää myös paikallista välimuistia "
+"työskennellessäsi, myös ennen ensimmäistä tallennusta."
+
+#: ../doc/troubleshoot.rst:57
+msgid ""
+"The first opening still needs to read the old embedded data, so it can take "
+"time. The smaller project file is written when you save. Generating a "
+"waveform for a new, long audio file still requires analyzing that audio. If "
+"waveform cache files are missing, OpenShot can rebuild visible waveforms "
+"from the original media. See :ref:`timeline_waveform_display_ref` for "
+"waveform display and regeneration options."
+msgstr ""
+"Ensimmäisellä avaamisella täytyy edelleen lukea vanhat upotetut tiedot, "
+"joten se voi kestää hetken. Pienempi projektitiedosto kirjoitetaan "
+"tallennettaessa. Uuden, pitkän äänitiedoston aaltomuodon luominen vaatii "
+"edelleen äänen analysointia. Jos aaltomuotovälimuistitiedostot puuttuvat, "
+"OpenShot voi rakentaa näkyvät aaltomuodot uudelleen alkuperäisestä mediasta."
+" Katso :ref:`timeline_waveform_display_ref` aaltomuodon näyttö- ja "
+"uudelleenluontivaihtoehdoista."
+
+#: ../doc/troubleshoot.rst:66
+msgid "Using Logs to Troubleshoot a Problem"
+msgstr "Lokit ongelmanratkaisussa"
+
+#: ../doc/troubleshoot.rst:68
+msgid ""
+"A log is a text file that records what OpenShot is doing, along with "
+"warnings and errors. These files can help the support team understand a "
+"problem, even when you do not see an error message on screen."
+msgstr ""
+"Lokitiedosto on tekstitiedosto, joka tallentaa, mitä OpenShot tekee, mukaan "
+"lukien varoitukset ja virheet. Nämä tiedostot voivat auttaa tukitiimiä "
+"ymmärtämään ongelman, vaikka et näkisi virheilmoitusta näytöllä."
+
+#: ../doc/troubleshoot.rst:72
+msgid ""
+"OpenShot keeps two log files in the ``.openshot_qt`` folder inside your home"
+" folder. On Linux and macOS, this location is written as "
+"``~/.openshot_qt/``. The folder may be hidden in your file manager."
+msgstr ""
+"OpenShot säilyttää kahta lokitiedostoa ``.openshot_qt``-kansiossa "
+"kotikansiosi sisällä. Linuxissa ja macOS:ssä tämä sijainti kirjoitetaan "
+"muodossa ``~/.openshot_qt/``. Kansio saattaa olla piilotettu "
+"tiedostonhallinnassasi."
+
+#: ../doc/troubleshoot.rst:76
+msgid "The two log files"
+msgstr "Kaksi lokitiedostoa"
+
+#: ../doc/troubleshoot.rst:80
+msgid "File"
+msgstr "Tiedosto"
+
+#: ../doc/troubleshoot.rst:81
+msgid "What it records"
+msgstr "Mitä se tallentaa"
+
+#: ../doc/troubleshoot.rst:82 ../doc/troubleshoot.rst:109
+msgid "``openshot-qt.log``"
+msgstr "``openshot-qt.log``"
+
+#: ../doc/troubleshoot.rst:83
+msgid ""
+"Activity in the editor: starting OpenShot, loading projects, changing "
+"settings, and using the interface. This is usually the best place to start "
+"when investigating a problem."
+msgstr ""
+"Toiminta editorissa: OpenShotin käynnistäminen, projektien lataaminen, "
+"asetusten muuttaminen ja käyttöliittymän käyttäminen. Tämä on yleensä paras "
+"paikka aloittaa ongelman tutkiminen."
+
+#: ../doc/troubleshoot.rst:86 ../doc/troubleshoot.rst:112
+msgid "``libopenshot.log``"
+msgstr "``libopenshot.log``"
+
+#: ../doc/troubleshoot.rst:87
+msgid ""
+"Activity in OpenShot's video and audio engine, the part that reads media and"
+" builds the pictures and sound used in previews and exported videos. "
+"Detailed engine logging can help investigate playback and export problems."
+msgstr ""
+"Toiminta OpenShotin video- ja äänimoottorissa, osa joka lukee mediaa ja "
+"rakentaa esikatseluissa ja viedyissä videoissa käytettävät kuvat ja äänet. "
+"Yksityiskohtainen moottorin lokitus voi auttaa toiston ja viennin ongelmien "
+"tutkimisessa."
+
+#: ../doc/troubleshoot.rst:91
+msgid ""
+"These files record different parts of the same application. When reporting a"
+" problem, include both files if available. You do not need to understand "
+"every line yourself."
+msgstr ""
+"Nämä tiedostot tallentavat eri osia samasta sovelluksesta. Kun raportoit "
+"ongelmasta, liitä mukaan molemmat tiedostot, jos ne ovat saatavilla. Sinun "
+"ei tarvitse ymmärtää jokaista riviä itse."
+
+#: ../doc/troubleshoot.rst:96
+msgid "Choose which part of OpenShot to log"
+msgstr "Valitse, mitä osaa OpenShotista lokitetaan"
+
+#: ../doc/troubleshoot.rst:98
+msgid "Open **Edit → Preferences → Advanced** to find these two settings:"
+msgstr ""
+"Avaa **Muokkaa → Asetukset → Lisäasetukset** löytääksesi nämä kaksi "
+"asetusta:"
+
+#: ../doc/troubleshoot.rst:100
+msgid "Preferences and matching terminal options"
+msgstr "Asetukset ja vastaavat komentorivivaihtoehdot"
+
+#: ../doc/troubleshoot.rst:104
+msgid "Preference"
+msgstr "Asetus"
+
+#: ../doc/troubleshoot.rst:105
+msgid "Matching argument"
+msgstr "Vastaava argumentti"
+
+#: ../doc/troubleshoot.rst:106
+msgid "Log file"
+msgstr "Lokitiedosto"
+
+#: ../doc/troubleshoot.rst:107
+msgid "User Interface Debug Logging"
+msgstr "Käyttöliittymän virheenkorjauslokitus"
+
+#: ../doc/troubleshoot.rst:108
+msgid "``--debug-ui``"
+msgstr "``--debug-ui``"
+
+#: ../doc/troubleshoot.rst:110
+msgid "Video & Audio Engine Debug Logging"
+msgstr "Video- ja äänimoottorin virheenkorjauslokitus"
+
+#: ../doc/troubleshoot.rst:111 ../doc/troubleshoot.rst:179
+msgid "``--debug-engine``"
+msgstr "``--debug-engine``"
+
+#: ../doc/troubleshoot.rst:114
+msgid ""
+"Both preferences are off by default, which keeps the normal summary "
+"messages. Turning one on adds detail to its log file immediately. It does "
+"not change the other log or add messages to the terminal. Preferences stay "
+"enabled between launches until you turn them off."
+msgstr ""
+"Molemmat asetukset ovat oletuksena pois päältä, mikä säilyttää normaalit "
+"yhteenvetoviestit. Toisen kytkeminen päälle lisää yksityiskohtia sen "
+"lokitiedostoon välittömästi. Se ei muuta toista lokia eikä lisää viestejä "
+"terminaaliin. Asetukset pysyvät päällä käynnistysten välillä, kunnes "
+"sammutat ne."
+
+#: ../doc/troubleshoot.rst:119
+msgid ""
+"**User Interface Debug Logging** is a good starting point for problems with "
+"startup, project loading, settings, or the interface. **Video & Audio Engine"
+" Debug Logging** adds details about video and audio processing, which can "
+"help investigate playback and export problems. Engine logs can grow very "
+"quickly and may slow OpenShot down. Turn this setting on shortly before "
+"repeating the problem, then turn it off afterward."
+msgstr ""
+"**Käyttöliittymän virheenkorjauslokitus** on hyvä aloituspiste ongelmille "
+"käynnistyksessä, projektin latauksessa, asetuksissa tai käyttöliittymässä. "
+"**Video- ja äänimoottorin virheenkorjauslokitus** lisää yksityiskohtia "
+"video- ja äänikäsittelystä, mikä voi auttaa toiston ja viennin ongelmien "
+"tutkimisessa. Moottorin lokit voivat kasvaa hyvin nopeasti ja hidastaa "
+"OpenShottia. Ota tämä asetus käyttöön juuri ennen ongelman toistamista ja "
+"poista se käytöstä sen jälkeen."
+
+#: ../doc/troubleshoot.rst:126
+msgid ""
+"The engine preference was previously called **Debug Mode (Verbose)**. Its "
+"saved on/off setting carries over to the new name."
+msgstr ""
+"Moottorin asetus oli aiemmin nimeltään **Debug Mode (Verbose)**. Sen "
+"tallennettu päälle/pois -asetus siirtyy uuteen nimeen."
+
+#: ../doc/troubleshoot.rst:130
+msgid "Use a terminal for one launch"
+msgstr "Käytä terminaalia yhden käynnistyksen ajan"
+
+#: ../doc/troubleshoot.rst:132
+msgid ""
+"A terminal is a window where you type commands. The matching arguments "
+"enable the same extra detail as the preferences, and also display it in the "
+"terminal:"
+msgstr ""
+"Terminaali on ikkuna, johon kirjoitat komentoja. Vastaavat argumentit "
+"mahdollistavat samat lisäyksityiskohdat kuin asetukset ja näyttävät ne myös "
+"terminaalissa:"
+
+#: ../doc/troubleshoot.rst:139
+msgid ""
+"This records interface details for one launch. The familiar ``--debug`` and "
+"shorter ``-d`` options mean exactly the same thing as ``--debug-ui``. For "
+"video and audio engine details, use:"
+msgstr ""
+"Tämä tallentaa käyttöliittymän tiedot yhden käynnistyksen ajalta. Tutut "
+"``--debug`` ja lyhyempi ``-d`` tarkoittavat täsmälleen samaa kuin ``--debug-"
+"ui``. Video- ja äänimoottorin tietoja varten käytä:"
+
+#: ../doc/troubleshoot.rst:147
+msgid "To collect both types of detail together:"
+msgstr "Kerätäksesi molemmat tiedot yhdessä:"
+
+#: ../doc/troubleshoot.rst:153
+msgid ""
+"Repeat the steps that cause the problem, then close OpenShot and collect the"
+" logs. These arguments do not change your saved preferences. Starting "
+"OpenShot normally returns to your usual logging settings."
+msgstr ""
+"Toista ongelman aiheuttavat vaiheet, sulje sitten OpenShot ja kerää "
+"lokitiedostot. Nämä argumentit eivät muuta tallennettuja asetuksiasi. "
+"OpenShotin normaali käynnistys palauttaa tavalliset lokiasetuksesi."
+
+#: ../doc/troubleshoot.rst:157
+msgid ""
+"``openshot-qt.log`` starts a new file when it reaches about 25 MB and keeps "
+"three older copies. ``libopenshot.log`` keeps growing as messages are added."
+" After saving any logs you need, you can remove old log files while OpenShot"
+" is closed."
+msgstr ""
+"``openshot-qt.log`` aloittaa uuden tiedoston, kun se saavuttaa noin 25 Mt ja"
+" säilyttää kolme vanhempaa kopiota. ``libopenshot.log`` kasvaa jatkuvasti "
+"viestien lisäyksen myötä. Kun olet tallentanut tarvitsemasi lokit, voit "
+"poistaa vanhoja lokitiedostoja OpenShotin ollessa suljettuna."
+
+#: ../doc/troubleshoot.rst:163
+msgid "Other logging options"
+msgstr "Muut lokitusvaihtoehdot"
+
+#: ../doc/troubleshoot.rst:165
+msgid ""
+"Most users only need the two controls above. The following options let you "
+"choose how much detail goes into the files or appears in the terminal. Here,"
+" *console* means the terminal output. For the complete list of application "
+"launch options, see :ref:`launch_options_ref`. To edit projects or automate "
+"exports from the terminal, see :ref:`cli_ref`."
+msgstr ""
+"Useimmat käyttäjät tarvitsevat vain yllä olevat kaksi ohjainta. Seuraavat "
+"vaihtoehdot antavat sinun valita, kuinka paljon yksityiskohtia tallennetaan "
+"tiedostoihin tai näkyy terminaalissa. Tässä *konsoli* tarkoittaa terminaalin"
+" tulostetta. Sovelluksen käynnistysvaihtoehtojen täydellinen lista löytyy "
+"kohdasta :ref:`launch_options_ref`. Projektien muokkaamiseen tai vientien "
+"automatisointiin terminaalista katso :ref:`cli_ref`."
+
+#: ../doc/troubleshoot.rst:171
+msgid "Logging options"
+msgstr "Lokitusasetukset"
+
+#: ../doc/troubleshoot.rst:175
+msgid "Option"
+msgstr "Vaihtoehto"
+
+#: ../doc/troubleshoot.rst:176
+msgid "What it does"
+msgstr "Mitä se tekee"
+
+#: ../doc/troubleshoot.rst:177
+msgid "``--debug-ui``, ``--debug``, or ``-d``"
+msgstr "``--debug-ui``, ``--debug`` tai ``-d``"
+
+#: ../doc/troubleshoot.rst:178
+msgid "Enables User Interface Debug Logging in its file and the terminal."
+msgstr ""
+"Ottaa käyttöön käyttöliittymän virheenkorjauslokituksen tiedostossa ja "
+"terminaalissa."
+
+#: ../doc/troubleshoot.rst:180
+msgid ""
+"Enables Video & Audio Engine Debug Logging in its file and the terminal."
+msgstr ""
+"Ottaa käyttöön video- ja äänimoottorin virheenkorjauslokituksen tiedostossa "
+"ja terminaalissa."
+
+#: ../doc/troubleshoot.rst:181
+msgid "``--debug-file``"
+msgstr "``--debug-file``"
+
+#: ../doc/troubleshoot.rst:182
+msgid ""
+"Adds editor details to ``openshot-qt.log`` without adding terminal detail."
+msgstr ""
+"Lisää editorin tiedot ``openshot-qt.log``-tiedostoon ilman terminaalin "
+"tietoja."
+
+#: ../doc/troubleshoot.rst:183
+msgid "``--debug-console``"
+msgstr "``--debug-console``"
+
+#: ../doc/troubleshoot.rst:184
+msgid "Adds editor details in the terminal without adding file detail."
+msgstr "Lisää editorin tiedot terminaaliin ilman tiedostotietoja."
+
+#: ../doc/troubleshoot.rst:185
+msgid "``--log-level LEVEL``"
+msgstr "``--log-level LEVEL``"
+
+#: ../doc/troubleshoot.rst:186
+msgid "Sets the detail for both logs and their terminal output."
+msgstr ""
+"Asettaa yksityiskohtaisuuden molemmille lokitiedostoille ja niiden "
+"terminaalitulosteille."
+
+#: ../doc/troubleshoot.rst:187
+msgid "``--log-file-level LEVEL``"
+msgstr "``--log-file-level LEVEL``"
+
+#: ../doc/troubleshoot.rst:188
+msgid "Sets the detail for both log files, leaving terminal settings alone."
+msgstr ""
+"Asettaa yksityiskohtaisuuden molemmille lokitiedostoille jättäen "
+"terminaaliasetukset ennalleen."
+
+#: ../doc/troubleshoot.rst:189
+msgid "``--log-console-level LEVEL``"
+msgstr "``--log-console-level LEVEL``"
+
+#: ../doc/troubleshoot.rst:190
+msgid ""
+"Sets the detail in the terminal for both the editor and engine, leaving file"
+" settings alone."
+msgstr ""
+"Asettaa yksityiskohtaisuuden terminaaliin sekä editorille että moottorille, "
+"jättäen tiedostojen asetukset ennalleen."
+
+#: ../doc/troubleshoot.rst:193
+msgid ""
+"Replace ``LEVEL`` with ``debug`` for detailed messages or ``info`` for the "
+"normal summary. ``warning`` shows warnings and errors; ``error`` shows "
+"errors and critical failures; ``critical`` shows only critical failures. "
+"``off`` stops ordinary log messages, but existing crash diagnostics may "
+"still be written. Uppercase names such as ``DEBUG`` work too."
+msgstr ""
+"Korvaa ``LEVEL`` arvolla ``debug`` saadaksesi yksityiskohtaiset viestit tai "
+"``info`` normaalin yhteenvedon. ``warning`` näyttää varoitukset ja virheet; "
+"``error`` näyttää virheet ja kriittiset virheet; ``critical`` näyttää vain "
+"kriittiset virheet. ``off`` pysäyttää tavalliset lokiviestit, mutta olemassa"
+" olevat kaatumisdianostiikat voidaan silti kirjoittaa. Suuret kirjaimet "
+"kuten ``DEBUG`` toimivat myös."
+
+#: ../doc/troubleshoot.rst:199
+msgid ""
+"For example, to collect detailed messages in **both files** while keeping "
+"the terminal at its usual level:"
+msgstr ""
+"Esimerkiksi, kerätäksesi yksityiskohtaiset viestit **molemmissa "
+"tiedostoissa** pitäen terminaalin tavallisella tasolla:"
+
+#: ../doc/troubleshoot.rst:206
+msgid ""
+"This also enables the large engine log, so use it briefly. The older "
+"``--debug-file`` and ``--debug-console`` options still work even though they"
+" are not listed in ``--help``."
+msgstr ""
+"Tämä myös ottaa käyttöön suuren moottorin lokin, joten käytä sitä lyhyesti. "
+"Vanhemmat ``--debug-file`` ja ``--debug-console`` -valinnat toimivat "
+"edelleen, vaikka niitä ei ole listattu ``--help``-komennossa."
+
+#: ../doc/troubleshoot.rst:211
+msgid "Environment variables"
+msgstr "Ympäristömuuttujat"
+
+#: ../doc/troubleshoot.rst:213
+msgid ""
+"An environment variable is a named setting passed to a program when it "
+"starts. These are useful when starting OpenShot from a script or when a "
+"support person asks you to try a particular setting. You do not need to set "
+"them for normal use."
+msgstr ""
+"Ympäristömuuttuja on nimetty asetus, joka välitetään ohjelmalle sen "
+"käynnistyessä. Näitä käytetään, kun käynnistät OpenShotin skriptistä tai kun"
+" tukihenkilö pyytää sinua kokeilemaan tiettyä asetusta. Niitä ei tarvitse "
+"asettaa normaalissa käytössä."
+
+#: ../doc/troubleshoot.rst:217
+msgid "Optional environment settings"
+msgstr "Valinnaiset ympäristöasetukset"
+
+#: ../doc/troubleshoot.rst:221
+msgid "Variable"
+msgstr "Muuttuja"
+
+#: ../doc/troubleshoot.rst:222
+msgid "What it controls"
+msgstr "Mitä se ohjaa"
+
+#: ../doc/troubleshoot.rst:223
+msgid "``OPENSHOT_LOG_LEVEL``"
+msgstr "``OPENSHOT_LOG_LEVEL``"
+
+#: ../doc/troubleshoot.rst:224
+msgid "Detail in both files and the terminal."
+msgstr "Yksityiskohdat molemmissa tiedostoissa ja terminaalissa."
+
+#: ../doc/troubleshoot.rst:225
+msgid "``OPENSHOT_LOG_FILE_LEVEL``"
+msgstr "``OPENSHOT_LOG_FILE_LEVEL``"
+
+#: ../doc/troubleshoot.rst:226
+msgid "Detail in both files only."
+msgstr "Yksityiskohdat vain molemmissa tiedostoissa."
+
+#: ../doc/troubleshoot.rst:227
+msgid "``OPENSHOT_LOG_CONSOLE_LEVEL``"
+msgstr "``OPENSHOT_LOG_CONSOLE_LEVEL``"
+
+#: ../doc/troubleshoot.rst:228
+msgid "Detail in the terminal only, for both parts of OpenShot."
+msgstr "Yksityiskohdat vain terminaalissa, molemmille OpenShotin osille."
+
+#: ../doc/troubleshoot.rst:229
+msgid "``LIBOPENSHOT_LOG_LEVEL``"
+msgstr "``LIBOPENSHOT_LOG_LEVEL``"
+
+#: ../doc/troubleshoot.rst:230
+msgid "Detail for the video and audio engine, in its file and the terminal."
+msgstr ""
+"Yksityiskohdat video- ja äänimoottorille, sen tiedostossa ja terminaalissa."
+
+#: ../doc/troubleshoot.rst:231
+msgid "``LIBOPENSHOT_LOG_FILE_LEVEL``"
+msgstr "``LIBOPENSHOT_LOG_FILE_LEVEL``"
+
+#: ../doc/troubleshoot.rst:232
+msgid "Detail in ``libopenshot.log`` only."
+msgstr "Yksityiskohdat vain tiedostossa ``libopenshot.log``."
+
+#: ../doc/troubleshoot.rst:233
+msgid "``LIBOPENSHOT_LOG_CONSOLE_LEVEL``"
+msgstr "``LIBOPENSHOT_LOG_CONSOLE_LEVEL``"
+
+#: ../doc/troubleshoot.rst:234
+msgid "Engine detail in the terminal only."
+msgstr "Moottorin yksityiskohdat vain terminaalissa."
+
+#: ../doc/troubleshoot.rst:236
+msgid ""
+"For example, this Linux/macOS terminal command requests detailed engine "
+"logging in its file for one launch:"
+msgstr ""
+"Esimerkiksi tämä Linux/macOS terminaalikomento pyytää yksityiskohtaista "
+"moottorin lokitusta tiedostossaan yhden käynnistyksen ajaksi:"
+
+#: ../doc/troubleshoot.rst:243
+msgid ""
+"If settings overlap, command-line options take priority, followed by "
+"environment variables, then Preferences, then the normal defaults. Each "
+"control only affects the output it describes: ``--debug`` does not override "
+"the engine preference. Temporary overrides do not change your saved "
+"preferences. Hover over either checkbox to see whether another setting is "
+"controlling that log file."
+msgstr ""
+"Jos asetukset menevät päällekkäin, komentorivivalinnat ovat etusijalla, "
+"sitten ympäristömuuttujat, sitten Asetukset ja lopuksi normaalit oletukset. "
+"Kukin ohjaus vaikuttaa vain siihen ulostuloon, jota se kuvaa: ``--debug`` ei"
+" ohita moottorin asetusta. Väliaikaiset ohitukset eivät muuta tallennettuja "
+"asetuksiasi. Vie hiiri minkä tahansa valintaruudun päälle nähdäksesi, "
+"ohjaako jokin muu asetus kyseistä lokitiedostoa."
+
+#: ../doc/troubleshoot.rst:249
+msgid ""
+"Within the environment settings, ``LIBOPENSHOT_`` values take priority over "
+"``OPENSHOT_`` values for the engine. Within either group, a file-only or "
+"console-only level takes priority over the general level. Command-line "
+"options follow the same file/console rule. Conflicting command-line levels "
+"for the same output are rejected; invalid environment levels are reported "
+"and ignored."
+msgstr ""
+"Ympäristöasetuksissa ``LIBOPENSHOT_``-arvot ovat etusijalla moottorin osalta"
+" verrattuna ``OPENSHOT_``-arvoihin. Kummassakin ryhmässä tiedosto- tai "
+"terminaalikohtainen taso on etusijalla yleiseen tasoon nähden. "
+"Komentorivivalinnat noudattavat samaa tiedosto/terminaali-sääntöä. "
+"Ristiriitaiset komentorivitasot samalle ulostulolle hylätään; virheelliset "
+"ympäristötasot raportoidaan ja ohitetaan."
+
+#: ../doc/troubleshoot.rst:255
+msgid ""
+"For older scripts, ``LIBOPENSHOT_DEBUG`` still enables detailed engine "
+"messages in the terminal whenever it is present, even if its value is ``0``."
+" The newer level settings take priority over it. ``LIBOPENSHOT_LOG_FILE`` is"
+" intended for programs using the engine separately; OpenShot itself uses the"
+" log folder above. Changing logging settings does not change your error-"
+"reporting preference."
+msgstr ""
+"Vanhemmissa skripteissä ``LIBOPENSHOT_DEBUG`` ottaa edelleen käyttöön "
+"yksityiskohtaiset moottoriviestit terminaalissa aina kun se on läsnä, vaikka"
+" sen arvo olisi ``0``. Uudemmat tason asetukset ovat etusijalla sen yli. "
+"``LIBOPENSHOT_LOG_FILE`` on tarkoitettu ohjelmille, jotka käyttävät "
+"moottoria erikseen; OpenShot itse käyttää yllä olevaa lokikansiota. "
+"Lokiasetusten muuttaminen ei muuta virheraportointiasetustasi."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:262
+msgid "Windows 11 Unresponsive"
+msgstr "Windows 11 ei vastaa"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:264
+msgid ""
+"If you experience a freeze on Windows 11, this is a known issue with PyQt5 "
+"and Windows 11, related to the accessibility features in Qt. This is "
+"triggered by pressing :kbd:`Ctrl+C` in OpenShot (*only on Windows 11*). "
+"OpenShot will become unresponsive and a memory leak is also present (i.e. "
+"the longer OpenShot is unresponsive, the larger your memory leak will become"
+" until OpenShot finally crashes or the user kills the process)."
+msgstr ""
+"Jos Windows 11 -järjestelmä jumiutuu, kyseessä on tunnettu ongelma PyQt5:n "
+"ja Windows 11:n välillä, joka liittyy Qt:n saavutettavuusominaisuuksiin. "
+"Tämä tapahtuu, kun painat :kbd:`Ctrl+C` OpenShotissa (*vain Windows "
+"11:ssä*). OpenShot lakkaa vastaamasta ja muistivuotoa esiintyy (eli mitä "
+"pidempään OpenShot ei vastaa, sitä suuremmaksi muistivuoto kasvaa, kunnes "
+"OpenShot kaatuu tai käyttäjä lopettaa prosessin)."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:269
+msgid ""
+"A simple work-around is to avoid :kbd:`Ctrl+C` on Windows 11, and instead "
+"use the right-click Copy/Paste menus. Another work-around is to remap your "
+"\"Copy\" from :kbd:`Ctrl+C` to something else, for example :kbd:`Alt+C`. You"
+" can change your keyboard mappings in the OpenShot Preferences. See "
+":ref:`preferences_keyboard_ref`."
+msgstr ""
+"Yksinkertainen kiertotapa on välttää :kbd:`Ctrl+C` käyttöä Windows 11:ssä ja"
+" sen sijaan käyttää hiiren oikean painikkeen Kopioi/Liitä-valikoita. Toinen "
+"kiertotapa on muuttaa \"Kopioi\" -näppäinyhdistelmää :kbd:`Ctrl+C`:stä "
+"johonkin muuhun, esimerkiksi :kbd:`Alt+C`. Voit muuttaa näppäinasetuksia "
+"OpenShotin asetuksissa. Katso :ref:`preferences_keyboard_ref`."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:274
+msgid "Windows Debugging with GDB"
+msgstr "Windowsin virheenkorjaus GDB:llä"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:276
+msgid ""
+"If you are experiencing a crash or freeze with OpenShot in Windows 10/11, "
+"the following step by step instructions will help you determine the cause of"
+" the crash. These instructions will display a stack trace of OpenShot's "
+"source code, at the location of the crash. This information can be extremely"
+" useful for our development team, and very useful to attach to bug reports "
+"(for a quicker resolution)."
+msgstr ""
+"Jos OpenShot kaatuu tai jumiutuu Windows 10/11 -järjestelmässä, seuraavat "
+"vaiheittaiset ohjeet auttavat sinua selvittämään kaatumisen syyn. Nämä "
+"ohjeet näyttävät pinon jäljityksen OpenShotin lähdekoodista "
+"kaatumiskohdassa. Tämä tieto on erittäin hyödyllistä kehitystiimillemme ja "
+"hyödyllistä liittää virheraportteihin (nopeamman ratkaisun saamiseksi)."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:282
+msgid "Install the Latest Daily Build"
+msgstr "Asenna uusin päivittäinen versio"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:284
+msgid ""
+"Before attaching a debugger, please download the **latest version** of "
+"OpenShot: https://www.openshot.org/download#daily. Install this version of "
+"OpenShot to the default location: ``C:\\Program Files\\OpenShot Video "
+"Editor\\``. For details instructions on debugging OpenShot on Windows, "
+"please see `this wiki <https://github.com/OpenShot/openshot-qt/wiki/Windows-"
+"Debugging-with-GDB>`_."
+msgstr ""
+"Ennen virheenkorjaimen liittämistä, lataa **uusin versio** OpenShotista: "
+"https://www.openshot.org/download#daily. Asenna tämä OpenShotin versio "
+"oletussijaintiin: ``C:\\Program Files\\OpenShot Video Editor\\``. "
+"Yksityiskohtaiset ohjeet OpenShotin virheenkorjaukseen Windowsilla löydät "
+"`tästä wikistä <https://github.com/OpenShot/openshot-qt/wiki/Windows-"
+"Debugging-with-GDB>`_."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:289
+msgid "Install MSYS2"
+msgstr "Asenna MSYS2"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:291
+msgid ""
+"The Windows version of OpenShot is compiled using an environment called "
+"MSYS2. In order to attach the GDB debugger to our executable, ``openshot-"
+"qt.exe``, you must first install MSYS2. This step is only required once."
+msgstr ""
+"OpenShotin Windows-versio on käännetty MSYS2-nimisessä ympäristössä. Jotta "
+"voit liittää GDB-virheenkorjaimen suoritettavaan tiedostoomme, ``openshot-"
+"qt.exe``, sinun täytyy ensin asentaa MSYS2. Tämä vaihe tarvitaan vain "
+"kerran."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:294
+msgid "Download & Install MSYS2: `<http://www.msys2.org/>`_"
+msgstr "Lataa ja asenna MSYS2: `<http://www.msys2.org/>`_"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:295 ../doc/troubleshoot.rst:311
+msgid ""
+"Run ``MSYS2 MinGW x64`` command prompt (for example: "
+"``C:\\msys64\\msys2_shell.cmd -mingw64``)"
+msgstr ""
+"Aja ``MSYS2 MinGW x64`` komentokehote (esimerkiksi: "
+"``C:\\msys64\\msys2_shell.cmd -mingw64``)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:296
+msgid "Update all packages (*Copy/Paste the following command*):"
+msgstr "Päivitä kaikki paketit (*Kopioi/liitä seuraava komento*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:302
+msgid "Install GDB debugger (*Copy/Paste the following command*):"
+msgstr "Asenna GDB-virheenkorjain (*Kopioi/liitä seuraava komento*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:309
+msgid "Launch OpenShot with GDB Debugger"
+msgstr "Käynnistä OpenShot GDB-virheenkorjaimella"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:313
+msgid "Update the PATH (*Copy/Paste the following commands*):"
+msgstr "Päivitä PATH (*Kopioi/liitä seuraavat komennot*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:320
+msgid ""
+"Load OpenShot into the GDB debugger (*Copy/Paste the following commands*):"
+msgstr ""
+"Lataa OpenShot GDB-virheenkorjaimeen (*Kopioi/liitä seuraavat komennot*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:327
+msgid "Launch OpenShot from GDB prompt (*Copy/Paste the following command*):"
+msgstr "Käynnistä OpenShot GDB-kehotteesta (*Kopioi/liitä seuraava komento*):"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:334
+msgid "Print Debugging Info"
+msgstr "Tulosta virheenkorjaustiedot"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:336
+msgid ""
+"Once OpenShot has launched successfully with GDB attached, all you need to "
+"do is trigger a crash or freeze in OpenShot. When a crash occurs, switch "
+"back to the MSYS2 MinGW64 terminal and run one of the following commands (by"
+" typing it and pressing ENTER). Usually, the first command to enter is "
+"``bt``, which stands for ``backtrace``. More commands are listed below."
+msgstr ""
+"Kun OpenShot on käynnistynyt onnistuneesti GDB:n kanssa, sinun tarvitsee "
+"vain aiheuttaa kaatuminen tai jumiutuminen OpenShotissa. Kun kaatuminen "
+"tapahtuu, vaihda takaisin MSYS2 MinGW64 -terminaaliin ja suorita jokin "
+"seuraavista komennoista (kirjoita komento ja paina ENTER). Yleensä "
+"ensimmäinen komento on ``bt``, joka tarkoittaa ``backtrace``. Lisää "
+"komentoja on listattu alla."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:350
+msgid "High DPI / 4K Monitors"
+msgstr "Korkea DPI / 4K-näytöt"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:352
+msgid ""
+"OpenShot Video Editor provides robust support for High DPI (Dots Per Inch) "
+"monitors, ensuring that the interface looks sharp and is easily readable on "
+"displays with various DPI settings. This support is particularly helpful on "
+"4K monitors and other high-resolution displays."
+msgstr ""
+"OpenShot Video Editor tarjoaa vahvan tuen korkearesoluutioisille DPI (Dots "
+"Per Inch) -näytöille, varmistaen, että käyttöliittymä näyttää terävältä ja "
+"on helposti luettavissa eri DPI-asetuksilla varustetuilla näytöillä. Tämä "
+"tuki on erityisen hyödyllinen 4K-näytöillä ja muilla korkean resoluution "
+"näytöillä."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:358
+msgid "Per Monitor DPI Awareness"
+msgstr "Näytöittäin DPI-tietoisuus"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:360
+msgid ""
+"OpenShot is DPI aware on a per-monitor basis, meaning it can adjust its "
+"scaling dynamically depending on the DPI settings of each connected monitor."
+" This helps provide a consistent experience across different displays."
+msgstr ""
+"OpenShot tunnistaa DPI-arvot näytöittäin, eli se voi säätää skaalaustaan "
+"dynaamisesti kunkin liitetyn näytön DPI-asetusten mukaan. Tämä auttaa "
+"tarjoamaan yhtenäisen käyttökokemuksen eri näytöillä."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:365
+msgid "DPI Scaling on Windows"
+msgstr "DPI-skaalaus Windowsissa"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:367
+msgid ""
+"On Windows, OpenShot rounds the scaling factor to the nearest whole value to"
+" maintain visual integrity. This helps avoid visual artifacts in the UI and "
+"keeps interface elements crisp and well-aligned. Due to this rounding, some "
+"scaling options can lead to larger fonts and UI elements than expected."
+msgstr ""
+"Windowsissa OpenShot pyöristää skaalauskertoimen lähimpään kokonaislukuun "
+"visuaalisen eheys säilyttämiseksi. Tämä auttaa välttämään visuaalisia "
+"häiriöitä käyttöliittymässä ja pitää käyttöliittymäelementit terävinä ja "
+"hyvin kohdistettuina. Tämän pyöristyksen vuoksi jotkin skaalausvaihtoehdot "
+"voivat johtaa odotettua suurempiin fontteihin ja "
+"käyttöliittymäelementteihin."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:372
+msgid "**125% scaling** rounds to **100%**"
+msgstr "**125 % skaalaus** pyöristyy arvoon **100 %**"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:373
+msgid "**150% scaling** rounds to **200%**"
+msgstr "**150 % skaalaus** pyöristyy arvoon **200 %**"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:376
+msgid "Workarounds for Fine-Grained Adjustment"
+msgstr "Kiertotavat tarkempaan säätöön"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:378
+msgid ""
+"While rounding helps maintain a clean interface, there are workarounds for "
+"users who require more precise control over scaling. These methods are **not"
+" recommended** due to potential visual artifacts:"
+msgstr ""
+"Vaikka pyöristys auttaa säilyttämään siistin käyttöliittymän, on olemassa "
+"kiertotapoja käyttäjille, jotka tarvitsevat tarkempaa hallintaa "
+"skaalaamiseen. Näitä menetelmiä **ei suositella** mahdollisten visuaalisten "
+"häiriöiden vuoksi:"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:382
+msgid "**QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough**"
+msgstr "**QT_SCALE_FACTOR_ROUNDING_POLICY=PassThrough**"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:384
+msgid ""
+"Setting this environment variable can disable rounding and allow more "
+"precise scaling."
+msgstr ""
+"Tämän ympäristömuuttujan asettaminen voi poistaa pyöristyksen ja "
+"mahdollistaa tarkemman skaalaamisen."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:385
+msgid ""
+"**Note:** This may cause visual artifacts, particularly in the timeline, and"
+" is not recommended."
+msgstr ""
+"**Huom:** Tämä voi aiheuttaa visuaalisia häiriöitä, erityisesti aikajanalla,"
+" eikä sitä suositella."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:387
+msgid "**QT_SCALE_FACTOR=1.25** (or similar value)"
+msgstr "**QT_SCALE_FACTOR=1.25** (tai vastaava arvo)"
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:389
+msgid ""
+"Manually setting the scale factor can provide finer adjustments to the font "
+"and UI scaling."
+msgstr ""
+"Skaalauskertoimen manuaalinen asettaminen voi tarjota tarkempia säätöjä "
+"fontin ja käyttöliittymän skaalaamiseen."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:390
+msgid ""
+"This can also be set via Preferences (User Interface Scale), but expect "
+"border/line issues on Windows with fractional scales."
+msgstr ""
+"Tämän voi myös asettaa asetuksista (Käyttöliittymän skaalaus), mutta "
+"Windowsissa voi esiintyä reunojen/viivojen ongelmia murtolukuskaaloilla."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:391
+msgid ""
+"**Note:** This method can also lead to visual artifacts and make OpenShot "
+"harder to use."
+msgstr ""
+"**Huom:** Tämä menetelmä voi myös aiheuttaa visuaalisia häiriöitä ja tehdä "
+"OpenShotin käytöstä vaikeampaa."
+
+# Translated with gpt-4.1-mini
+#: ../doc/troubleshoot.rst:393
+msgid ""
+"For more info on adjusting these environment variables, please visit "
+"https://github.com/OpenShot/openshot-qt/wiki/OpenShot-UI-too-large."
+msgstr ""
+"Lisätietoja näiden ympäristömuuttujien säätämisestä löytyy osoitteesta "
+"https://github.com/OpenShot/openshot-qt/wiki/OpenShot-UI-too-large."
+
+#~ msgid "Other command-line options"
+#~ msgstr "Muut komentorivivaihtoehdot"
+
+#~ msgid ""
+#~ "Most users only need the two controls above. The following options let you "
+#~ "choose how much detail goes into the files or appears in the terminal. Here,"
+#~ " *console* means the terminal output."
+#~ msgstr ""
+#~ "Useimmat käyttäjät tarvitsevat vain yllä mainitut kaksi asetusta. Seuraavat "
+#~ "vaihtoehdot antavat sinun valita, kuinka paljon yksityiskohtia tallennetaan "
+#~ "tiedostoihin tai näytetään terminaalissa. Tässä *console* tarkoittaa "
+#~ "terminaalin tulostetta."
