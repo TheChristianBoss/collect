@@ -26,6 +26,12 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y ffmpeg
       - name: Install Python dependencies
         run: python -m pip install -r collect-editor/requirements.txt
+      - name: Check browser JavaScript syntax
+        working-directory: collect-editor
+        run: |
+          node --check static/app.js
+          node --check static/layers.js
+          node --check static/timeline-core.js
       - name: Test timeline algorithms
         working-directory: collect-editor
         run: node --test tests/timeline-core.test.js
