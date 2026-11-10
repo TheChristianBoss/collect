@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="/static/style.css">
   <script defer src="/static/timeline-core.js"></script>
   <script defer src="/static/app.js"></script>
+  <script defer src="/static/layers.js"></script>
 </head>
 <body>
   <div class="shell">
@@ -23,11 +24,20 @@
           <span class="upload-icon">＋</span>
           <strong>Import media</strong>
           <span>Drop video files or browse</span>
-          <span class="file-types">MP4 · MOV · MKV · WEBM · AVI</span>
-          <input id="fileInput" type="file" accept="video/*,.mkv,.avi" multiple hidden>
+          <span class="file-types">VIDEO: MP4 · MOV · MKV &nbsp; AUDIO: MP3 · WAV · FLAC</span>
+          <input id="fileInput" type="file" accept="video/*,audio/*,.mkv,.avi,.flac,.opus" multiple hidden>
         </label>
         <div id="uploadStatus" class="minor-text" role="status"></div>
-        <div class="library-heading">YOUR FILES <span>Click + to add to timeline</span></div>
+        <div class="track-target">
+          <label for="targetTrack">ADD MEDIA TO</label>
+          <select id="targetTrack" class="field-input">
+            <option value="V1">V1 · Main video</option>
+            <option value="V2">V2 · Overlay (picture-in-picture)</option>
+            <option value="A1">A1 · Music</option>
+            <option value="A2">A2 · Sound effects</option>
+          </select>
+        </div>
+        <div class="library-heading">YOUR FILES <span>Choose a track, then click +</span></div>
         <div id="mediaList" class="media-list"><div class="empty-library">Your imported clips will appear here.</div></div>
         <div class="library-footer"><span>◉</span> Files stay on your computer.</div>
       </section>
@@ -35,6 +45,7 @@
         <div class="preview-header"><div><span class="eyebrow">PREVIEW</span><h2 id="previewTitle">No clip selected</h2></div><span class="pill">16:9</span></div>
         <div class="viewer" id="viewer">
           <video id="preview" playsinline preload="metadata"></video>
+          <video id="overlayPreview" class="overlay-preview" muted playsinline preload="metadata" hidden aria-label="Picture-in-picture video preview"></video>
           <div id="viewerEmpty" class="viewer-empty"><div class="viewer-mark">▶</div><strong>Bring your story to life.</strong><span>Import a video, then add it to the timeline.</span></div>
         </div>
         <div class="transport">
@@ -43,7 +54,7 @@
           <span class="hint">Space to play</span>
         </div>
         <input id="seekBar" class="seekbar" type="range" min="0" max="1000" value="0" aria-label="Seek video">
-        <div class="info-bar"><span><span class="status-dot"></span>Ready to edit</span><span>Collect Editor v0.2</span></div>
+        <div class="info-bar"><span><span class="status-dot"></span>Ready to edit</span><span>Collect Editor v0.3</span></div>
       </section>
       <aside class="inspector panel">
         <div class="section-heading"><div><div class="eyebrow">ADJUSTMENTS</div><h2>Clip inspector</h2></div></div>
@@ -63,6 +74,28 @@
           <div class="reorder-actions"><button id="moveLeft" class="button quiet">← Earlier</button><button id="moveRight" class="button quiet">Later →</button></div>
           <button id="removeTimeline" class="button danger wide">Remove from timeline</button>
         </div>
+        <div id="layerInspector" hidden>
+          <div class="field-label">LAYER CLIP</div><div id="layerClipName" class="clip-name"></div>
+          <label class="field-label" for="layerTrackPicker">TRACK</label>
+          <select id="layerTrackPicker" class="field-input">
+            <option value="V2">V2 · Overlay</option>
+            <option value="A1">A1 · Music</option>
+            <option value="A2">A2 · Sound effects</option>
+          </select>
+          <label class="field-label" for="layerAt">TIMELINE START (SECONDS)</label>
+          <input id="layerAt" class="field-input" type="number" step="0.1" min="0">
+          <div class="reorder-actions layer-nudge"><button id="layerBack" class="button quiet">← 1 second</button><button id="layerForward" class="button quiet">1 second →</button></div>
+          <label class="field-label" for="layerStart">SOURCE TRIM START</label>
+          <input id="layerStart" class="field-input" type="number" step="0.1" min="0">
+          <label class="field-label" for="layerEnd">SOURCE TRIM END</label>
+          <input id="layerEnd" class="field-input" type="number" step="0.1" min="0">
+          <div id="layerVolumeWrapper">
+            <label class="field-label" for="layerVolume">VOLUME (0–200%)</label>
+            <input id="layerVolume" class="field-input" type="number" min="0" max="200" step="5">
+          </div>
+          <div class="metric"><span>Clip duration</span><strong id="layerDuration">—</strong></div>
+          <button id="removeLayer" class="button danger wide">Remove layer clip</button>
+        </div>
         <div class="inspector-note"><strong>Tip</strong><p>Click a media file's + button to add it to your edit. You can use a clip more than once.</p></div>
       </aside>
       <section class="timeline panel">
@@ -78,8 +111,23 @@
         </div>
         <div class="project-scrubber"><span id="projectCursorText">00:00</span><input id="projectSeekBar" type="range" min="0" max="1000" value="0" aria-label="Project playhead"><span id="projectLengthText">00:00</span></div>
         <div class="ruler"><span>00:00</span><span>EDIT YOUR STORY</span><span id="rulerEnd">00:00</span></div>
-        <div id="timelineTrack" class="timeline-track"><div class="timeline-placeholder">Your timeline is empty. Add a clip from the media library to begin.</div></div>
-        <div class="timeline-bottom"><span class="track-label"><span class="track-icon">▤</span> Video 1</span><span>Drag clips to reorder · Click to seek · S to split · Ctrl+Z to undo</span></div>
+        <div class="track-row overlay-row">
+          <span class="track-side-label">V2 <small>Overlay</small></span>
+          <div class="layer-lane" id="layerTrackV2" aria-label="Video overlay track"></div>
+        </div>
+        <div class="track-row main-track-row">
+          <span class="track-side-label">V1 <small>Main video</small></span>
+          <div id="timelineTrack" class="timeline-track"><div class="timeline-placeholder">Your timeline is empty. Add a clip from the media library to begin.</div></div>
+        </div>
+        <div class="track-row audio-row">
+          <span class="track-side-label">A1 <small>Music</small></span>
+          <div class="layer-lane" id="layerTrackA1" aria-label="Music track"></div>
+        </div>
+        <div class="track-row audio-row">
+          <span class="track-side-label">A2 <small>Effects</small></span>
+          <div class="layer-lane" id="layerTrackA2" aria-label="Sound effects track"></div>
+        </div>
+        <div class="timeline-bottom"><span class="track-label"><span class="track-icon">▤</span> Video 1</span><span>V2 overlays · V1 main · A1/A2 audio · Drag layer clips horizontally</span></div>
       </section>
     </main>
   </div>
