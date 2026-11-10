@@ -41,6 +41,9 @@ function toast(message) {
   toastTimer = setTimeout(() => notice.classList.remove("visible"), 4500);
 }
 async function api(path, options = {}) {
+  if (globalThis.CollectBrowserAPI) {
+    return globalThis.CollectBrowserAPI.request(path, options);
+  }
   const response = await fetch(path, options);
   if (!response.ok) {
     let details = {};
@@ -368,7 +371,9 @@ function select(index, autoplay = false, sourceTime = null) {
         if (autoplay) video.play().catch(() => toast("Press Play to continue."));
         renderTransport();
       };
-      video.src = "/api/media/" + encodeURIComponent(media.id);
+      video.src = globalThis.CollectBrowserAPI
+      ? globalThis.CollectBrowserAPI.getMediaURL(media.id)
+      : "/api/media/" + encodeURIComponent(media.id);
       video.load();
     }
   }
@@ -678,4 +683,5 @@ globalThis.CollectApp = {
   getMedia: mediaFor,
   fmt, toast, remember, renderTimeline, renderInspector, persist, canAdd,
 };
-main();
+globalThis.CollectStart = main;
+if (!globalThis.__COLLECT_DEFER_START__) main();
