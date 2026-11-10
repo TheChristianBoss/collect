@@ -189,7 +189,7 @@ function renderTimeline() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "timeline-clip" + (index === selected ? " selected" : "");
-    button.style.width = Math.max(30, duration(item) * zoom) + "px";
+    button.style.width = Math.max(1, duration(item) * zoom) + "px";
     button.title = (media ? media.name : "Missing media") + " — " + fmt(duration(item)) + ". Drag to reorder.";
     button.draggable = true;
     button.dataset.index = String(index);
@@ -585,6 +585,19 @@ function bindEvents() {
     $("exportDialog").showModal();
   };
   $("startExport").onclick = startExport;
+  const linkedTracks = ["timelineTrack", "layerTrackV2", "layerTrackA1", "layerTrackA2"]
+    .map((id) => $(id));
+  let syncingScroll = false;
+  linkedTracks.forEach((track) => {
+    track.addEventListener("scroll", () => {
+      if (syncingScroll) return;
+      syncingScroll = true;
+      linkedTracks.forEach((other) => {
+        if (other !== track) other.scrollLeft = track.scrollLeft;
+      });
+      syncingScroll = false;
+    });
+  });
 }
 async function main() {
   if (!T) { toast("Timeline tools are missing. Reload the page."); return; }
