@@ -1,25 +1,45 @@
-# Collect Editor (MVP v0.2)
+# Collect Editor v0.3 — four-track MVP
 
-A **new, standalone** video editor inside the Collect repository. The four imported upstream applications in sibling folders are unchanged.
+A new local-first browser-based editor in this repository's `collect-editor/` folder. Kdenlive, LosslessCut, OpenShot and Shotcut remain independent and untouched.
 
 ## Features
-- Import local MP4, MOV, M4V, WebM, MKV or AVI videos into a private local media library
-- Preview videos using the browser's built-in playback (codec support depends on your browser)
-- Add a source multiple times to the timeline, reorder clips by drag-and-drop or Earlier/Later buttons, remove clips, and trim start/end in seconds
-- Split a clip at the current playhead, duplicate clips, and undo/redo timeline edits
-- Scrub across the full project, click a timeline clip to seek within it, and zoom in or out on the sequence
-- Automatically save the timeline to the browser's local storage (media files persist in the local server's media library)
-- Export clips in timeline order into a single H.264/AAC MP4, at 720p or 1080p
-- Letterbox/pillarbox clips to the chosen 16:9 frame; standardize each segment to 30 fps
-- Add silent audio to clips that have no audio, for compatible joining
 
-## Requirements
-- Python 3.10+
-- FFmpeg and FFprobe installed and available on your PATH
-- A modern browser such as Chrome, Edge or Firefox
-- At least several GB of available disk space for temporary renders and project media
+- Import MP4, MOV, M4V, WebM, MKV, AVI, MP3, WAV, M4A, AAC, FLAC, OGG and OPUS files.
+- Preview video and audio with the browser's built-in codecs (some formats require FFmpeg export to view reliably).
+- Arrange V1 clips, trim, split at the playhead, duplicate, undo/redo, zoom, and scrub.
+- **V2 Overlay**: place video overlays at chosen times. They render as bottom-right picture-in-picture.
+- **A1 Music and A2 Effects**: add timed audio clips and mix them with V1's existing audio. Each clip has individual source trims, position and volume (0–200% for export).
+- Drag V2/A1/A2 clips horizontally or edit their positions numerically.
+- Export MP4 with H.264 video and AAC audio at 720p or 1080p.
+- Browser local-storage timeline autosave. Media stays on the local computer under the ignored `.local-data/` folder.
 
-On Windows, install Python and FFmpeg, then **restart your terminal**. Check:
+## Track model
+
+| Track | Media | Purpose |
+| --- | --- | --- |
+| V2 | Video only | Timed picture-in-picture overlay |
+| V1 | Video only | Main sequential footage; sets project length |
+| A1 | Media with audio | Music or another soundtrack |
+| A2 | Media with audio | Sound effects or another soundtrack |
+
+In **Media library → ADD MEDIA TO**, choose the track and click **+** on a media item. Select clips to edit placement and trim in the right inspector. The V1 base sequence determines final duration. Additional layers extending beyond V1 are truncated (or skipped if entirely outside it). Overlay-video audio is not automatically mixed; to hear it, add that same source to an audio track.
+
+### Timeline shortcuts
+
+| Command | Shortcut / action |
+| --- | --- |
+| Split V1 clip at playhead | **S** or **Split** |
+| Undo/redo | **Ctrl+Z / Ctrl+Y** or **Cmd+Z / Cmd+Shift+Z** |
+| Delete selected V1 clip | **Delete** |
+| Preview V1 | **Space** |
+| Move V1 clip | Drag or use **Earlier/Later** |
+| Move overlay/audio clip | Drag it horizontally or change **Timeline start** |
+| Zoom | Timeline zoom slider or **+ / −** controls |
+| Scrub | Project scrubber or click within a V1 clip |
+
+## Install and run on Windows (VS Code)
+
+Requires Python 3.10+, FFmpeg + FFprobe on the system PATH, and a modern browser. First verify:
 
 ```powershell
 python --version
@@ -27,28 +47,18 @@ ffmpeg -version
 ffprobe -version
 ```
 
-## Run on Windows (VS Code / PowerShell)
-
-From your cloned **Collect** repository folder:
+From the cloned **Collect** repo, on the `feature/collect-editor-mvp` branch:
 
 ```powershell
 cd collect-editor
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python -m uvicorn app:app --host 127.0.0.1 --port 8000
-```
-
-Open **http://127.0.0.1:8000**.
-
-If PowerShell blocks virtual environment activation, run the following instead of activating:
-
-```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
-## Run on macOS / Linux
+Open **http://127.0.0.1:8000**. The app runs only on your computer; it is not a public website.
+
+## macOS / Linux
 
 ```bash
 cd collect-editor
@@ -58,48 +68,39 @@ pip install -r requirements.txt
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
 ```
 
-The app runs **on your computer**, not on a hosted website. Uploaded files and exports are stored under ignored `.local-data/`, not in GitHub. The API binds to localhost by default.
+## Tests
 
-## Timeline controls
-
-| Action | How |
-| --- | --- |
-| Add a clip | Click the + button on an imported video |
-| Move a clip | Drag it to a new position on the timeline; or use Earlier/Later in the inspector |
-| Scrub | Drag the project scrubber or click a position within a timeline clip |
-| Split | Position the playhead inside the selected clip, then press **S** or click **Split** |
-| Duplicate | Click **Duplicate** above the timeline |
-| Undo/Redo | **Ctrl+Z** / **Ctrl+Y** on Windows, or **Cmd+Z** / **Cmd+Shift+Z** on macOS; toolbar buttons also work |
-| Delete | Press **Delete/Backspace** or click **Remove from timeline** |
-| Zoom | Use +/- or the zoom slider |
-
-The timeline is a **single sequential video track** in v0.2. It is not yet a multi-track nonlinear editor. Source media stays on the local computer; only timeline segment metadata is saved in browser storage. Browser storage can be cleared, so this is not yet a durable project file format.
-
-## Development tests
-
-With **Node.js 18+** installed, run:
+Run the Node timeline unit tests with Node 18+:
 
 ```bash
 node --test tests/timeline-core.test.js
 ```
 
-The tests cover split boundaries, drag reorder positions, source/project time mapping, and mutation safety.
+Run Python renderer unit tests; the integration smoke test automatically skips if FFmpeg/FFprobe are missing:
+
+```bash
+python -m unittest discover -s tests -v
+```
 
 ## Architecture
-- `app.py`: FastAPI endpoints for imports, media, renders, and downloads
-- `static/index.html`, `style.css`, `app.js`: dependency-free web editor
-- `static/timeline-core.js`: independently testable split/reorder/seek algorithms
-- `tests/timeline-core.test.js`: Node's built-in unit tests
-- Each source is stored under a random filename. Exports use temporary transcodes for consistent resolution, framerate, audio format, and codec, then FFmpeg's concat demuxer.
+
+- `app.py`: localhost FastAPI media library, validation and export jobs.
+- `layer_renderer.py`: FFmpeg filter graph that overlays V2 and mixes A1/A2 with V1 audio.
+- `static/index.html`, `style.css`, `app.js`: editor, V1 timeline, preview and export.
+- `static/timeline-core.js`: pure V1 split/reorder/seek algorithms.
+- `static/layers.js`: V2/A1/A2 tracks, inspector, browser preview and project save metadata.
+- `tests/`: Node timeline unit tests and Python render smoke tests.
 
 ## Known limitations
-- Timeline edits are saved only in the current browser's local storage, not as a portable project file. Undo/redo history is reset on page reload.
-- Clip preview uses native browser codecs; some MOV/MKV files may export successfully but not preview.
-- Timeline preview plays clips in sequence, but export accuracy may differ slightly at transition boundaries because of frame rounding and re-encoding.
-- No effects, titles, audio mixing, transitions, waveform thumbnails, keyframes, or independent audio/video tracks yet.
-- No authentication. Do **not** expose this development server to the public internet.
-- Upload size limit is 2 GB per file; maximum export duration is one hour. Exports run one at a time.
-- Output is fixed 16:9 at 30 fps.
+
+- V2 is a **fixed-size bottom-right picture-in-picture**, not yet arbitrary-resize or full-frame compositing.
+- The video output duration comes only from V1. Timeline length is limited to one hour, with up to 100 V1 and 100 supplementary clips; uploads are limited to 2 GB per file.
+- Browser playback of multiple tracks is best-effort; the FFmpeg render is authoritative. Browser audio preview caps volume at 100%, while export supports 200%.
+- Video overlays are muted in the preview and their audio is excluded from export unless separately placed on A1/A2.
+- Timeline metadata is saved in the current browser, not as portable project files. Deleting browser storage loses timeline edits. Media files persist in `.local-data/`.
+- No full-frame freeform overlays, transitions, waveform thumbnails, keyframes, effects, title generator, or standalone distributable installer yet.
+- No sign-in or authentication: **do not expose the development server to the public internet.**
 
 ## Licensing
-This new implementation is separate from Kdenlive, LosslessCut, OpenShot, and Shotcut. Their original licenses remain in their individual directories. Before distributing a binary incorporating components from those projects, review applicable licenses and attribution requirements.
+
+This is a separate implementation, not a code merge of the four upstream editors. Their original licenses remain inside their respective folders. Reusing code from those projects would require appropriate license and attribution review.
