@@ -19,7 +19,11 @@
       return null;
     }
     const updated = copy(items);
-    updated.splice(index, 1, { ...item, end: at }, { ...item, start: at });
+    const left = { ...item, end: at };
+    const right = { ...item, start: at };
+    // A split is not a transition: only the original first half keeps its incoming fade.
+    if ("transition" in right) right.transition = "cut";
+    updated.splice(index, 1, left, right);
     return { items: updated, index: index + 1, at };
   }
 
