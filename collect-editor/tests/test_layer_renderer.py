@@ -24,12 +24,26 @@ class LayerCommandTests(unittest.TestCase):
             Path("uploads"), 320, 180, 2.0
         )
         graph = command[command.index("-filter_complex") + 1]
-        self.assertIn("overlay=x=W-w-24", graph)
+        self.assertIn("overlay=x=198:y=111", graph)
+        self.assertIn("scale=108:60", graph)
         self.assertIn("amix=inputs=2", graph)
         self.assertIn("adelay=500:all=1", graph)
         self.assertIn("volume=0.500", graph)
         self.assertIn("[vout0]", command)
         self.assertIn("[mixed]", command)
+
+    def test_custom_overlay_geometry_uses_normalized_frame_coordinates(self):
+        command = build_layer_command(
+            Path("base.mp4"), Path("out.mp4"),
+            [{"track": "V2", "start": 0, "end": 1, "at": 0.25,
+              "stored": "overlay.mp4", "volume": 1,
+              "x": 0.1, "y": 0.2, "w": 0.6, "h": 0.5}],
+            Path("uploads"), 320, 180, 2.0
+        )
+        graph = command[command.index("-filter_complex") + 1]
+        self.assertIn("scale=192:90", graph)
+        self.assertIn("pad=192:90", graph)
+        self.assertIn("overlay=x=32:y=36", graph)
 
     def test_audio_only_copies_base_video(self):
         command = build_layer_command(
