@@ -60,3 +60,8 @@
   .layer-clip{padding:6px}
   .timeline-editor-buttons{gap:4px}
 }
+
+/* Pixel-aligned track coordinates for the same seconds-per-pixel scale. */
+.track-row .timeline-track{gap:0}
+.track-row .timeline-clip{min-width:0;max-width:none;padding:8px 4px;border-radius:2px}
+.layer-clip{min-width:0}
