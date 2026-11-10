@@ -15,6 +15,7 @@ from typing import Literal
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
+from layer_renderer import render_layers
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / ".local-data"
@@ -24,12 +25,15 @@ MANIFEST = DATA / "clips.json"
 for folder in (UPLOADS, EXPORTS):
     folder.mkdir(parents=True, exist_ok=True)
 
-ALLOWED_EXTENSIONS = {".mp4", ".mov", ".m4v", ".webm", ".mkv", ".avi"}
+ALLOWED_EXTENSIONS = {
+    ".mp4", ".mov", ".m4v", ".webm", ".mkv", ".avi",
+    ".mp3", ".wav", ".m4a", ".aac", ".flac", ".ogg", ".opus",
+}
 MAX_UPLOAD_BYTES = 2 * 1024 * 1024 * 1024
 MAX_PROJECT_SECONDS = 60 * 60
 LOCK = threading.RLock()
 EXECUTOR = ThreadPoolExecutor(max_workers=1)
-app = FastAPI(title="Collect Editor", version="0.1.0")
+app = FastAPI(title="Collect Editor", version="0.3.0")
 
 
 def _load_clips() -> dict[str, dict]:
@@ -58,7 +62,7 @@ def _run(command: list[str], *, cwd: Path | None = None) -> None:
         raise RuntimeError((result.stderr or "FFmpeg command failed")[-2500:])
 
 
-def _probe(path: Path) -> tuple[float, bool]:
+def _probe(path: Path) -> tuple[float, bool, bool]:
     result = subprocess.run(
         ["ffprobe", "-v", "error", "-show_entries",
          "format=duration:stream=codec_type,duration", "-of", "json", str(path)],
@@ -70,13 +74,14 @@ def _probe(path: Path) -> tuple[float, bool]:
         metadata = json.loads(result.stdout)
         streams = metadata.get("streams", [])
         video = next((s for s in streams if s.get("codec_type") == "video"), None)
-        if video is None:
-            raise ValueError("This file does not contain a video stream.")
-        duration = float(metadata.get("format", {}).get("duration") or video.get("duration") or 0)
-        if not math.isfinite(duration) or duration <= 0:
-            raise ValueError("Unable to determine the video duration.")
         audio = any(s.get("codec_type") == "audio" for s in streams)
-        return duration, audio
+        if video is None and not audio:
+            raise ValueError("This file contains no usable video or audio stream.")
+        duration = float(metadata.get("format", {}).get("duration")
+                         or (video or {}).get("duration") or 0)
+        if not math.isfinite(duration) or duration <= 0:
+            raise ValueError("Unable to determine the media duration.")
+        return duration, audio, video is not None
     except (TypeError, KeyError, json.JSONDecodeError) as exc:
         raise ValueError("Could not read media metadata.") from exc
 
@@ -118,7 +123,8 @@ def _concat(parts: list[Path], destination: Path, workspace: Path) -> None:
     ], cwd=workspace)
 
 
-def _render(job_id: str, segments: list[dict], width: int, height: int) -> None:
+def _render(job_id: str, segments: list[dict], layers: list[dict],
+            width: int, height: int) -> None:
     destination = EXPORTS / f"{job_id}.mp4"
     try:
         with LOCK:
@@ -140,8 +146,15 @@ def _render(job_id: str, segments: list[dict], width: int, height: int) -> None:
                         message=f"Rendering clip {index + 1} of {len(segments)}",
                     )
             with LOCK:
-                JOBS[job_id]["message"] = "Joining clips"
-            _concat(parts, destination, workspace)
+                JOBS[job_id]["message"] = "Joining base clips"
+            base = workspace / "base.mp4" if layers else destination
+            _concat(parts, base, workspace)
+            if layers:
+                with LOCK:
+                    JOBS[job_id].update(progress=90, message="Compositing video and audio layers")
+                base_duration = sum(segment["end"] - segment["start"] for segment in segments)
+                render_layers(base, destination, layers, UPLOADS,
+                              width, height, base_duration)
         with LOCK:
             JOBS[job_id].update(
                 status="complete", progress=100, message="Export complete",
@@ -159,8 +172,15 @@ class Segment(BaseModel):
     end: float = Field(gt=0)
 
 
+class LayerSegment(Segment):
+    track: Literal["V2", "A1", "A2"]
+    at: float = Field(ge=0)
+    volume: float = Field(default=1.0, ge=0, le=2)
+
+
 class ExportRequest(BaseModel):
     segments: list[Segment] = Field(min_length=1, max_length=100)
+    layers: list[LayerSegment] = Field(default_factory=list, max_length=100)
     resolution: Literal["720p", "1080p"] = "720p"
 
 
@@ -195,7 +215,7 @@ async def upload_clip(file: UploadFile = File(...)):
     original_name = Path((file.filename or "").replace("\\", "/")).name[:150]
     extension = Path(original_name).suffix.lower()
     if extension not in ALLOWED_EXTENSIONS:
-        raise HTTPException(400, "Upload a supported video format: MP4, MOV, M4V, WebM, MKV or AVI.")
+        raise HTTPException(400, "Upload a supported video or audio file (MP4, MOV, MKV, WAV, MP3, etc.).")
     stored = f"{uuid.uuid4().hex}{extension}"
     destination = UPLOADS / stored
     total = 0
@@ -207,12 +227,13 @@ async def upload_clip(file: UploadFile = File(...)):
                     raise HTTPException(413, "The upload exceeds the 2 GB limit.")
                 output.write(chunk)
         try:
-            duration, has_audio = _probe(destination)
+            duration, has_audio, has_video = _probe(destination)
         except (ValueError, FileNotFoundError) as exc:
             raise HTTPException(400, str(exc)) from exc
         clip = {
             "id": uuid.uuid4().hex, "name": original_name, "stored": stored,
-            "duration": round(duration, 3), "has_audio": has_audio, "bytes": total,
+            "duration": round(duration, 3), "has_audio": has_audio,
+            "kind": "video" if has_video else "audio", "bytes": total,
         }
         with LOCK:
             CLIPS[clip["id"]] = clip
@@ -262,6 +283,8 @@ def start_export(request: ExportRequest):
             clip = CLIPS.get(part.clip_id)
             if not clip:
                 raise HTTPException(400, "A timeline clip is missing from the media library.")
+            if clip.get("kind", "video") != "video":
+                raise HTTPException(400, "The main V1 track requires video media.")
             if (not math.isfinite(part.start) or not math.isfinite(part.end)
                     or part.end <= part.start + 0.09
                     or part.end > clip["duration"] + 0.05):
@@ -270,13 +293,30 @@ def start_export(request: ExportRequest):
             items.append({**clip, "start": part.start, "end": part.end})
         if total > MAX_PROJECT_SECONDS:
             raise HTTPException(400, "The total timeline must be one hour or less.")
+        layers = []
+        for item in request.layers:
+            media = CLIPS.get(item.clip_id)
+            if media is None:
+                raise HTTPException(400, "A layer references missing media.")
+            if (not all(math.isfinite(x) for x in
+                        (item.start, item.end, item.at, item.volume))
+                    or item.end - item.start < 0.1
+                    or item.end > media["duration"] + 0.05
+                    or item.at >= total):
+                raise HTTPException(400, "Invalid layer start, trim, or placement.")
+            if item.track == "V2" and media.get("kind", "video") != "video":
+                raise HTTPException(400, "V2 overlays require video media.")
+            if item.track in ("A1", "A2") and not media["has_audio"]:
+                raise HTTPException(400, "Audio tracks require media with an audio stream.")
+            layers.append({**media, "track": item.track, "start": item.start,
+                           "end": item.end, "at": item.at, "volume": item.volume})
         job_id = uuid.uuid4().hex
         JOBS[job_id] = {
             "id": job_id, "status": "queued", "progress": 0,
             "message": "Waiting to render", "download_url": None,
         }
     width, height = (1920, 1080) if request.resolution == "1080p" else (1280, 720)
-    EXECUTOR.submit(_render, job_id, items, width, height)
+    EXECUTOR.submit(_render, job_id, items, layers, width, height)
     return JOBS[job_id]
 
 
