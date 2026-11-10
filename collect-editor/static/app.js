@@ -52,7 +52,9 @@ async function api(path, options = {}) {
 function persist() {
   if (!loaded) return;
   try {
-    localStorage.setItem(PROJECT_KEY, JSON.stringify({items: timeline}));
+    localStorage.setItem(PROJECT_KEY, JSON.stringify({
+      items: timeline, layers: globalThis.CollectLayers?.getSave?.() || []
+    }));
   } catch {
     // Private browsing/storage restrictions must not prevent editing.
   }
@@ -73,13 +75,15 @@ function restoreProject() {
     const value = Number(localStorage.getItem(ZOOM_KEY));
     if (Number.isFinite(value) && value >= 6 && value <= 80) zoom = value;
   } catch {}
+  globalThis.CollectLayers?.loadFromSaved?.(saved?.layers || []);
   $("timelineZoom").value = String(zoom);
 }
 function snapshot() {
   return {
     items: T.copy(timeline),
     selected,
-    sourceTime: current() ? $("preview").currentTime : 0
+    sourceTime: current() ? $("preview").currentTime : 0,
+    layerSnapshot: globalThis.CollectLayers?.snapshot?.() || null
   };
 }
 function remember() {
@@ -91,6 +95,8 @@ function restore(snapshotValue) {
   timeline = T.copy(snapshotValue.items);
   const index = Math.min(snapshotValue.selected, timeline.length - 1);
   select(index, false, snapshotValue.sourceTime);
+  globalThis.CollectLayers?.restore?.(snapshotValue.layerSnapshot);
+  renderTimeline();
 }
 function undo() {
   if (!undoStack.length) return;
@@ -125,7 +131,7 @@ function renderLibrary() {
     row.className = "media-item";
     const thumbnail = document.createElement("div");
     thumbnail.className = "media-thumb";
-    thumbnail.textContent = "▶";
+    thumbnail.textContent = media.kind === "audio" ? "♫" : "▶";
     const details = document.createElement("div");
     details.className = "media-details";
     const label = document.createElement("strong");
@@ -140,6 +146,15 @@ function renderLibrary() {
     add.title = "Add to timeline";
     add.setAttribute("aria-label", "Add " + media.name + " to timeline");
     add.onclick = () => {
+      const target = $("targetTrack").value;
+      if (target !== "V1") {
+        globalThis.CollectLayers?.addMedia?.(media, target);
+        return;
+      }
+      if (media.kind === "audio") {
+        toast("Audio-only media belongs on A1 or A2.");
+        return;
+      }
       if (!canAdd()) return;
       remember();
       timeline.push({clip_id: media.id, start: 0, end: media.duration});
@@ -189,6 +204,7 @@ function renderTimeline() {
     number.textContent = String(index + 1).padStart(2, "0");
     button.append(label, time, number);
     button.onclick = (event) => {
+      globalThis.CollectLayers?.clearSelection?.();
       const bounds = button.getBoundingClientRect();
       const ratio = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width));
       select(index, false, item.start + duration(item) * ratio);
@@ -245,6 +261,7 @@ function renderTimeline() {
   $("undoEdit").disabled = undoStack.length === 0;
   $("redoEdit").disabled = redoStack.length === 0;
   updateProjectCursor();
+  globalThis.CollectLayers?.render?.();
   persist();
 }
 function updateProjectCursor() {
@@ -290,6 +307,7 @@ function renderTransport() {
   $("seekBar").value = String(Math.round(1000 * (time - item.start) / Math.max(0.1, duration(item))));
   $("playButton").textContent = video.paused ? "▶" : "Ⅱ";
   updateProjectCursor();
+  globalThis.CollectLayers?.syncPreview?.();
 }
 function select(index, autoplay = false, sourceTime = null) {
   selected = index >= 0 && index < timeline.length ? index : -1;
@@ -427,6 +445,7 @@ async function startExport() {
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify({
         segments: timeline.map((item) => ({clip_id: item.clip_id, start: item.start, end: item.end})),
+        layers: globalThis.CollectLayers?.exportLayers?.() || [],
         resolution: $("resolution").value
       })
     });
@@ -523,8 +542,8 @@ function bindEvents() {
       else { video.pause(); renderTransport(); }
     } else renderTransport();
   };
-  video.onpause = renderTransport;
-  video.onplay = renderTransport;
+  video.onpause = () => { renderTransport(); globalThis.CollectLayers?.syncPreview?.(); };
+  video.onplay = () => { renderTransport(); globalThis.CollectLayers?.syncPreview?.(); };
   video.onerror = () => { if (current()) toast("Preview unsupported by this browser. Export may still work."); };
   $("seekBar").oninput = (event) => {
     const item = current();
@@ -576,6 +595,7 @@ async function main() {
     const health = await api("/api/health");
     if (!health.ffmpeg) toast("Install FFmpeg and FFprobe before exporting.");
     library = await api("/api/clips");
+    globalThis.CollectLayers?.init?.();
     loaded = true;
     restoreProject();
     renderLibrary();
@@ -585,4 +605,14 @@ async function main() {
     toast("Unable to load project: " + error.message);
   }
 }
+globalThis.CollectApp = {
+  getLibrary: () => library,
+  getTimeline: () => timeline,
+  getSelected: () => selected,
+  getZoom: () => zoom,
+  getPosition: projectPosition,
+  getDuration: total,
+  getMedia: mediaFor,
+  fmt, toast, remember, renderTimeline, renderInspector, persist, canAdd,
+};
 main();
