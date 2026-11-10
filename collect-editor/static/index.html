@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#11131b">
   <title>Collect Editor</title>
   <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/timeline-core.js"></script>
   <script defer src="/static/app.js"></script>
 </head>
 <body>
@@ -42,7 +43,7 @@
           <span class="hint">Space to play</span>
         </div>
         <input id="seekBar" class="seekbar" type="range" min="0" max="1000" value="0" aria-label="Seek video">
-        <div class="info-bar"><span><span class="status-dot"></span>Ready to edit</span><span>Collect Editor v0.1</span></div>
+        <div class="info-bar"><span><span class="status-dot"></span>Ready to edit</span><span>Collect Editor v0.2</span></div>
       </section>
       <aside class="inspector panel">
         <div class="section-heading"><div><div class="eyebrow">ADJUSTMENTS</div><h2>Clip inspector</h2></div></div>
@@ -66,9 +67,19 @@
       </aside>
       <section class="timeline panel">
         <div class="timeline-top"><div><span class="eyebrow">SEQUENCE 01</span><h2>Timeline <span id="timelineCount" class="counter">0 clips</span></h2></div><div class="timeline-actions"><span id="projectDuration">Total 00:00</span><button id="clearTimeline" class="button quiet">Clear</button></div></div>
+        <div class="timeline-editorbar">
+          <div class="timeline-editor-buttons">
+            <button class="button quiet" id="splitClip" title="Split selected clip at the playhead (S)">✂ Split</button>
+            <button class="button quiet" id="duplicateClip" title="Duplicate selected clip">⧉ Duplicate</button>
+            <button class="button quiet" id="undoEdit" title="Undo (Ctrl+Z)">↶ Undo</button>
+            <button class="button quiet" id="redoEdit" title="Redo (Ctrl+Y)">↷ Redo</button>
+          </div>
+          <div class="timeline-zoom"><label for="timelineZoom">Zoom</label><button id="zoomOut" class="zoom-btn" aria-label="Zoom out">−</button><input id="timelineZoom" type="range" min="6" max="80" step="2" value="16" aria-label="Timeline zoom"><button id="zoomIn" class="zoom-btn" aria-label="Zoom in">+</button></div>
+        </div>
+        <div class="project-scrubber"><span id="projectCursorText">00:00</span><input id="projectSeekBar" type="range" min="0" max="1000" value="0" aria-label="Project playhead"><span id="projectLengthText">00:00</span></div>
         <div class="ruler"><span>00:00</span><span>EDIT YOUR STORY</span><span id="rulerEnd">00:00</span></div>
         <div id="timelineTrack" class="timeline-track"><div class="timeline-placeholder">Your timeline is empty. Add a clip from the media library to begin.</div></div>
-        <div class="timeline-bottom"><span class="track-label"><span class="track-icon">▤</span> Video 1</span><span>Clips export in timeline order · MP4 / H.264</span></div>
+        <div class="timeline-bottom"><span class="track-label"><span class="track-icon">▤</span> Video 1</span><span>Drag clips to reorder · Click to seek · S to split · Ctrl+Z to undo</span></div>
       </section>
     </main>
   </div>
