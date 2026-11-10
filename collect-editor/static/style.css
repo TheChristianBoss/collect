@@ -26,3 +26,37 @@
   .timeline-bottom{gap:10px;align-items:flex-start}
   .timeline-bottom>span:last-child{text-align:right}
 }
+
+
+/* Collect Editor v0.3: four visible lanes and video/audio overlays. */
+.track-target{border:1px solid #303548;background:#1b1f2b;padding:11px;border-radius:10px}
+.track-target label{display:block;color:#a5a8ba;letter-spacing:1px;font-size:10px;font-weight:750;margin-bottom:8px}
+.track-target .field-input{padding:9px;font-size:12px}
+.track-row{display:flex;gap:8px;align-items:stretch;min-width:0;margin:8px 0}
+.track-side-label{flex:0 0 88px;display:flex;align-items:flex-start;justify-content:center;flex-direction:column;padding:8px 10px;background:#202332;border:1px solid #33384b;color:#cebafe;font-size:13px;font-weight:800;border-radius:9px}
+.track-side-label small{display:block;color:#9395aa;font-weight:500;font-size:10px;margin-top:4px}
+.track-row .timeline-track{flex:1;min-width:0;margin:0;min-height:68px;max-height:88px;padding-bottom:0}
+.track-row .timeline-clip{min-height:63px}
+.layer-lane{flex:1;min-width:0;max-width:100%;min-height:60px;overflow-x:auto;overflow-y:hidden;background:repeating-linear-gradient(90deg,#1a1d28 0,#1a1d28 70px,#222638 71px,#1a1d28 72px);border:1px solid #33384b;border-radius:8px;scrollbar-width:thin}
+.layer-canvas{height:58px;position:relative;min-width:100%}
+.layer-clip{position:absolute;top:6px;height:46px;border:1px solid #9887d6;color:#f3eeff;border-radius:7px;background:linear-gradient(120deg,#5a438d,#392e59);padding:6px 8px;overflow:hidden;text-align:left;cursor:grab;touch-action:pan-y;user-select:none}
+.layer-clip:active{cursor:grabbing}
+.layer-clip strong,.layer-clip small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+.layer-clip strong{font-size:11px}
+.layer-clip small{font-size:10px;margin-top:3px;opacity:.8}
+.layer-clip.selected{border-color:#e4c2ff;box-shadow:inset 0 0 0 1px #e4c2ff}
+.layer-a1{background:linear-gradient(120deg,#236c71,#1a464b);border-color:#55a1a4}
+.layer-a2{background:linear-gradient(120deg,#645e23,#444021);border-color:#a19a53}
+.layer-nudge{margin-top:10px}
+.layer-nudge .button{padding:8px 5px;font-size:11px}
+.viewer .overlay-preview{position:absolute;z-index:4;bottom:5%;right:4%;width:34%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#080911;border:2px solid #cbbaff;box-shadow:0 5px 25px #000a;border-radius:5px;display:block}
+#layerInspector{padding-top:12px;border-top:1px solid #3c3951;margin-top:12px}
+#layerInspector[hidden]{display:none}
+.timeline{overflow:hidden}
+.timeline-bottom{margin-top:12px}
+@media(max-width:680px){
+  .track-side-label{flex-basis:58px;font-size:11px;padding:6px}
+  .track-side-label small{font-size:9px}
+  .layer-clip{padding:6px}
+  .timeline-editor-buttons{gap:4px}
+}
