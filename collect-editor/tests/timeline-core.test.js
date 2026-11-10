@@ -22,6 +22,16 @@ test("split keeps both trims and total duration", () => {
   assert.equal(original[0].end, 10, "must not mutate the original timeline");
 });
 
+test("splitting a faded clip introduces a cut at the new boundary", () => {
+  const source = [{clip_id: "a", start: 0, end: 10, transition: "fade", fade_seconds: 0.5}];
+  const result = T.split(source, 0, 4);
+  assert.ok(result);
+  assert.equal(result.items[0].transition, "fade");
+  assert.equal(result.items[1].transition, "cut");
+  assert.equal(result.items[0].fade_seconds, 0.5);
+  assert.equal(T.total(result.items), 10);
+});
+
 test("split rejects edges shorter than 0.1 seconds", () => {
   assert.equal(T.split(sample(), 0, 0.05), null);
   assert.equal(T.split(sample(), 0, 9.95), null);
