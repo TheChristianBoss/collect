@@ -1,6 +1,6 @@
 import { FFmpeg } from "@ffmpeg/ffmpeg";
-import coreURL from "@ffmpeg/core/dist/esm/ffmpeg-core.js?url";
-import wasmURL from "@ffmpeg/core/dist/esm/ffmpeg-core.wasm?url";
+import coreURL from "./node_modules/@ffmpeg/core/dist/esm/ffmpeg-core.js?url";
+import wasmURL from "./node_modules/@ffmpeg/core/dist/esm/ffmpeg-core.wasm?url";
 
 /*
  * Collect Browser API
