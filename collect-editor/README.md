@@ -18,48 +18,48 @@ A **new, standalone** video editor inside the Collect repository. The four impor
 
 On Windows, install Python and FFmpeg, then **restart your terminal**. Check:
 
-\`\`\`powershell
+```powershell
 python --version
 ffmpeg -version
 ffprobe -version
-\`\`\`
+```
 
 ## Run on Windows (VS Code / PowerShell)
 
 From your cloned **Collect** repository folder:
 
-\`\`\`powershell
+```powershell
 cd collect-editor
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
-\`\`\`
+```
 
 Open **http://127.0.0.1:8000**.
 
 If PowerShell blocks virtual environment activation, run the following instead of activating:
 
-\`\`\`powershell
+```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m uvicorn app:app --host 127.0.0.1 --port 8000
-\`\`\`
+```
 
 ## Run on macOS / Linux
 
-\`\`\`bash
+```bash
 cd collect-editor
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python -m uvicorn app:app --host 127.0.0.1 --port 8000
-\`\`\`
+```
 
-The app runs **on your computer**, not on a hosted website. Uploaded files and exports are stored under ignored \`.local-data/\`, not in GitHub. The API binds to localhost by default.
+The app runs **on your computer**, not on a hosted website. Uploaded files and exports are stored under ignored `.local-data/`, not in GitHub. The API binds to localhost by default.
 
 ## Architecture
-- \`app.py\`: FastAPI endpoints for imports, media, renders, and downloads
-- \`static/index.html\`, \`style.css\`, \`app.js\`: dependency-free web editor
+- `app.py`: FastAPI endpoints for imports, media, renders, and downloads
+- `static/index.html`, `style.css`, `app.js`: dependency-free web editor
 - Each source is stored under a random filename. Exports use temporary transcodes for consistent resolution, framerate, audio format, and codec, then FFmpeg's concat demuxer.
 
 ## Known limitations
