@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11131b">
+  <title>Collect Editor</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script defer src="/static/app.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Collect Editor"><span class="brand-icon">◈</span><span>collect<span class="brand-dot">.</span><small>EDITOR</small></span></a>
+      <div class="project-label"><span class="status-dot"></span><span>Untitled project</span><span class="tag">LOCAL</span></div>
+      <button id="exportButton" class="button primary"><span>↗</span> Export video</button>
+    </header>
+    <main class="workbench">
+      <section class="library panel">
+        <div class="section-heading"><div><div class="eyebrow">WORKSPACE</div><h2>Media library</h2></div><span id="mediaCount" class="counter">0</span></div>
+        <label class="upload-box" for="fileInput" id="dropZone">
+          <span class="upload-icon">＋</span>
+          <strong>Import media</strong>
+          <span>Drop video files or browse</span>
+          <span class="file-types">MP4 · MOV · MKV · WEBM · AVI</span>
+          <input id="fileInput" type="file" accept="video/*,.mkv,.avi" multiple hidden>
+        </label>
+        <div id="uploadStatus" class="minor-text" role="status"></div>
+        <div class="library-heading">YOUR FILES <span>Click + to add to timeline</span></div>
+        <div id="mediaList" class="media-list"><div class="empty-library">Your imported clips will appear here.</div></div>
+        <div class="library-footer"><span>◉</span> Files stay on your computer.</div>
+      </section>
+      <section class="center">
+        <div class="preview-header"><div><span class="eyebrow">PREVIEW</span><h2 id="previewTitle">No clip selected</h2></div><span class="pill">16:9</span></div>
+        <div class="viewer" id="viewer">
+          <video id="preview" playsinline preload="metadata"></video>
+          <div id="viewerEmpty" class="viewer-empty"><div class="viewer-mark">▶</div><strong>Bring your story to life.</strong><span>Import a video, then add it to the timeline.</span></div>
+        </div>
+        <div class="transport">
+          <div id="timeDisplay" class="timecode">00:00 / 00:00</div>
+          <div class="transport-buttons"><button id="previousButton" class="icon-button" title="Previous clip">⏮</button><button id="playButton" class="play-button" title="Play / pause">▶</button><button id="nextButton" class="icon-button" title="Next clip">⏭</button></div>
+          <span class="hint">Space to play</span>
+        </div>
+        <input id="seekBar" class="seekbar" type="range" min="0" max="1000" value="0" aria-label="Seek video">
+        <div class="info-bar"><span><span class="status-dot"></span>Ready to edit</span><span>Collect Editor v0.1</span></div>
+      </section>
+      <aside class="inspector panel">
+        <div class="section-heading"><div><div class="eyebrow">ADJUSTMENTS</div><h2>Clip inspector</h2></div></div>
+        <div id="inspectorEmpty" class="inspector-empty">Select a clip on the timeline to adjust its trim points.</div>
+        <div id="inspectorFields" hidden>
+          <label class="field-label">FILE NAME</label><div class="clip-name" id="inspectorName"></div>
+          <div class="metric"><span>Source duration</span><strong id="originalDuration">—</strong></div>
+          <div class="divider"></div>
+          <label class="field-label" for="trimStart">TRIM START (SECONDS)</label>
+          <input type="number" min="0" step="0.1" id="trimStart" class="field-input">
+          <label class="field-label" for="trimEnd">TRIM END (SECONDS)</label>
+          <input type="number" min="0" step="0.1" id="trimEnd" class="field-input">
+          <div class="metric"><span>Selected duration</span><strong id="selectedDuration">—</strong></div>
+          <button id="resetTrim" class="button quiet wide">Reset trim</button>
+          <div class="divider"></div>
+          <div class="field-label">TIMELINE ORDER</div>
+          <div class="reorder-actions"><button id="moveLeft" class="button quiet">← Earlier</button><button id="moveRight" class="button quiet">Later →</button></div>
+          <button id="removeTimeline" class="button danger wide">Remove from timeline</button>
+        </div>
+        <div class="inspector-note"><strong>Tip</strong><p>Click a media file's + button to add it to your edit. You can use a clip more than once.</p></div>
+      </aside>
+      <section class="timeline panel">
+        <div class="timeline-top"><div><span class="eyebrow">SEQUENCE 01</span><h2>Timeline <span id="timelineCount" class="counter">0 clips</span></h2></div><div class="timeline-actions"><span id="projectDuration">Total 00:00</span><button id="clearTimeline" class="button quiet">Clear</button></div></div>
+        <div class="ruler"><span>00:00</span><span>EDIT YOUR STORY</span><span id="rulerEnd">00:00</span></div>
+        <div id="timelineTrack" class="timeline-track"><div class="timeline-placeholder">Your timeline is empty. Add a clip from the media library to begin.</div></div>
+        <div class="timeline-bottom"><span class="track-label"><span class="track-icon">▤</span> Video 1</span><span>Clips export in timeline order · MP4 / H.264</span></div>
+      </section>
+    </main>
+  </div>
+  <dialog id="exportDialog" class="modal">
+    <form method="dialog"><div class="modal-top"><div><div class="eyebrow">RENDER</div><h2>Export your video</h2></div><button class="close" value="cancel" aria-label="Close">×</button></div></form>
+    <p>All timeline clips will be combined into a single MP4 file.</p>
+    <label class="field-label" for="resolution">OUTPUT RESOLUTION</label>
+    <select class="field-input" id="resolution"><option value="720p">HD — 1280 × 720</option><option value="1080p">Full HD — 1920 × 1080</option></select>
+    <div class="export-stats"><span id="exportClips">0 clips</span><span id="exportDuration">00:00 duration</span></div>
+    <div id="exportProgressArea" hidden><div class="progress-track"><div id="progressFill" class="progress-fill"></div></div><div id="exportMessage" class="minor-text" role="status"></div></div>
+    <button id="startExport" class="button primary wide">Start export</button>
+    <a id="downloadExport" class="button primary wide" hidden>Download MP4 ↓</a>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
