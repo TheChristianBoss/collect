@@ -11,7 +11,7 @@ page.on("console", (message) => {
 
 try {
   await page.goto("http://127.0.0.1:4173/", {waitUntil: "networkidle", timeout: 30000});
-  await page.waitForSelector("#fileInput", {timeout: 15000});
+  await page.waitForSelector("#fileInput", {state: "attached", timeout: 15000});
   await page.waitForFunction(() => Boolean(window.CollectBrowserAPI), null, {timeout: 15000});
   const result = await page.evaluate(async () => {
     const canvas = document.createElement("canvas");
