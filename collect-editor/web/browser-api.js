@@ -106,6 +106,7 @@ export class BrowserAPI {
     this.rendering = false;
     this.exportURL = null;
     this.probed = new Map();
+    this.lastLogs = [];
   }
   async init() {
     if (!("indexedDB" in window)) {
@@ -210,6 +211,10 @@ export class BrowserAPI {
     if (this.ffmpeg?.loaded) return this.ffmpeg;
     job.message = "Downloading browser FFmpeg engine (large first download)…";
     const ffmpeg = new FFmpeg();
+    ffmpeg.on("log", ({message}) => {
+      this.lastLogs.push(String(message));
+      if (this.lastLogs.length > 30) this.lastLogs.shift();
+    });
     await ffmpeg.load({coreURL, wasmURL});
     this.ffmpeg = ffmpeg;
     return ffmpeg;
@@ -221,8 +226,13 @@ export class BrowserAPI {
         "-v", "error", "-show_streams", "-show_format",
         "-print_format", "json", filename, "-o", output
       ]);
-      ensureOk(result, "Media inspection");
-      const json = JSON.parse(dec.decode(await ffmpeg.readFile(output)));
+      let data;
+      try { data = await ffmpeg.readFile(output); } catch {}
+      if (!data?.byteLength) {
+        throw Error("FFprobe did not generate metadata (code " + result
+          + "): " + this.lastLogs.slice(-10).join(" | ").slice(-1800));
+      }
+      const json = JSON.parse(dec.decode(data));
       return {
         video: json.streams?.some((stream) => stream.codec_type === "video") || false,
         audio: json.streams?.some((stream) => stream.codec_type === "audio") || false
@@ -289,6 +299,7 @@ export class BrowserAPI {
   async runExport(request, job) {
     job.status = "running";
     const ffmpeg = await this.loadFFmpeg(job);
+    this.lastLogs.length = 0;
     const [width, height] = resolutionMap[request.resolution];
     const parts = request.segments;
     const total = parts.reduce((sum, item) => sum + item.end - item.start, 0);
